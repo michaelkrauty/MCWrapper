@@ -44,6 +44,7 @@ public class Server {
 	}
 
 	public void start() {
+		System.out.println("Starting server " + this.PID + "...");
 		try {
 			this.process = Runtime
 					.getRuntime()

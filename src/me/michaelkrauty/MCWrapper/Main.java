@@ -57,7 +57,17 @@ public class Main {
 						System.out.println("Wrapper PID: " + wrapper.getPID());
 					}
 					if (in[0].equalsIgnoreCase("start")) {
-						wrapper.startServer(Integer.parseInt(in[1]));
+						boolean isInt = true;
+						try {
+							Integer.parseInt(in[1]);
+						} catch (NumberFormatException e) {
+							isInt = false;
+						}
+						if (isInt) {
+							wrapper.startServer(Integer.parseInt(in[1]));
+						} else {
+							System.out.println("argument must be an int");
+						}
 					}
 					if (in[0].equalsIgnoreCase("stop")) {
 
@@ -91,6 +101,7 @@ public class Main {
 		valid.add("pid");
 		valid.add("servercommand");
 		valid.add("restart");
+		valid.add("start");
 		if (valid.contains(in)) {
 			return true;
 		}
