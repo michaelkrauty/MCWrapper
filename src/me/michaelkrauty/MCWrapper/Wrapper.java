@@ -41,6 +41,11 @@ public class Wrapper {
 		return false;
 	}
 
+	public long getServerUptime(int serverid) {
+		return 0;
+		// TODO
+	}
+
 	public String[] getOnlineServers() {
 		// TODO
 		String[] test = null;
