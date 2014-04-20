@@ -11,7 +11,6 @@ public class Main {
 		System.out.println("Initiating wrapper...");
 		Wrapper wrapper = new Wrapper();
 		System.out.println("Wrapper PID: " + wrapper.getPID());
-		System.out.println("Checking SQL tables...");
 		SQL.checkSqlTables();
 		System.out.println("done.");
 		Boolean running = true;

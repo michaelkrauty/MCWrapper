@@ -27,16 +27,18 @@ public class SQL {
 	}
 
 	public synchronized static void checkSqlTables() {
+		System.out.println("Checking SQL tables...");
 		try {
 			openConnection();
 			PreparedStatement sql = connection
-					.prepareStatement("CREATE TABLE `servers`(serverid int(255) KEY, name varchar(255));");
+					.prepareStatement("CREATE TABLE `servers`(serverid int(255) KEY, host varchar(255), port int(255), memory int(255), jar int(255), suspended boolean, name varchar(255));");
 			sql.executeUpdate();
 			System.out.println("Created SQL table `servers`");
 			sql.close();
 			closeConnection();
 		} catch (Exception e1) {
 		}
+		System.out.println("SQL tables exist.");
 	}
 
 	/**
