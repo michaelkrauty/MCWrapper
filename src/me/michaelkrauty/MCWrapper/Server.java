@@ -41,7 +41,7 @@ public class Server {
 		return this;
 	}
 
-	private ArrayList<String> getDBServer(){
+	private ArrayList<String> getDBServer() {
 		return new ArrayList<String>();
 	}
 
