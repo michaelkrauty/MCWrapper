@@ -58,7 +58,8 @@ public class Wrapper {
 	}
 
 	public void startServer(int serverid) {
-		// TODO
+		Server server = new Server(serverid);
+		server.start();
 	}
 
 	public void startAllServers() {

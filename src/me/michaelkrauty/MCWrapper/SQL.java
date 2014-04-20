@@ -38,7 +38,7 @@ public class SQL {
 			closeConnection();
 		} catch (Exception e1) {
 		}
-		System.out.println("SQL tables exist.");
+		System.out.println("SQL tables checked.");
 	}
 
 	/**

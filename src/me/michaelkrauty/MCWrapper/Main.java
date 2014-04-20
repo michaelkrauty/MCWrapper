@@ -14,6 +14,7 @@ public class Main {
 		SQL.checkSqlTables();
 		System.out.println("done.");
 		Boolean running = true;
+		// Config config = new Config();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		// Unused

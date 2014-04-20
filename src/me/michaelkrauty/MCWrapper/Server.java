@@ -18,7 +18,7 @@ public class Server {
 	private final String serverdir;
 
 	public Server(int id) {
-		this.serverdir = "/var/mcwrapper/servers/" + this.id;
+		this.serverdir = "/home/mcwrapper/servers/" + this.id;
 		File serverdir = new File(this.serverdir);
 		if (!serverdir.isDirectory()) {
 			this.exists = false;
@@ -47,7 +47,7 @@ public class Server {
 			Runtime.getRuntime()
 					.exec("cd "
 							+ serverdir
-							+ " && java -jar /var/mcwrapper/jar/craftbukkit.jar");
+							+ " && java -jar /home/mcwrapper/jar/craftbukkit.jar");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
