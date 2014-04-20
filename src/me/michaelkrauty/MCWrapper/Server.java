@@ -116,4 +116,9 @@ public class Server {
 		}
 		return open;
 	}
+
+	public String[] getOnlinePlayers() {
+		// TODO
+		return null;
+	}
 }

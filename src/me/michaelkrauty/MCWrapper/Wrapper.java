@@ -46,6 +46,11 @@ public class Wrapper {
 		// TODO
 	}
 
+	public String[] getOnlinePlayers(int serverid) {
+		Server server = new Server(serverid);
+		return server.getOnlinePlayers();
+	}
+
 	public String[] getOnlineServers() {
 		// TODO
 		String[] test = null;
