@@ -45,6 +45,17 @@ public class Server {
 		return new ArrayList<String>();
 	}
 
+	public void start() {
+		try {
+			Runtime.getRuntime()
+					.exec("cd "
+							+ serverdir
+							+ " && java -jar /var/mcwrapper/jar/craftbukkit.jar");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void stop() {
 		// TODO
 	}
