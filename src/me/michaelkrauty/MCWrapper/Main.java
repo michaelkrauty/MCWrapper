@@ -85,6 +85,7 @@ public class Main {
 		valid.add("pid");
 		valid.add("servercommand");
 		valid.add("restart");
+
 		if (valid.contains(in)) {
 			return true;
 		}
