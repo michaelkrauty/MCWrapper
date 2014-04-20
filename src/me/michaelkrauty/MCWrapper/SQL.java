@@ -30,22 +30,12 @@ public class SQL {
 		try {
 			openConnection();
 			PreparedStatement sql = connection
-					.prepareStatement("SELECT * FROM `Factions_Players`");
-			ResultSet resultSet = sql.executeQuery();
-
+					.prepareStatement("CREATE TABLE `servers`(serverid varchar(255) KEY, name varchar(255));");
+			sql.executeUpdate();
+			System.out.println("Created SQL table `servers`");
 			sql.close();
-			resultSet.close();
 			closeConnection();
-		} catch (Exception e) {
-			try {
-				openConnection();
-				PreparedStatement sql = connection
-						.prepareStatement("CREATE TABLE `servers`(serverid varchar(255) KEY, name varchar(255));");
-				sql.executeUpdate();
-				sql.close();
-				closeConnection();
-			} catch (Exception e1) {
-			}
+		} catch (Exception e1) {
 		}
 	}
 
