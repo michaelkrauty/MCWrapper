@@ -1,17 +1,13 @@
 package me.michaelkrauty.MCWrapper;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 
 import javax.net.SocketFactory;
 
-@SuppressWarnings("unused")
 public class Server {
 
 	private boolean exists = true;
@@ -41,8 +37,9 @@ public class Server {
 		return this;
 	}
 
+	@SuppressWarnings("unused")
 	private ArrayList<String> getDBServer() {
-		return new ArrayList<String>();
+		return SQL.getServer(this.id);
 	}
 
 	public void start() {

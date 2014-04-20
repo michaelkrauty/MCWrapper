@@ -10,8 +10,8 @@ public class SQL {
 	private synchronized static void openConnection() {
 		try {
 			connection = DriverManager.getConnection(
-					"jdbc:mysql://dominationvps.com:3306/mcwrapper", "mcwrapper",
-					"mcwrapper");
+					"jdbc:mysql://dominationvps.com:3306/mcwrapper",
+					"mcwrapper", "mcwrapper");
 		} catch (Exception e) {
 			System.out.println("Couldn't connect to database! Reason: "
 					+ e.getMessage());
@@ -30,7 +30,7 @@ public class SQL {
 		try {
 			openConnection();
 			PreparedStatement sql = connection
-					.prepareStatement("CREATE TABLE `servers`(serverid varchar(255) KEY, name varchar(255));");
+					.prepareStatement("CREATE TABLE `servers`(serverid int(255) KEY, name varchar(255));");
 			sql.executeUpdate();
 			System.out.println("Created SQL table `servers`");
 			sql.close();
@@ -43,12 +43,12 @@ public class SQL {
 	 * @param serverid
 	 * @return boolean
 	 */
-	private synchronized static boolean serverDataContainsServer(String serverid) {
+	private synchronized static boolean serverDataContainsServer(int serverid) {
 		openConnection();
 		try {
 			PreparedStatement sql = connection
 					.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
-			sql.setString(1, serverid);
+			sql.setInt(1, serverid);
 			ResultSet resultSet = sql.executeQuery();
 			boolean containsServer = resultSet.next();
 
@@ -67,13 +67,13 @@ public class SQL {
 	 * @param serverid
 	 * @return server
 	 */
-	public synchronized static ArrayList<String> getServer(String serverid) {
+	public synchronized static ArrayList<String> getServer(int serverid) {
 		try {
 			if (serverDataContainsServer(serverid)) {
 				openConnection();
 				PreparedStatement sql = connection
 						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
-				sql.setString(1, serverid);
+				sql.setInt(1, serverid);
 				ResultSet result = sql.executeQuery();
 				result.next();
 				ArrayList<String> info = new ArrayList<String>();
