@@ -16,6 +16,7 @@ public class Server {
 	private final String host;
 	private final int port;
 	private final String serverdir;
+	private Process process;
 
 	public Server(int id) {
 		this.serverdir = "/home/mcwrapper/servers/" + this.id;
@@ -44,7 +45,8 @@ public class Server {
 
 	public void start() {
 		try {
-			Runtime.getRuntime()
+			this.process = Runtime
+					.getRuntime()
 					.exec("cd "
 							+ serverdir
 							+ " && java -jar /home/mcwrapper/jar/craftbukkit.jar");
@@ -54,7 +56,11 @@ public class Server {
 	}
 
 	public void stop() {
-		// TODO
+
+	}
+
+	public Process getProcess() {
+		return this.process;
 	}
 
 	public int getPID() {

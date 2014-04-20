@@ -56,6 +56,12 @@ public class Main {
 					if (in[0].equalsIgnoreCase("pid")) {
 						System.out.println("Wrapper PID: " + wrapper.getPID());
 					}
+					if (in[0].equalsIgnoreCase("start")) {
+						wrapper.startServer(Integer.parseInt(in[1]));
+					}
+					if (in[0].equalsIgnoreCase("stop")) {
+
+					}
 					if (in[0].equalsIgnoreCase("severcommand")) {
 						wrapper.issueCommand(in[1], in);
 						for (int i = 0; i < in.length; i++) {
