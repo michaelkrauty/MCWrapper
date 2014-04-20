@@ -10,7 +10,7 @@ public class SQL {
 	private synchronized static void openConnection() {
 		try {
 			connection = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/mcwrapper", "mcwrapper",
+					"jdbc:mysql://dominationvps.com:3306/mcwrapper", "mcwrapper",
 					"mcwrapper");
 		} catch (Exception e) {
 			System.out.println("Couldn't connect to database! Reason: "
