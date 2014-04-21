@@ -15,7 +15,7 @@ public class Start {
 			inputIsInt = false;
 		}
 
-		if (inputIsInt) {
+		if (inputIsInt && serverid > 0) {
 			System.out.println("Starting server " + serverid);
 			Server server = new Server(serverid);
 			try {
@@ -25,11 +25,10 @@ public class Start {
 								+ " && java -jar /home/mcwrapper/jar/test.jar");
 				server.setProcess(p);
 			} catch (IOException e) {
-				System.out
-						.println("Either server directory or jar file not found!");
+				System.out.println("Server directory or jar file not found!");
 			}
 		} else {
-			System.out.println("Server ID must be an integer!");
+			System.out.println("Server ID must be an integer! > 0");
 		}
 	}
 }
