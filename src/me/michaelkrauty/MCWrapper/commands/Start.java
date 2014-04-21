@@ -19,11 +19,10 @@ public class Start {
 			System.out.println("Starting server " + serverid);
 			Server server = new Server(serverid);
 			try {
-				Process p = Runtime
-						.getRuntime()
-						.exec("cd /home/mcwrapper/servers/"
+				Process p = Runtime.getRuntime().exec(
+						"cd /home/mcwrapper/servers/"
 								+ Integer.toString(serverid)
-								+ " && java -jar /home/mcwrapper/jar/test.jar -Xmx1G");
+								+ " && java -jar /home/mcwrapper/jar/test.jar");
 				server.setProcess(p);
 			} catch (IOException e) {
 				System.out
