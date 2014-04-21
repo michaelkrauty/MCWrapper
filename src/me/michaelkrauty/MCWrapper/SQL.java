@@ -41,10 +41,6 @@ public class SQL {
 		System.out.println("SQL tables checked.");
 	}
 
-	/**
-	 * @param serverid
-	 * @return boolean
-	 */
 	private synchronized static boolean serverDataContainsServer(int serverid) {
 		openConnection();
 		try {
@@ -65,10 +61,6 @@ public class SQL {
 		}
 	}
 
-	/**
-	 * @param serverid
-	 * @return server
-	 */
 	public synchronized static ArrayList<String> getServer(int serverid) {
 		try {
 			if (serverDataContainsServer(serverid)) {
@@ -94,9 +86,6 @@ public class SQL {
 		}
 	}
 
-	/**
-	 * @return servers
-	 */
 	public synchronized static ArrayList<String> getAllServers() {
 		try {
 			openConnection();

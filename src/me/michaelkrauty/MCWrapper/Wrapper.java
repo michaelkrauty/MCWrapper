@@ -12,6 +12,11 @@ public class Wrapper {
 				pidfull.substring(pidfull.lastIndexOf("@")), ""));
 	}
 
+	public void stop() {
+		System.out.println("Wrapper shutting down!");
+		this.stopAllServers();
+	}
+
 	public int getPID() {
 		return this.PID;
 	}
