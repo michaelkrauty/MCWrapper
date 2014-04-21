@@ -6,7 +6,7 @@ import me.michaelkrauty.MCWrapper.Main;
 
 public class Command extends Main {
 
-	public Command(String command, String[] args) {
+	public Command(String command) {
 		if (this.checkValidCommand(command)) {
 			if (command.equals("help")) {
 				new Help();

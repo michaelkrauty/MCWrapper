@@ -34,29 +34,7 @@ public class Main {
 			try {
 				if (br.ready()) {
 					String in = br.readLine();
-					in.split(" ");
-					new Command(in, args);
-					/*
-					 * if (!validCommand(in[0])) { System.out .println(
-					 * "Unknown command! Use \"help\" for a list of valid commands."
-					 * ); } if (in[0].equalsIgnoreCase("restart")) { // TODO:
-					 * restart } if (in[0].equals("test")) {
-					 * System.out.println("test :)"); } if
-					 * (in[0].equals("help")) {
-					 * System.out.println("test, stop, help, uptime, pid"); } if
-					 * (in[0].equals("uptime")) { System.out.println("Uptime: "
-					 * + Math.round(wrapper.getUptime() / 1000) + " seconds"); }
-					 * if (in[0].equalsIgnoreCase("pid")) {
-					 * System.out.println("Wrapper PID: " + wrapper.getPID()); }
-					 * if (in[0].equalsIgnoreCase("start")) { boolean isInt =
-					 * true; try { Integer.parseInt(in[1]); } catch
-					 * (NumberFormatException e) { isInt = false; } if (isInt) {
-					 * wrapper.startServer(Integer.parseInt(in[1])); } else {
-					 * System.out.println("argument must be an int"); } } if
-					 * (in[0].equalsIgnoreCase("severcommand")) {
-					 * wrapper.issueCommand(in[1], in); for (int i = 0; i <
-					 * in.length; i++) { System.out.println(in[i]); } }
-					 */
+					new Command(in);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
