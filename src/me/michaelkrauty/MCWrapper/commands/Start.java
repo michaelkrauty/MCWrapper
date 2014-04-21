@@ -16,6 +16,7 @@ public class Start {
 		}
 
 		if (inputIsInt) {
+			System.out.println("Starting server " + serverid);
 			Server server = new Server(serverid);
 			try {
 				Process p = Runtime
