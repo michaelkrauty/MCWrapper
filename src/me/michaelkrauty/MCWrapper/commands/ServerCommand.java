@@ -1,5 +1,5 @@
 package me.michaelkrauty.MCWrapper.commands;
 
-public class Servercommand {
+public class ServerCommand {
 
 }

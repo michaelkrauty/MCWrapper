@@ -9,5 +9,4 @@ public class StopWrapper {
 		Main.wrapper.stop();
 		Main.running = false;
 	}
-
 }
