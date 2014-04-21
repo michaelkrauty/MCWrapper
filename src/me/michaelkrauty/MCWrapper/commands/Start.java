@@ -22,7 +22,7 @@ public class Start {
 				Process p = Runtime
 						.getRuntime()
 						.exec("cd /home/mcwrapper/servers/"
-								+ serverid
+								+ Integer.toString(serverid)
 								+ " && java -jar /home/mcwrapper/jar/test.jar -Xmx1G");
 				server.setProcess(p);
 			} catch (IOException e) {
