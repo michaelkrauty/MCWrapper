@@ -9,12 +9,17 @@ public class Command extends Main {
 			if (command.equalsIgnoreCase("stop")) {
 				new StopWrapper();
 			}
+		} else {
+			System.out
+					.println("Unknown command! Use \"help\" for a list of valid commands.");
 		}
 	}
 
 	private boolean checkValidCommand(String command) {
-		// TODO
-		return true;
+		if (command.equalsIgnoreCase("stop")) {
+			return true;
+		}
+		return false;
 	}
 
 }

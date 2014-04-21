@@ -13,7 +13,7 @@ public class Wrapper {
 	}
 
 	public void stop() {
-		System.out.println("Wrapper shutting down!");
+		System.out.println("Stopping wrapper...");
 		this.stopAllServers();
 	}
 
@@ -63,15 +63,18 @@ public class Wrapper {
 	}
 
 	public void startServer(int serverid) {
+		System.out.println("Starting server " + serverid);
 		Server server = new Server(serverid);
 		server.start();
 	}
 
 	public void startAllServers() {
+		System.out.println("Starting all servers...");
 		// TODO
 	}
 
 	public void stopAllServers() {
+		System.out.println("Stopping all servers...");
 		// TODO
 	}
 }
