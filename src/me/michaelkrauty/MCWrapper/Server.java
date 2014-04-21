@@ -60,6 +60,10 @@ public class Server {
 
 	}
 
+	public void setProcess(Process p) {
+		this.process = p;
+	}
+
 	public Process getProcess() {
 		return this.process;
 	}

@@ -7,32 +7,34 @@ import me.michaelkrauty.MCWrapper.Main;
 public class Command extends Main {
 
 	public Command(String command) {
-		if (this.checkValidCommand(command)) {
-			if (command.equals("help")) {
+		String[] cmd = command.split(" ");
+		String cmdLabel = cmd[0];
+		if (this.checkValidCommand(cmdLabel)) {
+			if (cmdLabel.equals("help")) {
 				new Help();
 			}
-			if (command.equals("pid")) {
+			if (cmdLabel.equals("pid")) {
 				new PID();
 			}
-			if (command.equals("restart")) {
+			if (cmdLabel.equals("restart")) {
 				new Restart();
 			}
-			if (command.equals("servercommand")) {
+			if (cmdLabel.equals("servercommand")) {
 				new ServerCommand();
 			}
-			if (command.equals("start")) {
-				new Start();
+			if (cmdLabel.equals("start")) {
+				new Start(cmd[1]);
 			}
-			if (command.equals("stop")) {
+			if (cmdLabel.equals("stop")) {
 				new Stop();
 			}
-			if (command.equals("stopwrapper")) {
+			if (cmdLabel.equals("stopwrapper")) {
 				new StopWrapper();
 			}
-			if (command.equals("test")) {
+			if (cmdLabel.equals("test")) {
 				new Test();
 			}
-			if (command.equalsIgnoreCase("uptime")) {
+			if (cmdLabel.equalsIgnoreCase("uptime")) {
 				new Uptime();
 			}
 		} else {
