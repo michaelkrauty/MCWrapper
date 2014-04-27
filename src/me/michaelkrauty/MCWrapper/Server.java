@@ -2,6 +2,8 @@ package me.michaelkrauty.MCWrapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -18,6 +20,8 @@ public class Server {
 	private final int port;
 	private final String serverdir;
 	private Process process;
+	private InputStream inputstream;
+	private OutputStream outputstream;
 
 	public Server(int id) {
 		this.serverdir = "/home/mcwrapper/servers/" + id;
@@ -29,14 +33,12 @@ public class Server {
 		this.PID = 0;
 		this.host = "";
 		this.port = 0;
+		this.inputstream = null;
+		this.outputstream = null;
 	}
 
 	public boolean exists() {
 		return this.exists;
-	}
-
-	public Server getServer() {
-		return this;
 	}
 
 	@SuppressWarnings("unused")
@@ -55,6 +57,8 @@ public class Server {
 			PrintWriter pidfile = new PrintWriter("/home/mcwrapper/pid/" + this.id);
 			pidfile.println(this.PID);
 			pidfile.close();
+			this.inputstream = p.getInputStream();
+			this.outputstream = p.getOutputStream();
 		} catch (IOException e) {
 			System.out.println("Server directory or jar file not found!");
 			e.printStackTrace();
@@ -63,6 +67,14 @@ public class Server {
 
 	public void stop() {
 
+	}
+	
+	public InputStream getInputStream(){
+		return this.inputstream;
+	}
+	
+	public OutputStream getOutputStream(){
+		return this.outputstream;
 	}
 
 	public void setProcess(Process p) {
@@ -134,6 +146,19 @@ public class Server {
 			open = false;
 		}
 		return open;
+	}
+	
+	public boolean isRunning(){
+		final File folder = new File("/home/mcwrapper/pid");
+		ArrayList<String> test = new ArrayList<String>();
+		for (final File fileEntry : folder.listFiles()) {
+			test.add(fileEntry.getName());
+		}
+		if(test.contains(this.id)){
+			return true;
+		}
+		return false;
+		
 	}
 
 	public String[] getOnlinePlayers() {

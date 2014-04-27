@@ -1,10 +1,12 @@
 package me.michaelkrauty.MCWrapper;
 
+import java.io.File;
 import java.lang.management.ManagementFactory;
+import java.util.ArrayList;
 
 public class Wrapper {
 
-	private int PID;
+	private final int PID;
 
 	public Wrapper() {
 		String pidfull = ManagementFactory.getRuntimeMXBean().getName();
@@ -76,10 +78,5 @@ public class Wrapper {
 	public void stopAllServers() {
 		System.out.println("Stopping all servers...");
 		// TODO
-	}
-
-	public Server getServer(int serverid) {
-		// TODO
-		return null;
 	}
 }
