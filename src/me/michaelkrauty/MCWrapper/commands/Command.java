@@ -32,17 +32,29 @@ public class Command extends Main {
 				if (cmdLabel.equals("start")) {
 					new Start(cmd[1]);
 				}
-				if (cmdLabel.equals("stop")) {
-					new Stop(Integer.parseInt(cmd[1]));
+				boolean inputIsInt = true;
+				int intcmd1 = 0;
+				try {
+					intcmd1 = Integer.parseInt(cmd[1]);
+				} catch (NumberFormatException e) {
+					inputIsInt = false;
 				}
-				if(cmdLabel.equalsIgnoreCase("forcestop")){
-					new ForceStop(Integer.parseInt(cmd[1]));
-				}
-				if (cmdLabel.equals("restart")) {
-					new Restart(Integer.parseInt(cmd[1]));
-				}
-				if(cmdLabel.equalsIgnoreCase("online")){
-					new Online(Integer.parseInt(cmd[1]));
+				if (inputIsInt) {
+					if (cmdLabel.equals("stop")) {
+						new Stop(intcmd1);
+					}
+					if (cmdLabel.equalsIgnoreCase("forcestop")) {
+						new ForceStop(intcmd1);
+					}
+					if (cmdLabel.equals("restart")) {
+						new Restart(intcmd1);
+					}
+					if (cmdLabel.equalsIgnoreCase("online")) {
+						new Online(intcmd1);
+					}
+				} else {
+					System.out
+							.println("Incorrect usage! Use \"help\" for a list of valid commands.");
 				}
 			} catch (ArrayIndexOutOfBoundsException e) {
 				System.out
