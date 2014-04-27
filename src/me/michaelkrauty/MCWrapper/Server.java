@@ -53,7 +53,7 @@ public class Server {
 			pb.directory(new File(this.serverdir));
 			Process p = pb.start();
 			this.setProcess(p);
-			System.out.println(p.toString());
+			System.out.println(p.hashCode());
 			PrintWriter pidfile = new PrintWriter("/home/mcwrapper/pid/"
 					+ this.id);
 			pidfile.println(this.PID);
