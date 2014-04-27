@@ -29,28 +29,28 @@ public class Command extends Main {
 				if (cmdLabel.equals("servercommand")) {
 					new ServerCommand(cmd);
 				}
-				if (cmdLabel.equals("start")) {
-					new Start(cmd[1]);
-				}
 				boolean inputIsInt = true;
-				int intcmd1 = 0;
+				int serverid = 0;
 				try {
-					intcmd1 = Integer.parseInt(cmd[1]);
+					serverid = Integer.parseInt(cmd[1]);
 				} catch (NumberFormatException e) {
 					inputIsInt = false;
 				}
 				if (inputIsInt) {
+					if (cmdLabel.equals("start")) {
+						new Start(serverid);
+					}
 					if (cmdLabel.equals("stop")) {
-						new Stop(intcmd1);
+						new Stop(serverid);
 					}
 					if (cmdLabel.equalsIgnoreCase("forcestop")) {
-						new ForceStop(intcmd1);
+						new ForceStop(serverid);
 					}
 					if (cmdLabel.equals("restart")) {
-						new Restart(intcmd1);
+						new Restart(serverid);
 					}
 					if (cmdLabel.equalsIgnoreCase("online")) {
-						new Online(intcmd1);
+						new Online(serverid);
 					}
 				} else {
 					System.out

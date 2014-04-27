@@ -53,6 +53,7 @@ public class Server {
 			pb.directory(new File(this.serverdir));
 			Process p = pb.start();
 			this.setProcess(p);
+			System.out.println(p.toString());
 			PrintWriter pidfile = new PrintWriter("/home/mcwrapper/pid/"
 					+ this.id);
 			pidfile.println(this.PID);
@@ -81,7 +82,7 @@ public class Server {
 		return this.outputstream;
 	}
 
-	public void setProcess(Process p) {
+	private void setProcess(Process p) {
 		this.process = p;
 	}
 
