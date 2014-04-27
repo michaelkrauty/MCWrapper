@@ -2,6 +2,7 @@ package me.michaelkrauty.MCWrapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -98,7 +99,10 @@ public class Server {
 
 	public boolean executeCommand(String command) {
 		if (this.exists) {
-			// TODO
+			PrintWriter out = new PrintWriter(this.process.getOutputStream(),
+					true);
+			out.println(command);
+			return true;
 		}
 		return false;
 	}

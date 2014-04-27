@@ -77,4 +77,9 @@ public class Wrapper {
 		System.out.println("Stopping all servers...");
 		// TODO
 	}
+
+	public Server getServer(int serverid) {
+		// TODO
+		return null;
+	}
 }

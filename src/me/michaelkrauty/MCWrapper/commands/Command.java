@@ -51,7 +51,7 @@ public class Command extends Main {
 	private boolean checkValidCommand(String command) {
 		ArrayList<String> commands = new ArrayList<String>();
 
-		/** commands */
+		/** @commands */
 		commands.add("help");
 		commands.add("pid");
 		commands.add("restart");
