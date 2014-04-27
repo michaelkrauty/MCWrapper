@@ -44,15 +44,19 @@ public class Server {
 		return SQL.getServer(this.id);
 	}
 
+	@SuppressWarnings("resource")
 	public void start() {
-		System.out.println("Starting server " + this.PID + "...");
+		System.out.println("Starting server " + this.id + "...");
 		try {
-			this.process = Runtime
-					.getRuntime()
-					.exec("cd "
-							+ serverdir
-							+ " && java -jar /home/mcwrapper/jar/craftbukkit.jar");
+			ProcessBuilder pb = new ProcessBuilder("java", "-jar",
+					"/home/mcwrapper/jar/test.jar");
+			pb.directory(new File(this.serverdir));
+			Process p = pb.start();
+			this.setProcess(p);
+			PrintWriter pidfile = new PrintWriter("/home/mcwrapper/pid/" + this.id);
+			pidfile.println(this.PID);
 		} catch (IOException e) {
+			System.out.println("Server directory or jar file not found!");
 			e.printStackTrace();
 		}
 	}
