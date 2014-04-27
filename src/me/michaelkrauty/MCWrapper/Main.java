@@ -12,7 +12,7 @@ public class Main {
 
 	public static Boolean running = true;
 
-	public static Wrapper wrapper = new Wrapper();
+	public final static Wrapper wrapper = new Wrapper();
 
 	public static void main(String[] args) {
 		System.out.println("Initiating wrapper...");
