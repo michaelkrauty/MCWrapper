@@ -15,7 +15,6 @@ public class Start {
 		}
 
 		if (inputIsInt && serverid > 0) {
-			System.out.println("Starting server " + serverid);
 			Server server = new Server(serverid);
 			server.start();
 		} else {

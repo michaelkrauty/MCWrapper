@@ -20,7 +20,7 @@ public class Server {
 	private Process process;
 
 	public Server(int id) {
-		this.serverdir = "/home/mcwrapper/servers/" + this.id;
+		this.serverdir = "/home/mcwrapper/servers/" + id;
 		File serverdir = new File(this.serverdir);
 		if (!serverdir.isDirectory()) {
 			this.exists = false;
