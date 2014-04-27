@@ -1,8 +1,6 @@
 package me.michaelkrauty.MCWrapper;
 
-import java.io.File;
 import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
 
 public class Wrapper {
 
