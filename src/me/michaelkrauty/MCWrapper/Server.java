@@ -15,10 +15,10 @@ public class Server {
 
 	private boolean exists = true;
 	private final int id;
-	private final int PID;
-	private final String host;
-	private final int port;
-	private final String serverdir;
+	private int PID;
+	private String host;
+	private int port;
+	private String serverdir;
 	private Process process;
 	private InputStream inputstream;
 	private OutputStream outputstream;
@@ -30,7 +30,6 @@ public class Server {
 			this.exists = false;
 		}
 		this.id = id;
-		this.PID = 0;
 		this.host = "";
 		this.port = 0;
 		this.inputstream = null;
@@ -54,7 +53,8 @@ public class Server {
 			pb.directory(new File(this.serverdir));
 			Process p = pb.start();
 			this.setProcess(p);
-			PrintWriter pidfile = new PrintWriter("/home/mcwrapper/pid/" + this.id);
+			PrintWriter pidfile = new PrintWriter("/home/mcwrapper/pid/"
+					+ this.id);
 			pidfile.println(this.PID);
 			pidfile.close();
 			this.inputstream = p.getInputStream();
@@ -66,14 +66,19 @@ public class Server {
 	}
 
 	public void stop() {
-
+		PrintWriter out = new PrintWriter(this.outputstream, true);
+		out.println("stop");
 	}
-	
-	public InputStream getInputStream(){
+
+	public void forceStop() {
+		this.process.destroy();
+	}
+
+	public InputStream getInputStream() {
 		return this.inputstream;
 	}
-	
-	public OutputStream getOutputStream(){
+
+	public OutputStream getOutputStream() {
 		return this.outputstream;
 	}
 
@@ -147,18 +152,18 @@ public class Server {
 		}
 		return open;
 	}
-	
-	public boolean isRunning(){
+
+	public boolean isRunning() {
 		final File folder = new File("/home/mcwrapper/pid");
 		ArrayList<String> test = new ArrayList<String>();
 		for (final File fileEntry : folder.listFiles()) {
 			test.add(fileEntry.getName());
 		}
-		if(test.contains(this.id)){
+		if (test.contains(this.id)) {
 			return true;
 		}
 		return false;
-		
+
 	}
 
 	public String[] getOnlinePlayers() {
