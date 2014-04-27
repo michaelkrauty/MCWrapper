@@ -119,7 +119,8 @@ public class Server {
 
 	public boolean executeCommand(String command) {
 		if (this.exists) {
-			new PrintWriter(this.process.getOutputStream(), true).println(command);
+			PrintWriter out = new PrintWriter(this.process.getOutputStream(), true);
+			out.println(command);
 			return true;
 		}
 		return false;
