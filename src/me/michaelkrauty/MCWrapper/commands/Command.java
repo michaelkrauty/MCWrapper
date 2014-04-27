@@ -16,18 +16,6 @@ public class Command extends Main {
 			if (cmdLabel.equals("pid")) {
 				new PID();
 			}
-			if (cmdLabel.equals("restart")) {
-				new Restart();
-			}
-			if (cmdLabel.equals("servercommand")) {
-				new ServerCommand();
-			}
-			if (cmdLabel.equals("start")) {
-				new Start(cmd[1]);
-			}
-			if (cmdLabel.equals("stop")) {
-				new Stop();
-			}
 			if (cmdLabel.equals("stopwrapper")) {
 				new StopWrapper();
 			}
@@ -36,6 +24,22 @@ public class Command extends Main {
 			}
 			if (cmdLabel.equalsIgnoreCase("uptime")) {
 				new Uptime();
+			}
+			try {
+				if (cmdLabel.equals("restart")) {
+					new Restart(cmd[1]);
+				}
+				if (cmdLabel.equals("servercommand")) {
+					new ServerCommand(cmd);
+				}
+				if (cmdLabel.equals("start")) {
+					new Start(cmd[1]);
+				}
+				if (cmdLabel.equals("stop")) {
+					new Stop(cmd[1]);
+				}
+			}catch(Exception e){
+				System.out.println("Incorrect usage! Use \"help\" for a list of valid commands.");
 			}
 		} else {
 			System.out
