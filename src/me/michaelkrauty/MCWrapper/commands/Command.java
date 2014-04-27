@@ -38,8 +38,9 @@ public class Command extends Main {
 				if (cmdLabel.equals("stop")) {
 					new Stop(cmd[1]);
 				}
-			}catch(ArrayIndexOutOfBoundsException e){
-				System.out.println("Incorrect usage! Use \"help\" for a list of valid commands.");
+			} catch (ArrayIndexOutOfBoundsException e) {
+				System.out
+						.println("Incorrect usage! Use \"help\" for a list of valid commands.");
 			}
 		} else {
 			System.out
