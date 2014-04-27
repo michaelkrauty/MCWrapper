@@ -34,8 +34,7 @@ public class Wrapper {
 				cmd = cmd + command[i] + " ";
 			}
 		}
-		Server server = new Server(Integer.parseInt(serverid));
-		return server.executeCommand(cmd);
+		return getServer(Integer.parseInt(serverid)).executeCommand(cmd);
 	}
 
 	public boolean checkOnlineState(int serverid) {
@@ -76,5 +75,10 @@ public class Wrapper {
 	public void stopAllServers() {
 		System.out.println("Stopping all servers...");
 		// TODO
+	}
+	
+	public Server getServer(int serverid){
+		// TODO
+		return new Server(serverid);
 	}
 }

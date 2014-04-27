@@ -3,10 +3,10 @@ package me.michaelkrauty.MCWrapper.commands;
 import me.michaelkrauty.MCWrapper.Main;
 import me.michaelkrauty.MCWrapper.Server;
 
-public class Restart {
+public class ForceStop {
 
-	public Restart(int serverid) {
+	public ForceStop(int serverid) {
 		Server server = Main.wrapper.getServer(serverid);
-		server.restart();
+		server.forceStop();
 	}
 }

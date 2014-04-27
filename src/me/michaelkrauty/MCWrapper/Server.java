@@ -66,8 +66,7 @@ public class Server {
 	}
 
 	public void stop() {
-		PrintWriter out = new PrintWriter(this.outputstream, true);
-		out.println("stop");
+		this.executeCommand("stop");
 	}
 
 	public void forceStop() {
@@ -120,9 +119,7 @@ public class Server {
 
 	public boolean executeCommand(String command) {
 		if (this.exists) {
-			PrintWriter out = new PrintWriter(this.process.getOutputStream(),
-					true);
-			out.println(command);
+			new PrintWriter(this.process.getOutputStream(), true).println(command);
 			return true;
 		}
 		return false;
@@ -169,5 +166,10 @@ public class Server {
 	public String[] getOnlinePlayers() {
 		// TODO
 		return null;
+	}
+
+	public void restart() {
+		// TODO Auto-generated method stub
+		
 	}
 }

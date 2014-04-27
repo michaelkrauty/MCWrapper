@@ -26,9 +26,6 @@ public class Command extends Main {
 				new Uptime();
 			}
 			try {
-				if (cmdLabel.equals("restart")) {
-					new Restart(cmd[1]);
-				}
 				if (cmdLabel.equals("servercommand")) {
 					new ServerCommand(cmd);
 				}
@@ -36,7 +33,16 @@ public class Command extends Main {
 					new Start(cmd[1]);
 				}
 				if (cmdLabel.equals("stop")) {
-					new Stop(cmd[1]);
+					new Stop(Integer.parseInt(cmd[1]));
+				}
+				if(cmdLabel.equalsIgnoreCase("forcestop")){
+					new ForceStop(Integer.parseInt(cmd[1]));
+				}
+				if (cmdLabel.equals("restart")) {
+					new Restart(Integer.parseInt(cmd[1]));
+				}
+				if(cmdLabel.equalsIgnoreCase("online")){
+					new Online(Integer.parseInt(cmd[1]));
 				}
 			} catch (ArrayIndexOutOfBoundsException e) {
 				System.out
@@ -61,6 +67,8 @@ public class Command extends Main {
 		commands.add("stopwrapper");
 		commands.add("test");
 		commands.add("uptime");
+		commands.add("forcestop");
+		commands.add("online");
 
 		if (commands.contains(command.toLowerCase())) {
 			return true;
