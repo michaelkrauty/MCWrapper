@@ -44,7 +44,6 @@ public class Server {
 		return SQL.getServer(this.id);
 	}
 
-	@SuppressWarnings("resource")
 	public void start() {
 		System.out.println("Starting server " + this.id + "...");
 		try {
@@ -55,6 +54,7 @@ public class Server {
 			this.setProcess(p);
 			PrintWriter pidfile = new PrintWriter("/home/mcwrapper/pid/" + this.id);
 			pidfile.println(this.PID);
+			pidfile.close();
 		} catch (IOException e) {
 			System.out.println("Server directory or jar file not found!");
 			e.printStackTrace();
