@@ -19,14 +19,11 @@ public class Main {
 		System.out.println("Wrapper PID: " + wrapper.getPID());
 		SQL.checkSqlTables();
 		System.out.println("done.");
-		// Config config = new Config();
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		mainLoop();
+	}
 
-		// Unused
-		// double startTime = System.currentTimeMillis();
-		// String uptime = Math
-		// .round((System.currentTimeMillis() - startTime) / 1000)
-		// + " seconds";
+	private static void mainLoop() {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		// tick tock goes the clock
 		while (running) {
