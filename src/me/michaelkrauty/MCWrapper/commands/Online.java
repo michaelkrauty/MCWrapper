@@ -8,9 +8,11 @@ public class Online {
 		if (Main.wrapper.getServer(serverid).isRunning()
 				&& Main.wrapper.getServer(serverid).isOnline()) {
 			System.out.println("Server is online and running.");
-		} else if (Main.wrapper.getServer(serverid).isRunning()) {
+		}
+		if (Main.wrapper.getServer(serverid).isRunning()) {
 			System.out.println("Server is running.");
-		} else if (Main.wrapper.getServer(serverid).isOnline()) {
+		}
+		if (Main.wrapper.getServer(serverid).isOnline()) {
 			System.out.println("Server is online.");
 		} else {
 			System.out.println("Server is offline.");
