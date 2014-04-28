@@ -1,10 +1,8 @@
 package me.michaelkrauty.MCWrapper;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
@@ -64,25 +62,16 @@ public class Server {
 			pidfile.createNewFile();
 			this.inputstream = p.getInputStream();
 			this.outputstream = p.getOutputStream();
+			try {
+				java.lang.reflect.Field f = p.getClass()
+						.getDeclaredField("pid");
+				f.setAccessible(true);
+				this.PID = f.getInt(p);
+			} catch (Throwable e) {
+			}
 		} catch (IOException e) {
 			System.out.println("Server directory or jar file not found!");
 			e.printStackTrace();
-		}
-		consoleLoop();
-	}
-
-	private void consoleLoop() {
-		String line = null;
-		BufferedReader input = new BufferedReader(new InputStreamReader(
-				this.inputstream));
-		while (running) {
-			try {
-				if ((line = input.readLine()) != null) {
-					Main.console.add("Server" + this.id + ": " + line);
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
