@@ -17,4 +17,19 @@ public class Online {
 		}
 	}
 
+	public Online() {
+		if (Main.servers.size() > 0) {
+			String servers = "";
+			for (int i = 0; i < Main.servers.size(); i++) {
+				if (i == Main.servers.size()) {
+					servers = servers + Main.servers.get(i);
+				}
+				servers = servers + Main.servers.get(i) + ", ";
+			}
+			System.out.println("Online servers: " + servers);
+		} else {
+			System.out.println("No online servers!");
+		}
+	}
+
 }

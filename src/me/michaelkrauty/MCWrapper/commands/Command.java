@@ -27,6 +27,9 @@ public class Command extends Main {
 			if (cmdLabel.equalsIgnoreCase("uptime")) {
 				new Uptime();
 			}
+			if (cmdLabel.equalsIgnoreCase("online")) {
+				new Online();
+			}
 
 			// params
 			try {
