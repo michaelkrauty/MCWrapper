@@ -6,7 +6,7 @@ public class StopWrapper {
 
 	public StopWrapper() {
 		System.out.println("Stopping...");
-		Main.wrapper.stop();
+		Main.wrapper.stopWrapper();
 		Main.running = false;
 	}
 }

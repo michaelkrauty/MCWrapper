@@ -11,10 +11,22 @@ public class Wrapper {
 		this.PID = Integer.parseInt(pidfull.replace(
 				pidfull.substring(pidfull.lastIndexOf("@")), ""));
 	}
-
-	public void stop() {
+	
+	public void stopWrapper(){
 		System.out.println("Stopping wrapper...");
 		this.stopAllServers();
+	}
+	
+	public void startServer(){
+		System.out.println("");
+	}
+
+	public void stopServer(int serverid) {
+		this.getServer(serverid).stop();
+	}
+	
+	public void forceStopServer(int serverid) {
+		this.getServer(serverid).forceStop();
 	}
 
 	public int getPID() {
@@ -70,14 +82,14 @@ public class Wrapper {
 
 	public void stopAllServers() {
 		System.out.println("Stopping all servers...");
-		for(int i = 0; i < Main.servers.size(); i++){
+		for (int i = 0; i < Main.servers.size(); i++) {
 			Main.servers.get(i).stop();
 		}
 	}
-	
-	public Server getServer(int serverid){
-		for(int i = 0; i < Main.servers.size(); i++){
-			if(Main.servers.get(i).getId() == serverid){
+
+	public Server getServer(int serverid) {
+		for (int i = 0; i < Main.servers.size(); i++) {
+			if (Main.servers.get(i).getId() == serverid) {
 				return Main.servers.get(i);
 			}
 		}
