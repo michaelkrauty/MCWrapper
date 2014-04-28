@@ -29,32 +29,21 @@ public class Command extends Main {
 				if (cmdLabel.equals("servercommand")) {
 					new ServerCommand(cmd);
 				}
-				boolean inputIsInt = true;
-				int serverid = 0;
-				try {
-					serverid = Integer.parseInt(cmd[1]);
-				} catch (NumberFormatException e) {
-					inputIsInt = false;
+				int serverid = Integer.parseInt(cmd[1]);
+				if (cmdLabel.equals("start")) {
+					new Start(serverid);
 				}
-				if (inputIsInt) {
-					if (cmdLabel.equals("start")) {
-						new Start(serverid);
-					}
-					if (cmdLabel.equals("stop")) {
-						new Stop(serverid);
-					}
-					if (cmdLabel.equalsIgnoreCase("forcestop")) {
-						new ForceStop(serverid);
-					}
-					if (cmdLabel.equals("restart")) {
-						new Restart(serverid);
-					}
-					if (cmdLabel.equalsIgnoreCase("online")) {
-						new Online(serverid);
-					}
-				} else {
-					System.out
-							.println("Incorrect usage! Use \"help\" for a list of valid commands.");
+				if (cmdLabel.equals("stop")) {
+					new Stop(serverid);
+				}
+				if (cmdLabel.equalsIgnoreCase("forcestop")) {
+					new ForceStop(serverid);
+				}
+				if (cmdLabel.equals("restart")) {
+					new Restart(serverid);
+				}
+				if (cmdLabel.equalsIgnoreCase("online")) {
+					new Online(serverid);
 				}
 			} catch (ArrayIndexOutOfBoundsException e) {
 				System.out
