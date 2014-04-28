@@ -60,9 +60,7 @@ public class Command extends Main {
 				if (cmdLabel.equalsIgnoreCase("serverpid") && cmd.length == 2) {
 					new ServerPID(serverid);
 				}
-			} catch (Exception e) {
-				System.out
-						.println("Incorrect usage! Use \"help\" for a list of valid commands.");
+			} catch (Exception ignored) {
 			}
 		} else {
 			System.out
