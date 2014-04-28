@@ -50,7 +50,9 @@ public class Command extends Main {
 					new Online(serverid);
 				}
 			} catch (Exception e) {
-				System.out.println("Unknown usage! Use \"help\" for a list of valid commands.");
+				System.out
+						.println("Unknown usage! Use \"help\" for a list of valid commands.");
+				e.printStackTrace();
 			}
 		} else {
 			System.out
