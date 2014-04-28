@@ -27,45 +27,44 @@ public class Server {
 	private long starttime;
 
 	public Server(int serverid) {
-		this.id = serverid;
-		this.serverdir = "/home/mcwrapper/servers/" + this.id;
-		this.exists = SQL.serverDataContainsServer(this.id);
-		this.PID = -1;
-		this.host = getDBHost();
-		this.port = getDBPort();
-		this.memory = getDBMemory();
-		this.process = null;
-		this.inputstream = null;
-		this.outputstream = null;
-		this.starttime = -1;
+		id = serverid;
+		serverdir = "/home/mcwrapper/servers/" + id;
+		exists = SQL.serverDataContainsServer(id);
+		PID = -1;
+		host = getDBHost();
+		port = getDBPort();
+		memory = getDBMemory();
+		process = null;
+		inputstream = null;
+		outputstream = null;
+		starttime = -1;
 	}
 
 	public void start() {
-		if (!this.isOnline()) {
-			System.out.println("Starting server " + this.id + "...");
+		if (!isOnline()) {
+			System.out.println("Starting server " + id + "...");
 			try {
 				// ProcessBuilder pb = new ProcessBuilder("java", "-jar",
-				// "/home/mcwrapper/jar/test.jar", "--host", this.host,
-				// "--port", Integer.toString(this.port), "-Xmx"
-				// + Integer.toString(this.memory) + "M");
+				// "/home/mcwrapper/jar/test.jar", "--host", host,
+				// "--port", Integer.toString(port), "-Xmx"
+				// + Integer.toString(memory) + "M");
 				ProcessBuilder pb = new ProcessBuilder("java",
-						"-jar /home/mcwrapper/jar/test.jar", "--host "
-								+ this.host, "--port "
-								+ Integer.toString(this.port), "-Xmx"
-								+ Integer.toString(this.memory) + "M", "nogui");
-				pb.directory(new File(this.serverdir));
+						"-jar /home/mcwrapper/jar/test.jar", "--host " + host,
+						"--port " + Integer.toString(port), "-Xmx"
+								+ Integer.toString(memory) + "M", "nogui");
+				pb.directory(new File(serverdir));
 				Process p = pb.start();
-				this.setProcess(p);
+				setProcess(p);
 				try {
 					java.lang.reflect.Field f = p.getClass().getDeclaredField(
 							"pid");
 					f.setAccessible(true);
-					this.PID = f.getInt(p);
+					PID = f.getInt(p);
 				} catch (Throwable e) {
 				}
-				this.inputstream = p.getInputStream();
-				this.outputstream = p.getOutputStream();
-				this.starttime = System.currentTimeMillis();
+				inputstream = p.getInputStream();
+				outputstream = p.getOutputStream();
+				starttime = System.currentTimeMillis();
 			} catch (IOException e) {
 				System.out.println("Server directory or jar file not found!");
 				e.printStackTrace();
@@ -76,7 +75,7 @@ public class Server {
 	}
 
 	public int getId() {
-		return this.id;
+		return id;
 	}
 
 	public void stop() {
@@ -84,54 +83,53 @@ public class Server {
 	}
 
 	public void forceStop() {
-		this.process.destroy();
+		process.destroy();
 	}
 
 	public InputStream getInputStream() {
-		return this.inputstream;
+		return inputstream;
 	}
 
 	public OutputStream getOutputStream() {
-		return this.outputstream;
+		return outputstream;
 	}
 
 	private void setProcess(Process p) {
-		this.process = p;
+		process = p;
 	}
 
 	public Process getProcess() {
-		return this.process;
+		return process;
 	}
 
 	public int getPID() {
-		return this.PID;
+		return PID;
 	}
 
 	public String getHost() {
-		if (this.exists) {
-			return this.host;
+		if (exists) {
+			return host;
 		}
 		return null;
 	}
 
 	public int getPort() {
-		if (this.exists) {
-			return this.port;
+		if (exists) {
+			return port;
 		}
 		return 0;
 	}
 
 	public String getServerDir() {
-		if (this.exists) {
-			return this.serverdir;
+		if (exists) {
+			return serverdir;
 		}
 		return null;
 	}
 
 	public boolean executeCommand(String command) {
-		if (this.exists) {
-			PrintWriter out = new PrintWriter(this.process.getOutputStream(),
-					true);
+		if (exists) {
+			PrintWriter out = new PrintWriter(process.getOutputStream(), true);
 			out.println(command);
 			return true;
 		}
@@ -140,7 +138,7 @@ public class Server {
 
 	public boolean isOnline() {
 		boolean open = true;
-		if (this.exists) {
+		if (exists) {
 			Socket socket;
 			try {
 				socket = SocketFactory.getDefault().createSocket();
@@ -168,7 +166,7 @@ public class Server {
 		for (final File fileEntry : folder.listFiles()) {
 			test.add(fileEntry.getName());
 		}
-		if (test.contains(this.id)) {
+		if (test.contains(id)) {
 			return true;
 		}
 		return false;
@@ -181,10 +179,10 @@ public class Server {
 	}
 
 	public void restart() {
-		if (this.isOnline()) {
+		if (isOnline()) {
 			stop();
 		}
-		while (this.isOnline()) {
+		while (isOnline()) {
 			try {
 				Thread.sleep(0);
 			} catch (InterruptedException e) {
@@ -196,40 +194,40 @@ public class Server {
 
 	public void getUptime() {
 		System.out.println("Wrapper Uptime: "
-				+ TimeUnit.HOURS.toHours(this.starttime) + " hours "
-				+ TimeUnit.MINUTES.toMinutes(this.starttime) + " minutes "
-				+ TimeUnit.SECONDS.toSeconds(this.starttime) + " seconds.");
+				+ TimeUnit.HOURS.toHours(starttime) + " hours "
+				+ TimeUnit.MINUTES.toMinutes(starttime) + " minutes "
+				+ TimeUnit.SECONDS.toSeconds(starttime) + " seconds.");
 	}
 
 	public boolean exists() {
-		return this.exists;
+		return exists;
 	}
 
 	public String getDBHost() {
-		return SQL.getServerHost(this.id);
+		return SQL.getServerHost(id);
 	}
 
 	public int getDBPort() {
-		return SQL.getServerPort(this.id);
+		return SQL.getServerPort(id);
 	}
 
 	public int getDBMemory() {
-		return SQL.getServerMemory(this.id);
+		return SQL.getServerMemory(id);
 	}
 
 	public int getDBJar() {
-		return SQL.getServerJar(this.id);
+		return SQL.getServerJar(id);
 	}
 
 	public boolean getDBSuspended() {
-		return SQL.getServerSuspended(this.id);
+		return SQL.getServerSuspended(id);
 	}
 
 	public String getDBName() {
-		return SQL.getServerName(this.id);
+		return SQL.getServerName(id);
 	}
 
 	public int getDBOwner() {
-		return SQL.getServerOwner(this.id);
+		return SQL.getServerOwner(id);
 	}
 }
