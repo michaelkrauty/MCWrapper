@@ -64,7 +64,7 @@ public class SQL {
 		}
 	}
 
-	public synchronized static ArrayList<String> getServer(int serverid) {
+	public synchronized static String getServerHost(int serverid) {
 		try {
 			if (serverDataContainsServer(serverid)) {
 				openConnection();
@@ -73,11 +73,7 @@ public class SQL {
 				sql.setInt(1, serverid);
 				ResultSet result = sql.executeQuery();
 				result.next();
-				ArrayList<String> info = new ArrayList<String>();
-				info.add(result.getString("serverid"));
-				info.add(result.getString("etc"));
-				info.add(result.getString("etc"));
-				return info;
+				return result.getString("host");
 			} else {
 				return null;
 			}
@@ -89,12 +85,138 @@ public class SQL {
 		}
 	}
 
+	public synchronized static int getServerPort(int serverid) {
+		try {
+			if (serverDataContainsServer(serverid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+				sql.setInt(1, serverid);
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getInt("port");
+			} else {
+				return -1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			closeConnection();
+		}
+	}
+
+	public synchronized static int getServerMemory(int serverid) {
+		try {
+			if (serverDataContainsServer(serverid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+				sql.setInt(1, serverid);
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getInt("memory");
+			} else {
+				return -1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			closeConnection();
+		}
+	}
+
+	public synchronized static int getServerJar(int serverid) {
+		try {
+			if (serverDataContainsServer(serverid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+				sql.setInt(1, serverid);
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getInt("jar");
+			} else {
+				return -1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			closeConnection();
+		}
+	}
+
+	public synchronized static boolean getServerSuspended(int serverid) {
+		try {
+			if (serverDataContainsServer(serverid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+				sql.setInt(1, serverid);
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getBoolean("suspended");
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			closeConnection();
+		}
+	}
+
+	public synchronized static String getServerName(int serverid) {
+		try {
+			if (serverDataContainsServer(serverid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+				sql.setInt(1, serverid);
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getString("name");
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeConnection();
+		}
+	}
+
+	public synchronized static int getServerOwner(int serverid) {
+		try {
+			if (serverDataContainsServer(serverid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+				sql.setInt(1, serverid);
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getInt("ownerid");
+			} else {
+				return -1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			closeConnection();
+		}
+	}
+
 	public synchronized static void createServer(int serverid, String name,
 			int memory, int ownerid) {
 		try {
 			openConnection();
 			PreparedStatement sql = connection
-					.prepareStatement("INSERT INTO `servers`(`serverid`, `host`, `port`, `memory`, `jar`, `suspended`, `name`, `ownerid`) VALUES (?,'dominationvps.com',5006,?,test,FALSE,?,?);");
+					.prepareStatement("INSERT INTO `servers`(`serverid`, `host`, `port`, `memory`, `jar`, `suspended`, `name`, `ownerid`) VALUES (?,'dominationvps.com',5006,?,1,FALSE,?,?);");
 			sql.setInt(1, serverid);
 			sql.setInt(2, memory);
 			sql.setString(3, name);
