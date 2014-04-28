@@ -59,7 +59,6 @@ public class Command extends Main {
 			} catch (Exception e) {
 				System.out
 						.println("Incorrect usage! Use \"help\" for a list of valid commands.");
-				e.printStackTrace();
 			}
 		} else {
 			System.out
