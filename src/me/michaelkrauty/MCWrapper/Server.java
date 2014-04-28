@@ -143,6 +143,8 @@ public class Server {
 			try {
 				socket = SocketFactory.getDefault().createSocket();
 				try {
+					System.out.println("Trying connection: " + host + ":"
+							+ port);
 					socket.setSoTimeout(5000);
 					socket.connect(new InetSocketAddress(host, port));
 					socket.close();
