@@ -6,7 +6,10 @@ import me.michaelkrauty.MCWrapper.Main;
 
 public class Command extends Main {
 
+	public static ArrayList<String> commands = new ArrayList<String>();
+
 	public Command(String command) {
+		commands();
 		String[] cmd = command.split(" ");
 		String cmdLabel = cmd[0];
 		if (this.checkValidCommand(cmdLabel)) {
@@ -68,28 +71,27 @@ public class Command extends Main {
 		}
 	}
 
-	private boolean checkValidCommand(String command) {
-		ArrayList<String> commands = new ArrayList<String>();
+	public boolean checkValidCommand(String command) {
+		return commands.contains(command.toLowerCase());
+	}
 
-		/** @commands */
-		commands.add("help");
-		commands.add("pid");
-		commands.add("restart");
-		commands.add("servercommand");
-		commands.add("start");
-		commands.add("stop");
-		commands.add("stopwrapper");
-		commands.add("test");
-		commands.add("uptime");
-		commands.add("forcestop");
-		commands.add("kill");
-		commands.add("online");
-		commands.add("serveruptime");
-		commands.add("serverpid");
-
-		if (commands.contains(command.toLowerCase())) {
-			return true;
+	private void commands() {
+		if (commands.isEmpty()) {
+			/** @commands */
+			commands.add("help");
+			commands.add("pid");
+			commands.add("restart");
+			commands.add("servercommand");
+			commands.add("start");
+			commands.add("stop");
+			commands.add("stopwrapper");
+			commands.add("test");
+			commands.add("uptime");
+			commands.add("forcestop");
+			commands.add("kill");
+			commands.add("online");
+			commands.add("serveruptime");
+			commands.add("serverpid");
 		}
-		return false;
 	}
 }

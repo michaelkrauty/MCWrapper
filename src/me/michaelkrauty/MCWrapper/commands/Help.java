@@ -3,7 +3,7 @@ package me.michaelkrauty.MCWrapper.commands;
 public class Help {
 
 	public Help() {
-		// TODO
-		System.out.println("TODO");
+		String commands = "";
+		System.out.println("Commands: " + commands);
 	}
 }
