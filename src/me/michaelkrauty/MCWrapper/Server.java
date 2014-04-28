@@ -41,18 +41,18 @@ public class Server {
 	}
 
 	public void start() {
+		System.out.println("Starting server " + id + "...");
 		if (!isOnline()) {
-			System.out.println("Starting server " + id + "...");
 			try {
 				// ProcessBuilder pb = new ProcessBuilder("java", "-jar",
 				// "/home/mcwrapper/jar/test.jar", "--host", host,
 				// "--port", Integer.toString(port), "-Xmx"
 				// + Integer.toString(memory) + "M");
-				ProcessBuilder pb = new ProcessBuilder("java",
-						"-jar /home/mcwrapper/jar/test.jar", "--host " + host,
-						"--port " + Integer.toString(port), "-Xmx"
-								+ Integer.toString(memory) + "M", "nogui");
+				ProcessBuilder pb = new ProcessBuilder();
 				pb.directory(new File(serverdir));
+				pb.command("java -jar /home/mcwrapper/jar/test.jar --host "
+						+ host + " --port " + Integer.toString(port) + " -Xmx"
+						+ Integer.toString(memory) + "M nogui");
 				Process p = pb.start();
 				setProcess(p);
 				try {
@@ -61,13 +61,14 @@ public class Server {
 					f.setAccessible(true);
 					PID = f.getInt(p);
 				} catch (Throwable e) {
+					System.err.println("Error getting PID");
 				}
 				inputstream = p.getInputStream();
 				outputstream = p.getOutputStream();
 				starttime = System.currentTimeMillis();
 			} catch (IOException e) {
 				System.out.println("Server directory or jar file not found!");
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		} else {
 			System.out.println("Server is already online!");
