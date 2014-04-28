@@ -11,52 +11,53 @@ public class Command extends Main {
 		String cmdLabel = cmd[0];
 		if (this.checkValidCommand(cmdLabel)) {
 
-			// no params
-			if (cmdLabel.equals("help")) {
-				new Help();
-			}
-			if (cmdLabel.equals("pid")) {
-				new PID();
-			}
-			if (cmdLabel.equals("stopwrapper")) {
-				new StopWrapper();
-			}
-			if (cmdLabel.equals("test")) {
-				new Test();
-			}
-			if (cmdLabel.equalsIgnoreCase("uptime")) {
-				new Uptime();
-			}
-			if (cmdLabel.equalsIgnoreCase("online")) {
-				new Online();
-			}
-
-			// params
 			try {
-				if (cmdLabel.equals("servercommand")) {
+				// no params
+				if (cmdLabel.equals("help") && cmd.length == 1) {
+					new Help();
+				}
+				if (cmdLabel.equals("pid") && cmd.length == 1) {
+					new PID();
+				}
+				if (cmdLabel.equals("stopwrapper") && cmd.length == 1) {
+					new StopWrapper();
+				}
+				if (cmdLabel.equals("test") && cmd.length == 1) {
+					new Test();
+				}
+				if (cmdLabel.equalsIgnoreCase("uptime") && cmd.length == 1) {
+					new Uptime();
+				}
+				if (cmdLabel.equalsIgnoreCase("online") && cmd.length == 1) {
+					new Online();
+				}
+
+				// params
+				if (cmdLabel.equals("servercommand") && cmd.length > 1) {
 					new ServerCommand(cmd);
 				}
 				int serverid = Integer.parseInt(cmd[1]);
-				if (cmdLabel.equals("start")) {
+				if (cmdLabel.equals("start") && cmd.length == 2) {
 					new Start(serverid);
 				}
-				if (cmdLabel.equals("stop")) {
+				if (cmdLabel.equals("stop") && cmd.length == 2) {
 					new Stop(serverid);
 				}
-				if (cmdLabel.equalsIgnoreCase("forcestop")
-						|| cmdLabel.equalsIgnoreCase("kill")) {
+				if ((cmdLabel.equalsIgnoreCase("forcestop") || cmdLabel
+						.equalsIgnoreCase("kill")) && cmd.length == 2) {
 					new ForceStop(serverid);
 				}
-				if (cmdLabel.equals("restart")) {
+				if (cmdLabel.equals("restart") && cmd.length == 2) {
 					new Restart(serverid);
 				}
-				if (cmdLabel.equalsIgnoreCase("online")) {
+				if (cmdLabel.equalsIgnoreCase("online") && cmd.length == 2) {
 					new Online(serverid);
 				}
-				if (cmdLabel.equalsIgnoreCase("serveruptime")) {
+				if (cmdLabel.equalsIgnoreCase("serveruptime")
+						&& cmd.length == 2) {
 					new ServerUptime(serverid);
 				}
-				if (cmdLabel.equalsIgnoreCase("serverpid")) {
+				if (cmdLabel.equalsIgnoreCase("serverpid") && cmd.length == 2) {
 					new ServerPID(serverid);
 				}
 			} catch (Exception e) {
