@@ -83,7 +83,7 @@ public class Server {
 	}
 
 	public void stop() {
-		this.executeCommand("stop");
+		executeCommand("stop");
 	}
 
 	public void forceStop() {
