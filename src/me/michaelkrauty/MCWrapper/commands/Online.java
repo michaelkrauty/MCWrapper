@@ -23,10 +23,12 @@ public class Online {
 		if (Main.servers.size() > 0) {
 			String servers = "";
 			for (int i = 0; i < Main.servers.size(); i++) {
-				if (i == Main.servers.size()) {
-					servers = servers + Main.servers.get(i).getId() + ", ";
+				if (Main.servers.get(i).isOnline()) {
+					if (i == Main.servers.size()) {
+						servers = servers + Main.servers.get(i).getId() + ", ";
+					}
+					servers = servers + Main.servers.get(i).getId() + ".";
 				}
-				servers = servers + Main.servers.get(i).getId() + ".";
 			}
 			System.out.println("Online servers: " + servers);
 		} else {
