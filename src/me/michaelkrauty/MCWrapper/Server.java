@@ -20,6 +20,7 @@ public class Server {
 	private int PID;
 	private String host;
 	private int port;
+	private int memory;
 	private Process process;
 	private InputStream inputstream;
 	private OutputStream outputstream;
@@ -32,6 +33,7 @@ public class Server {
 		this.PID = -1;
 		this.host = this.getDBHost();
 		this.port = this.getDBPort();
+		this.memory = this.getDBMemory();
 		this.process = null;
 		this.inputstream = null;
 		this.outputstream = null;
@@ -43,7 +45,9 @@ public class Server {
 			System.out.println("Starting server " + this.id + "...");
 			try {
 				ProcessBuilder pb = new ProcessBuilder("java", "-jar",
-						"/home/mcwrapper/jar/test.jar");
+						"/home/mcwrapper/jar/test.jar", "--host", this.host,
+						"--port", Integer.toString(this.port), "-Xmx"
+								+ Integer.toString(this.memory) + "M");
 				pb.directory(new File(this.serverdir));
 				Process p = pb.start();
 				this.setProcess(p);
