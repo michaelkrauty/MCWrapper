@@ -68,14 +68,11 @@ public class Wrapper {
 		server.start();
 	}
 
-	public void startAllServers() {
-		System.out.println("Starting all servers...");
-		// TODO
-	}
-
 	public void stopAllServers() {
 		System.out.println("Stopping all servers...");
-		// TODO
+		for(int i = 0; i < Main.servers.size(); i++){
+			Main.servers.get(i).stop();
+		}
 	}
 	
 	public Server getServer(int serverid){
