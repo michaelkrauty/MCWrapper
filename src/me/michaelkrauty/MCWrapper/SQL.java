@@ -89,6 +89,12 @@ public class SQL {
 		}
 	}
 
+	public synchronized static boolean createServer(int serverid, String name,
+			int memory, int ownerid) {
+		// TODO
+		return false;
+	}
+
 	public synchronized static ArrayList<String> getAllServers() {
 		try {
 			openConnection();
