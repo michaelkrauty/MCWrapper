@@ -48,29 +48,33 @@ public class Server {
 	}
 
 	public void start() {
-		System.out.println("Starting server " + this.id + "...");
-		try {
-			ProcessBuilder pb = new ProcessBuilder("java", "-jar",
-					"/home/mcwrapper/jar/test.jar");
-			pb.directory(new File(this.serverdir));
-			Process p = pb.start();
-			this.setProcess(p);
+		if (!this.isOnline()) {
+			System.out.println("Starting server " + this.id + "...");
 			try {
-				java.lang.reflect.Field f = p.getClass()
-						.getDeclaredField("pid");
-				f.setAccessible(true);
-				this.PID = f.getInt(p);
-			} catch (Throwable e) {
+				ProcessBuilder pb = new ProcessBuilder("java", "-jar",
+						"/home/mcwrapper/jar/test.jar");
+				pb.directory(new File(this.serverdir));
+				Process p = pb.start();
+				this.setProcess(p);
+				try {
+					java.lang.reflect.Field f = p.getClass().getDeclaredField(
+							"pid");
+					f.setAccessible(true);
+					this.PID = f.getInt(p);
+				} catch (Throwable e) {
+				}
+				File pidfile = new File("/home/mcwrapper/pid/" + this.id + "."
+						+ this.PID);
+				pidfile.createNewFile();
+				this.inputstream = p.getInputStream();
+				this.outputstream = p.getOutputStream();
+				this.starttime = System.currentTimeMillis();
+			} catch (IOException e) {
+				System.out.println("Server directory or jar file not found!");
+				e.printStackTrace();
 			}
-			File pidfile = new File("/home/mcwrapper/pid/" + this.id + "."
-					+ this.PID);
-			pidfile.createNewFile();
-			this.inputstream = p.getInputStream();
-			this.outputstream = p.getOutputStream();
-			this.starttime = System.currentTimeMillis();
-		} catch (IOException e) {
-			System.out.println("Server directory or jar file not found!");
-			e.printStackTrace();
+		} else {
+			System.out.println("Server is already online!");
 		}
 	}
 
