@@ -9,7 +9,7 @@ public class ServerCommand {
 		try{
 		int serverid = Integer.parseInt(cmd[1]);
 		String out = "";
-		for(int i = 1; i < cmd.length; i++){
+		for(int i = 2; i < cmd.length; i++){
 			if(i == cmd.length){
 				out = out + cmd[i];
 			}else{
