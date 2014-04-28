@@ -34,7 +34,7 @@ public class Wrapper {
 	}
 
 	public long getUptime() {
-		return ManagementFactory.getRuntimeMXBean().getUptime();
+		return Math.round(ManagementFactory.getRuntimeMXBean().getUptime() / 1000);
 	}
 
 	public boolean issueCommand(String serverid, String[] command) {
