@@ -17,6 +17,8 @@ public class Main {
 
 	public static ArrayList<Server> servers = new ArrayList<Server>();
 
+	public static ArrayList<String> console = new ArrayList<String>();
+
 	public static void main(String[] args) {
 		System.out.println("Initiating wrapper...");
 		System.out.println("Wrapper PID: " + wrapper.getPID());
@@ -38,6 +40,13 @@ public class Main {
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
+			}
+
+			if (console.size() != 0) {
+				for (int i = 0; i < console.size(); i++) {
+					System.out.println(console.get(i));
+				}
+				console.clear();
 			}
 
 			while ((System.currentTimeMillis() - loopStartTime) <= 200) {

@@ -24,6 +24,7 @@ public class Server {
 	private Process process;
 	private InputStream inputstream;
 	private OutputStream outputstream;
+	private boolean running;
 
 	public Server(int id) {
 		this.serverdir = "/home/mcwrapper/servers/" + id;
@@ -67,15 +68,21 @@ public class Server {
 			System.out.println("Server directory or jar file not found!");
 			e.printStackTrace();
 		}
+		consoleLoop();
+	}
+
+	private void consoleLoop() {
 		String line = null;
 		BufferedReader input = new BufferedReader(new InputStreamReader(
 				this.inputstream));
-		try {
-			while ((line = input.readLine()) != null) {
-				System.out.println("Server" + this.id + ": " + line);
+		while (running) {
+			try {
+				if ((line = input.readLine()) != null) {
+					Main.console.add("Server" + this.id + ": " + line);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -84,10 +91,12 @@ public class Server {
 	}
 
 	public void stop() {
+		this.running = false;
 		this.executeCommand("stop");
 	}
 
 	public void forceStop() {
+		this.running = false;
 		this.process.destroy();
 	}
 
