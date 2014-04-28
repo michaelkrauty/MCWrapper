@@ -146,8 +146,7 @@ public class Server {
 				socket = SocketFactory.getDefault().createSocket();
 				try {
 					socket.setSoTimeout(5000);
-					socket.connect(new InetSocketAddress(this.getHost(), this
-							.getPort()));
+					socket.connect(new InetSocketAddress(getHost(), getPort()));
 					socket.close();
 				} catch (Exception e) {
 					open = false;
