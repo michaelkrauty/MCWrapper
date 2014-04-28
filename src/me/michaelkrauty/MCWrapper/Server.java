@@ -22,7 +22,6 @@ public class Server {
 	private Process process;
 	private InputStream inputstream;
 	private OutputStream outputstream;
-	private boolean running;
 
 	public Server(int id) {
 		this.serverdir = "/home/mcwrapper/servers/" + id;
@@ -57,11 +56,6 @@ public class Server {
 			pb.directory(new File(this.serverdir));
 			Process p = pb.start();
 			this.setProcess(p);
-			File pidfile = new File("/home/mcwrapper/pid/" + this.id + "."
-					+ this.PID);
-			pidfile.createNewFile();
-			this.inputstream = p.getInputStream();
-			this.outputstream = p.getOutputStream();
 			try {
 				java.lang.reflect.Field f = p.getClass()
 						.getDeclaredField("pid");
@@ -69,6 +63,11 @@ public class Server {
 				this.PID = f.getInt(p);
 			} catch (Throwable e) {
 			}
+			File pidfile = new File("/home/mcwrapper/pid/" + this.id + "."
+					+ this.PID);
+			pidfile.createNewFile();
+			this.inputstream = p.getInputStream();
+			this.outputstream = p.getOutputStream();
 		} catch (IOException e) {
 			System.out.println("Server directory or jar file not found!");
 			e.printStackTrace();
@@ -80,12 +79,10 @@ public class Server {
 	}
 
 	public void stop() {
-		this.running = false;
 		this.executeCommand("stop");
 	}
 
 	public void forceStop() {
-		this.running = false;
 		this.process.destroy();
 	}
 
@@ -106,10 +103,7 @@ public class Server {
 	}
 
 	public int getPID() {
-		if (this.exists) {
-			return this.PID;
-		}
-		return 0;
+		return this.PID;
 	}
 
 	public String getHost() {
