@@ -10,6 +10,8 @@ public class Command extends Main {
 		String[] cmd = command.split(" ");
 		String cmdLabel = cmd[0];
 		if (this.checkValidCommand(cmdLabel)) {
+
+			// no params
 			if (cmdLabel.equals("help")) {
 				new Help();
 			}
@@ -25,6 +27,8 @@ public class Command extends Main {
 			if (cmdLabel.equalsIgnoreCase("uptime")) {
 				new Uptime();
 			}
+
+			// params
 			try {
 				if (cmdLabel.equals("servercommand")) {
 					new ServerCommand(cmd);
@@ -45,9 +49,8 @@ public class Command extends Main {
 				if (cmdLabel.equalsIgnoreCase("online")) {
 					new Online(serverid);
 				}
-			} catch (ArrayIndexOutOfBoundsException e) {
-				System.out
-						.println("Incorrect usage! Use \"help\" for a list of valid commands.");
+			} catch (Exception e) {
+				System.out.println("Unknown usage! Use \"help\" for a list of valid commands.");
 			}
 		} else {
 			System.out
