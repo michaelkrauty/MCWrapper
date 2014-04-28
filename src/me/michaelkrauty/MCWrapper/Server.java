@@ -181,7 +181,17 @@ public class Server {
 	}
 
 	public void restart() {
-
+		if (this.isOnline()) {
+			stop();
+		}
+		while (this.isOnline()) {
+			try {
+				Thread.sleep(0);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		start();
 	}
 
 	public void getUptime() {
