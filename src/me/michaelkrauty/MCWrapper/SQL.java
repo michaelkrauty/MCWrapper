@@ -1,6 +1,9 @@
 package me.michaelkrauty.MCWrapper;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class SQL {
@@ -41,7 +44,7 @@ public class SQL {
 		System.out.println("SQL tables checked.");
 	}
 
-	private synchronized static boolean serverDataContainsServer(int serverid) {
+	public synchronized static boolean serverDataContainsServer(int serverid) {
 		openConnection();
 		try {
 			PreparedStatement sql = connection

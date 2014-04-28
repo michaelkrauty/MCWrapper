@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.SocketFactory;
 
@@ -22,14 +23,12 @@ public class Server {
 	private Process process;
 	private InputStream inputstream;
 	private OutputStream outputstream;
+	private long starttime;
 
 	public Server(int id) {
-		this.serverdir = "/home/mcwrapper/servers/" + id;
-		File serverdir = new File(this.serverdir);
-		if (!serverdir.isDirectory()) {
-			this.exists = false;
-		}
 		this.id = id;
+		this.serverdir = "/home/mcwrapper/servers/" + this.id;
+		this.exists = SQL.serverDataContainsServer(this.id);
 
 		// TODO: TEMP!
 		this.host = "dominationvps.com";
@@ -68,6 +67,7 @@ public class Server {
 			pidfile.createNewFile();
 			this.inputstream = p.getInputStream();
 			this.outputstream = p.getOutputStream();
+			this.starttime = System.currentTimeMillis();
 		} catch (IOException e) {
 			System.out.println("Server directory or jar file not found!");
 			e.printStackTrace();
@@ -185,6 +185,9 @@ public class Server {
 	}
 
 	public void getUptime() {
-		// TODO
+		System.out.println("Wrapper Uptime: "
+				+ TimeUnit.HOURS.toHours(this.starttime) + " hours "
+				+ TimeUnit.MINUTES.toMinutes(this.starttime) + " minutes "
+				+ TimeUnit.SECONDS.toSeconds(this.starttime) + " seconds.");
 	}
 }
