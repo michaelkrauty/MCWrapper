@@ -89,10 +89,23 @@ public class SQL {
 		}
 	}
 
-	public synchronized static boolean createServer(int serverid, String name,
+	public synchronized static void createServer(int serverid, String name,
 			int memory, int ownerid) {
-		// TODO
-		return false;
+		try {
+			openConnection();
+			PreparedStatement sql = connection
+					.prepareStatement("INSERT INTO `servers`(`serverid`, `host`, `port`, `memory`, `jar`, `suspended`, `name`, `ownerid`) VALUES (?,'dominationvps.com',5006,?,test,FALSE,?,?);");
+			sql.setInt(1, serverid);
+			sql.setInt(2, memory);
+			sql.setString(3, name);
+			sql.setInt(4, ownerid);
+			sql.executeUpdate();
+			sql.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
 	}
 
 	public synchronized static ArrayList<String> getAllServers() {
