@@ -50,7 +50,7 @@ public class Server {
 				// + Integer.toString(memory) + "M");
 				ProcessBuilder pb = new ProcessBuilder();
 				pb.directory(new File(serverdir));
-				pb.command("java -jar /home/mcwrapper/jar/test.jar --host "
+				pb.command("java", "-jar /home/mcwrapper/jar/test.jar --host "
 						+ host + " --port " + Integer.toString(port) + " -Xmx"
 						+ Integer.toString(memory) + "M nogui");
 				Process p = pb.start();
