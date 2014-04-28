@@ -137,26 +137,27 @@ public class Server {
 	}
 
 	public boolean isOnline() {
+		System.out.println("Trying connection: " + host + ":" + port);
 		boolean open = true;
 		if (exists) {
 			Socket socket;
 			try {
 				socket = SocketFactory.getDefault().createSocket();
 				try {
-					System.out.println("Trying connection: " + host + ":"
-							+ port);
 					socket.setSoTimeout(5000);
 					socket.connect(new InetSocketAddress(host, port));
 					socket.close();
+					System.out.println("Server is online");
 				} catch (Exception e) {
+					System.out.println("Server is offline");
 					open = false;
-					System.err.println(e);
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.err.println("Error creating socket");
 				open = false;
 			}
 		} else {
+			System.out.println("Server doesn't exist!");
 			open = false;
 		}
 		return open;
