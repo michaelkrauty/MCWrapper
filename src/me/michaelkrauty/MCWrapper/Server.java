@@ -31,9 +31,9 @@ public class Server {
 		this.serverdir = "/home/mcwrapper/servers/" + this.id;
 		this.exists = SQL.serverDataContainsServer(this.id);
 		this.PID = -1;
-		this.host = this.getDBHost();
-		this.port = this.getDBPort();
-		this.memory = this.getDBMemory();
+		this.host = getDBHost();
+		this.port = getDBPort();
+		this.memory = getDBMemory();
 		this.process = null;
 		this.inputstream = null;
 		this.outputstream = null;
