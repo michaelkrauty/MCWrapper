@@ -30,8 +30,11 @@ public class Server {
 			this.exists = false;
 		}
 		this.id = id;
-		this.host = "";
-		this.port = 0;
+
+		// TODO: TEMP!
+		this.host = "dominationvps.com";
+		this.port = 56434;
+
 		this.inputstream = null;
 		this.outputstream = null;
 	}
