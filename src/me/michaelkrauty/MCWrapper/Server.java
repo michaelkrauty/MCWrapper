@@ -49,8 +49,8 @@ public class Server {
 				// "--port", Integer.toString(this.port), "-Xmx"
 				// + Integer.toString(this.memory) + "M");
 				ProcessBuilder pb = new ProcessBuilder(
-						"java -jar /home/mcwrapper/jar/test.jar --host "
-								+ this.host);
+						"java -jar /home/mcwrapper/jar/test.jar --host '"
+								+ this.host + "'");
 				pb.directory(new File(this.serverdir));
 				Process p = pb.start();
 				this.setProcess(p);
