@@ -14,12 +14,12 @@ import javax.net.SocketFactory;
 
 public class Server {
 
-	private boolean exists = true;
 	private final int id;
+	private String serverdir;
+	private boolean exists;
 	private int PID;
 	private String host;
 	private int port;
-	private String serverdir;
 	private Process process;
 	private InputStream inputstream;
 	private OutputStream outputstream;
@@ -29,22 +29,13 @@ public class Server {
 		this.id = serverid;
 		this.serverdir = "/home/mcwrapper/servers/" + this.id;
 		this.exists = SQL.serverDataContainsServer(this.id);
-
-		// TODO: TEMP! Get this from SQL database in future
-		this.host = "dominationvps.com";
-		this.port = 56434;
-
+		this.PID = -1;
+		this.host = this.getDBHost();
+		this.port = this.getDBPort();
+		this.process = null;
 		this.inputstream = null;
 		this.outputstream = null;
-	}
-
-	public boolean exists() {
-		return this.exists;
-	}
-
-	@SuppressWarnings("unused")
-	private ArrayList<String> getDBServer() {
-		return SQL.getServer(this.id);
+		this.starttime = -1;
 	}
 
 	public void start() {
@@ -200,5 +191,37 @@ public class Server {
 				+ TimeUnit.HOURS.toHours(this.starttime) + " hours "
 				+ TimeUnit.MINUTES.toMinutes(this.starttime) + " minutes "
 				+ TimeUnit.SECONDS.toSeconds(this.starttime) + " seconds.");
+	}
+
+	public boolean exists() {
+		return this.exists;
+	}
+
+	public String getDBHost() {
+		return SQL.getServerHost(this.id);
+	}
+
+	public int getDBPort() {
+		return SQL.getServerPort(this.id);
+	}
+
+	public int getDBMemory() {
+		return SQL.getServerMemory(this.id);
+	}
+
+	public int getDBJar() {
+		return SQL.getServerJar(this.id);
+	}
+
+	public boolean getDBSuspended() {
+		return SQL.getServerSuspended(this.id);
+	}
+
+	public String getDBName() {
+		return SQL.getServerName(this.id);
+	}
+
+	public int getDBOwner() {
+		return SQL.getServerOwner(this.id);
 	}
 }
