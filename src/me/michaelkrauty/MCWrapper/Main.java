@@ -39,6 +39,7 @@ public class Main {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
 			while ((System.currentTimeMillis() - loopStartTime) <= 200) {
 				try {
 					Thread.sleep(0);
