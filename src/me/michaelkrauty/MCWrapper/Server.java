@@ -25,12 +25,12 @@ public class Server {
 	private OutputStream outputstream;
 	private long starttime;
 
-	public Server(int id) {
-		this.id = id;
+	public Server(int serverid) {
+		this.id = serverid;
 		this.serverdir = "/home/mcwrapper/servers/" + this.id;
 		this.exists = SQL.serverDataContainsServer(this.id);
 
-		// TODO: TEMP!
+		// TODO: TEMP! Get this from SQL database in future
 		this.host = "dominationvps.com";
 		this.port = 56434;
 
@@ -63,9 +63,6 @@ public class Server {
 					this.PID = f.getInt(p);
 				} catch (Throwable e) {
 				}
-				File pidfile = new File("/home/mcwrapper/pid/" + this.id + "."
-						+ this.PID);
-				pidfile.createNewFile();
 				this.inputstream = p.getInputStream();
 				this.outputstream = p.getOutputStream();
 				this.starttime = System.currentTimeMillis();
