@@ -40,7 +40,8 @@ public class Command extends Main {
 				if (cmdLabel.equals("stop")) {
 					new Stop(serverid);
 				}
-				if (cmdLabel.equalsIgnoreCase("forcestop")) {
+				if (cmdLabel.equalsIgnoreCase("forcestop")
+						|| cmdLabel.equalsIgnoreCase("kill")) {
 					new ForceStop(serverid);
 				}
 				if (cmdLabel.equals("restart")) {
@@ -57,7 +58,7 @@ public class Command extends Main {
 				}
 			} catch (Exception e) {
 				System.out
-						.println("Unknown usage! Use \"help\" for a list of valid commands.");
+						.println("Incorrect usage! Use \"help\" for a list of valid commands.");
 				e.printStackTrace();
 			}
 		} else {
@@ -80,6 +81,7 @@ public class Command extends Main {
 		commands.add("test");
 		commands.add("uptime");
 		commands.add("forcestop");
+		commands.add("kill");
 		commands.add("online");
 		commands.add("serveruptime");
 		commands.add("serverpid");
