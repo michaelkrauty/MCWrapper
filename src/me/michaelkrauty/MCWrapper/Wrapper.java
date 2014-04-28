@@ -64,6 +64,7 @@ public class Wrapper {
 	public void startServer(int serverid) {
 		System.out.println("Starting server " + serverid);
 		Server server = new Server(serverid);
+		Main.servers.add(server);
 		server.start();
 	}
 
@@ -78,7 +79,11 @@ public class Wrapper {
 	}
 	
 	public Server getServer(int serverid){
-		// TODO
-		return new Server(serverid);
+		for(int i = 0; i < Main.servers.size(); i++){
+			if(Main.servers.get(i).getId() == serverid){
+				return Main.servers.get(i);
+			}
+		}
+		return null;
 	}
 }

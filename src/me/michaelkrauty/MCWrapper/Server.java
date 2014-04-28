@@ -65,6 +65,10 @@ public class Server {
 			e.printStackTrace();
 		}
 	}
+	
+	public int getId(){
+		return this.id;
+	}
 
 	public void stop() {
 		this.executeCommand("stop");

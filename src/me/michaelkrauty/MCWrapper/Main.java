@@ -3,6 +3,7 @@ package me.michaelkrauty.MCWrapper;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import me.michaelkrauty.MCWrapper.commands.Command;
 
@@ -13,6 +14,8 @@ public class Main {
 	public static Boolean running = true;
 
 	public final static Wrapper wrapper = new Wrapper();
+	
+	public static ArrayList<Server> servers = new ArrayList<Server>();
 
 	public static void main(String[] args) {
 		System.out.println("Initiating wrapper...");
