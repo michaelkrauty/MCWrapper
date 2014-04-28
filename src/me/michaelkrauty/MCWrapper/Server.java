@@ -64,8 +64,8 @@ public class Server {
 			e.printStackTrace();
 		}
 	}
-	
-	public int getId(){
+
+	public int getId() {
 		return this.id;
 	}
 
@@ -123,7 +123,8 @@ public class Server {
 
 	public boolean executeCommand(String command) {
 		if (this.exists) {
-			PrintWriter out = new PrintWriter(this.process.getOutputStream(), true);
+			PrintWriter out = new PrintWriter(this.process.getOutputStream(),
+					true);
 			out.println(command);
 			return true;
 		}
@@ -174,7 +175,10 @@ public class Server {
 	}
 
 	public void restart() {
-		// TODO Auto-generated method stub
-		
+
+	}
+
+	public void getUptime() {
+		// TODO
 	}
 }

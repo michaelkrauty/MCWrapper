@@ -14,7 +14,7 @@ public class Main {
 	public static Boolean running = true;
 
 	public final static Wrapper wrapper = new Wrapper();
-	
+
 	public static ArrayList<Server> servers = new ArrayList<Server>();
 
 	public static void main(String[] args) {
@@ -39,7 +39,7 @@ public class Main {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
+
 			while ((System.currentTimeMillis() - loopStartTime) <= 200) {
 				try {
 					Thread.sleep(0);

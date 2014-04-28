@@ -49,6 +49,12 @@ public class Command extends Main {
 				if (cmdLabel.equalsIgnoreCase("online")) {
 					new Online(serverid);
 				}
+				if (cmdLabel.equalsIgnoreCase("serveruptime")) {
+					new ServerUptime(serverid);
+				}
+				if (cmdLabel.equalsIgnoreCase("serverpid")) {
+					new ServerPID(serverid);
+				}
 			} catch (Exception e) {
 				System.out
 						.println("Unknown usage! Use \"help\" for a list of valid commands.");
@@ -75,6 +81,8 @@ public class Command extends Main {
 		commands.add("uptime");
 		commands.add("forcestop");
 		commands.add("online");
+		commands.add("serveruptime");
+		commands.add("serverpid");
 
 		if (commands.contains(command.toLowerCase())) {
 			return true;

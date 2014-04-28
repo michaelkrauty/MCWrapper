@@ -11,20 +11,20 @@ public class Wrapper {
 		this.PID = Integer.parseInt(pidfull.replace(
 				pidfull.substring(pidfull.lastIndexOf("@")), ""));
 	}
-	
-	public void stopWrapper(){
+
+	public void stopWrapper() {
 		System.out.println("Stopping wrapper...");
 		this.stopAllServers();
 	}
-	
-	public void startServer(){
+
+	public void startServer() {
 		System.out.println("");
 	}
 
 	public void stopServer(int serverid) {
 		this.getServer(serverid).stop();
 	}
-	
+
 	public void forceStopServer(int serverid) {
 		this.getServer(serverid).forceStop();
 	}
@@ -34,7 +34,8 @@ public class Wrapper {
 	}
 
 	public long getUptime() {
-		return Math.round(ManagementFactory.getRuntimeMXBean().getUptime() / 1000);
+		return Math
+				.round(ManagementFactory.getRuntimeMXBean().getUptime() / 1000);
 	}
 
 	public boolean issueCommand(String serverid, String[] command) {
