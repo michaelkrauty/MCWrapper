@@ -1,5 +1,9 @@
 package me.michaelkrauty.MCWrapper;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 public class ClientConnection implements Runnable {
@@ -13,7 +17,17 @@ public class ClientConnection implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("Client session started, now do stuff with it <3");
+		try {
+			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					socket.getInputStream()));
+
+			out.println("test");
+
+		} catch (IOException e) {
+			System.err.println("Couldn't create input/output stream(s)!");
+			System.err.println(e.getMessage());
+		}
 	}
 
 	public void start() {
