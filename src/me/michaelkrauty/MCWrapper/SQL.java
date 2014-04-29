@@ -48,16 +48,56 @@ public class SQL {
 		}
 	}
 
+	public synchronized static boolean userDataContainsId(int userid) {
+		openConnection();
+		try {
+			PreparedStatement sql = connection
+					.prepareStatement("SELECT * FROM `users` WHERE userid=?;");
+			sql.setInt(1, userid);
+			ResultSet resultSet = sql.executeQuery();
+			boolean containsServer = resultSet.next();
+
+			sql.close();
+			resultSet.close();
+			closeConnection();
+
+			return containsServer;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public synchronized static boolean userDataContainsEmail(String email) {
+		openConnection();
+		try {
+			PreparedStatement sql = connection
+					.prepareStatement("SELECT * FROM `users` WHERE email=?;");
+			sql.setString(1, email);
+			ResultSet resultSet = sql.executeQuery();
+			boolean containsServer = resultSet.next();
+
+			sql.close();
+			resultSet.close();
+			closeConnection();
+
+			return containsServer;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 	public synchronized static int getServerOwner(int serverid) {
 		try {
 			if (serverDataContainsServer(serverid)) {
 				openConnection();
 				PreparedStatement sql = connection
-						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+						.prepareStatement("SELECT * FROM `servers` WHERE id=?;");
 				sql.setInt(1, serverid);
 				ResultSet result = sql.executeQuery();
 				result.next();
-				return result.getInt("ownerid");
+				return result.getInt("owner");
 			} else {
 				return -1;
 			}
@@ -74,7 +114,7 @@ public class SQL {
 			if (serverDataContainsServer(serverid)) {
 				openConnection();
 				PreparedStatement sql = connection
-						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+						.prepareStatement("SELECT * FROM `servers` WHERE id=?;");
 				sql.setInt(1, serverid);
 				ResultSet result = sql.executeQuery();
 				result.next();
@@ -95,7 +135,7 @@ public class SQL {
 			if (serverDataContainsServer(serverid)) {
 				openConnection();
 				PreparedStatement sql = connection
-						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+						.prepareStatement("SELECT * FROM `servers` WHERE id=?;");
 				sql.setInt(1, serverid);
 				ResultSet result = sql.executeQuery();
 				result.next();
@@ -116,7 +156,7 @@ public class SQL {
 			if (serverDataContainsServer(serverid)) {
 				openConnection();
 				PreparedStatement sql = connection
-						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+						.prepareStatement("SELECT * FROM `servers` WHERE id=?;");
 				sql.setInt(1, serverid);
 				ResultSet result = sql.executeQuery();
 				result.next();
@@ -137,7 +177,7 @@ public class SQL {
 			if (serverDataContainsServer(serverid)) {
 				openConnection();
 				PreparedStatement sql = connection
-						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+						.prepareStatement("SELECT * FROM `servers` WHERE id=?;");
 				sql.setInt(1, serverid);
 				ResultSet result = sql.executeQuery();
 				result.next();
@@ -158,7 +198,7 @@ public class SQL {
 			if (serverDataContainsServer(serverid)) {
 				openConnection();
 				PreparedStatement sql = connection
-						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+						.prepareStatement("SELECT * FROM `servers` WHERE id=?;");
 				sql.setInt(1, serverid);
 				ResultSet result = sql.executeQuery();
 				result.next();
@@ -179,7 +219,7 @@ public class SQL {
 			if (serverDataContainsServer(serverid)) {
 				openConnection();
 				PreparedStatement sql = connection
-						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+						.prepareStatement("SELECT * FROM `servers` WHERE id=?;");
 				sql.setInt(1, serverid);
 				ResultSet result = sql.executeQuery();
 				result.next();
@@ -199,7 +239,7 @@ public class SQL {
 		try {
 			openConnection();
 			PreparedStatement sql = connection
-					.prepareStatement("SELECT `serverid` FROM `servers`;");
+					.prepareStatement("SELECT `id` FROM `servers`;");
 			ResultSet result = sql.executeQuery();
 			result.last();
 			int items = result.getRow();
@@ -216,5 +256,110 @@ public class SQL {
 			closeConnection();
 		}
 		return null;
+	}
+
+	public synchronized static int getUserIdByEmail(String email) {
+		try {
+			if (userDataContainsEmail(email)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `users` WHERE email=?;");
+				sql.setString(1, email);
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getInt("id");
+			} else {
+				return -1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			closeConnection();
+		}
+	}
+
+	public synchronized static String getUserEmail(int userid) {
+		try {
+			if (userDataContainsId(userid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `users` WHERE id=?;");
+				sql.setInt(1, userid);
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getString("email");
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeConnection();
+		}
+	}
+
+	public synchronized static String getUserUsername(int userid) {
+		try {
+			if (userDataContainsId(userid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `users` WHERE id=?;");
+				sql.setInt(1, userid);
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getString("username");
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeConnection();
+		}
+	}
+
+	public synchronized static String getUserPassword(int userid) {
+		try {
+			if (userDataContainsId(userid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `users` WHERE id=?;");
+				sql.setInt(1, userid);
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getString("password");
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeConnection();
+		}
+	}
+
+	public synchronized static String getUserDate_Registered(int userid) {
+		try {
+			if (userDataContainsId(userid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `users` WHERE id=?;");
+				sql.setInt(1, userid);
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getString("date_registered");
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeConnection();
+		}
 	}
 }
