@@ -1,26 +1,23 @@
 package me.michaelkrauty.MCWrapper;
 
 public class ServerProtocol {
-	private static final int LOGIN = 0;
-	private static final int CHALLENGED = 1;
-	private static final int POSTLOGIN = 2;
 
-	private int state = LOGIN;
+	private int state = 0;
 
 	public String processInput(String theInput) {
 		String theOutput = null;
 
-		if (state == LOGIN) {
-			theOutput = "LOGIN";
-			state = CHALLENGED;
+		if (state == 0) {
+			theOutput = "test1";
+			state = 1;
 		}
-		if (state == CHALLENGED) {
-			theOutput = "CHALLENGED";
-			state = POSTLOGIN;
+		if (state == 1) {
+			theOutput = "test2";
+			state = 2;
 		}
-		if (state == POSTLOGIN) {
-			theOutput = "POSTLOGIN";
-			state = LOGIN;
+		if (state == 2) {
+			theOutput = "test3";
+			state = 0;
 		}
 		return theOutput;
 	}
