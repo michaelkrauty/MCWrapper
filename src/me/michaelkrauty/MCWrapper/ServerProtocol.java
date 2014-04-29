@@ -29,7 +29,9 @@ public class ServerProtocol {
 			if (theInput != null) {
 				String[] input = theInput.split(",");
 				if (input.length == 1) {
-
+					if (input[0].equalsIgnoreCase("disconnect")) {
+						return "disconnect";
+					}
 				}
 			}
 		}
