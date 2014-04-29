@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 class Connection implements Runnable {
+	@SuppressWarnings("unused")
 	private final Socket socket;
 	private Thread t;
 
@@ -27,10 +28,11 @@ class Connection implements Runnable {
 }
 
 public class ConnectionHandler {
-	public static void main(String[] args) {
+	public static void main() {
 		ServerSocket serverSocket = null;
 		try {
 			serverSocket = new ServerSocket(3307);
+			System.out.println("Server socket created.");
 			for (;;) {
 				Socket clientSocket = null;
 				clientSocket = serverSocket.accept();
