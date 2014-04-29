@@ -26,7 +26,12 @@ public class ServerProtocol {
 			}
 		}
 		if (state == POSTLOGIN && logged) {
-			return "*postlogin*";
+			if (theInput != null) {
+				String[] input = theInput.split(",");
+				if (input.length == 1) {
+
+				}
+			}
 		}
 		return "Incorrect Input.";
 	}
