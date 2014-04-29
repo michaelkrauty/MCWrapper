@@ -20,7 +20,6 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Initiating wrapper...");
 		System.out.println("Wrapper PID: " + wrapper.getPID());
-		SQL.checkSqlTables();
 		new ConnectionHandler().start();
 		System.out.println("done.");
 		mainLoop();
