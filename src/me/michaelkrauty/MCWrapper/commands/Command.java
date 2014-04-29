@@ -63,11 +63,6 @@ public class Command extends Main {
 				if (cmdLabel.equalsIgnoreCase("serverpid") && cmd.length == 2) {
 					new ServerPID(serverid);
 				}
-				if (cmdLabel.equalsIgnoreCase("createserver")
-						&& cmd.length == 4) {
-					new CreateServer(cmd[1], Integer.parseInt(cmd[2]),
-							Integer.parseInt(cmd[3]));
-				}
 
 			} catch (Exception ignored) {
 			}
@@ -98,7 +93,6 @@ public class Command extends Main {
 			commands.add("online");
 			commands.add("serveruptime");
 			commands.add("serverpid");
-			commands.add("createserver");
 		}
 	}
 }

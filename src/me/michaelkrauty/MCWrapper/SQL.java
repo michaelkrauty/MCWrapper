@@ -48,6 +48,27 @@ public class SQL {
 		}
 	}
 
+	public synchronized static int getServerOwner(int serverid) {
+		try {
+			if (serverDataContainsServer(serverid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+				sql.setInt(1, serverid);
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getInt("ownerid");
+			} else {
+				return -1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			closeConnection();
+		}
+	}
+
 	public synchronized static String getServerHost(int serverid) {
 		try {
 			if (serverDataContainsServer(serverid)) {
@@ -169,46 +190,6 @@ public class SQL {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		} finally {
-			closeConnection();
-		}
-	}
-
-	public synchronized static int getServerOwner(int serverid) {
-		try {
-			if (serverDataContainsServer(serverid)) {
-				openConnection();
-				PreparedStatement sql = connection
-						.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
-				sql.setInt(1, serverid);
-				ResultSet result = sql.executeQuery();
-				result.next();
-				return result.getInt("ownerid");
-			} else {
-				return -1;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -1;
-		} finally {
-			closeConnection();
-		}
-	}
-
-	public synchronized static void createServer(int serverid, String name,
-			int memory, int ownerid) {
-		try {
-			openConnection();
-			PreparedStatement sql = connection
-					.prepareStatement("INSERT INTO `servers`(`serverid`, `host`, `port`, `memory`, `jar`, `suspended`, `name`, `ownerid`) VALUES (?,'dominationvps.com',5006,?,1,FALSE,?,?);");
-			sql.setInt(1, serverid);
-			sql.setInt(2, memory);
-			sql.setString(3, name);
-			sql.setInt(4, ownerid);
-			sql.executeUpdate();
-			sql.close();
-		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			closeConnection();
 		}
