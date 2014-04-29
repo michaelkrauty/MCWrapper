@@ -54,7 +54,7 @@ public class SQL {
 		openConnection();
 		try {
 			PreparedStatement sql = connection
-					.prepareStatement("SELECT * FROM `users` WHERE userid=?;");
+					.prepareStatement("SELECT * FROM `users` WHERE id=?;");
 			sql.setInt(1, userid);
 			ResultSet resultSet = sql.executeQuery();
 			boolean containsServer = resultSet.next();
