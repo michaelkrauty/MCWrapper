@@ -11,7 +11,7 @@ public class ServerProtocol {
 
 	public String processInput(String theInput) {
 
-		if (state == LOGIN) {
+		if (state == LOGIN && !logged) {
 			if (theInput != null) {
 				String[] input = theInput.split(",");
 				if (input.length == 2) {
