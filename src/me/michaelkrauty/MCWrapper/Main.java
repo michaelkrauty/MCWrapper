@@ -50,5 +50,6 @@ public class Main {
 			}
 		}
 		System.out.println("Loop stopped.");
+		System.exit(0);
 	}
 }
