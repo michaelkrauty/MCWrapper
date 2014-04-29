@@ -32,6 +32,9 @@ public class ServerProtocol {
 					if (input[0].equalsIgnoreCase("disconnect")) {
 						return "disconnect";
 					}
+					if (input[0].equalsIgnoreCase("help")) {
+						return "help is fun, I suppose";
+					}
 				}
 			}
 		}
