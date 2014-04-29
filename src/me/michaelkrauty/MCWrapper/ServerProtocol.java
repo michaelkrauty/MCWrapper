@@ -12,14 +12,16 @@ public class ServerProtocol {
 	public String processInput(String theInput) {
 
 		if (state == LOGIN) {
-			String[] input = theInput.split(",");
-			if (input.length == 2) {
-				if (checkLogin(input[0], input[1])) {
-					logged = true;
-					state = POSTLOGIN;
-					return "Logged in.";
-				} else {
-					return "Login failed!";
+			if (theInput != null) {
+				String[] input = theInput.split(",");
+				if (input.length == 2) {
+					if (checkLogin(input[0], input[1])) {
+						logged = true;
+						state = POSTLOGIN;
+						return "Logged in.";
+					} else {
+						return "Login failed!";
+					}
 				}
 			}
 		}
