@@ -15,6 +15,8 @@ public class Main {
 
 	public final static Wrapper wrapper = new Wrapper();
 
+	public final static Config config = new Config();
+
 	public static ArrayList<Server> servers = new ArrayList<Server>();
 
 	public static void main(String[] args) {

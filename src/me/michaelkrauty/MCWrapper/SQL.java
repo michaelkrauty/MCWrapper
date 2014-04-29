@@ -12,8 +12,10 @@ public class SQL {
 
 	private synchronized static void openConnection() {
 		try {
-			connection = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/MPCP2", "MPCP2", "MPCP2");
+			connection = DriverManager.getConnection("jdbc:mysql://"
+					+ Main.config.getDBHost() + ":" + Main.config.getDBPort()
+					+ "/MPCP2", Main.config.getDBUser(),
+					Main.config.getDBPass());
 		} catch (Exception e) {
 			System.out.println("Couldn't connect to database! Reason: "
 					+ e.getMessage());
