@@ -28,7 +28,7 @@ class Connection implements Runnable {
 }
 
 public class ConnectionHandler {
-	public static void main() {
+	public static void ConnectionHandler() {
 		ServerSocket serverSocket = null;
 		try {
 			serverSocket = new ServerSocket(3307);
@@ -44,5 +44,4 @@ public class ConnectionHandler {
 			System.err.println(e.getMessage());
 		}
 	}
-
 }
