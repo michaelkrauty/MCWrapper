@@ -13,8 +13,7 @@ public class SQL {
 	private synchronized static void openConnection() {
 		try {
 			connection = DriverManager.getConnection(
-					"jdbc:mysql://dominationvps.com:3306/mcwrapper",
-					"mcwrapper", "mcwrapper");
+					"jdbc:mysql://localhost:3306/MPCP2", "MPCP2", "MPCP2");
 		} catch (Exception e) {
 			System.out.println("Couldn't connect to database! Reason: "
 					+ e.getMessage());
@@ -27,21 +26,6 @@ public class SQL {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public synchronized static void checkSqlTables() {
-		System.out.println("Checking SQL tables...");
-		try {
-			openConnection();
-			PreparedStatement sql = connection
-					.prepareStatement("CREATE TABLE `servers`(serverid int(255) KEY, host varchar(255), port int(255), memory int(255), jar int(255), suspended boolean, name varchar(255));");
-			sql.executeUpdate();
-			System.out.println("Created SQL table `servers`");
-			sql.close();
-			closeConnection();
-		} catch (Exception e1) {
-		}
-		System.out.println("SQL tables checked.");
 	}
 
 	public synchronized static boolean serverDataContainsServer(int serverid) {
