@@ -33,7 +33,7 @@ public class ClientConnection implements Runnable {
 				outputLine = sp.processInput(inputLine);
 				out.println(outputLine);
 				System.out.println("Server: " + outputLine);
-				if (outputLine.equals("Bye."))
+				if (outputLine.equals("disconnect"))
 					break;
 			}
 
