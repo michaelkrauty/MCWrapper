@@ -39,7 +39,7 @@ public class ServerProtocol {
 	}
 
 	private boolean checkLogin(String email, String password) {
-		return email.equalsIgnoreCase("testemail")
-				&& password.equalsIgnoreCase("testpass");
+		return SQL.getUserPassword(SQL.getUserIdByEmail(email))
+				.equals(password);
 	}
 }
