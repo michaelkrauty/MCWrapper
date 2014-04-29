@@ -29,7 +29,8 @@ public class ClientConnection implements Runnable {
 			out.println(outputLine);
 
 			while ((inputLine = in.readLine()) != null) {
-				System.out.println("Client: " + inputLine);
+				System.out.println(socket.getInetAddress().getAddress() + ": "
+						+ inputLine);
 				outputLine = sp.processInput(inputLine);
 				out.println(outputLine);
 				System.out.println("Server: " + outputLine);
