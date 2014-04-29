@@ -39,7 +39,11 @@ public class ServerProtocol {
 	}
 
 	private boolean checkLogin(String email, String password) {
-		return SQL.getUserPassword(SQL.getUserIdByEmail(email))
-				.equals(password);
+		try {
+			return SQL.getUserPassword(SQL.getUserIdByEmail(email)).equals(
+					password);
+		} catch (NullPointerException e) {
+			return false;
+		}
 	}
 }
