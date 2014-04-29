@@ -23,7 +23,6 @@ public class ClientConnection implements Runnable {
 
 			String inputLine, outputLine;
 
-			// Initiate conversation with client
 			ServerProtocol sp = new ServerProtocol();
 			outputLine = sp.processInput(null);
 			out.println(outputLine);
@@ -44,7 +43,8 @@ public class ClientConnection implements Runnable {
 	}
 
 	public void start() {
-		System.out.println("Starting client session");
+		System.out
+				.println("Connection from " + socket.getRemoteSocketAddress());
 		if (t == null) {
 			t = new Thread(this);
 			t.start();
