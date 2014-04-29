@@ -17,11 +17,12 @@ public class Main {
 
 	public static ArrayList<Server> servers = new ArrayList<Server>();
 
+	public static ConnectionHandler connectionHandler = new ConnectionHandler();
+
 	public static void main(String[] args) {
 		System.out.println("Initiating wrapper...");
 		System.out.println("Wrapper PID: " + wrapper.getPID());
 		SQL.checkSqlTables();
-		new ConnectionHandler();
 		System.out.println("done.");
 		mainLoop();
 	}
