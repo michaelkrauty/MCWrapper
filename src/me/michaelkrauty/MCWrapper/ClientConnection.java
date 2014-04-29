@@ -7,7 +7,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class ClientConnection implements Runnable {
-	@SuppressWarnings("unused")
 	private final Socket socket;
 	private Thread t;
 
@@ -22,7 +21,21 @@ public class ClientConnection implements Runnable {
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
 
-			out.println("test");
+			String inputLine, outputLine;
+
+			// Initiate conversation with client
+			ServerProtocol sp = new ServerProtocol();
+			outputLine = sp.processInput(null);
+			out.println(outputLine);
+
+			while ((inputLine = in.readLine()) != null) {
+				System.out.println("Client: " + inputLine);
+				outputLine = sp.processInput(inputLine);
+				out.println(outputLine);
+				System.out.println("Server: " + outputLine);
+				if (outputLine.equals("Bye."))
+					break;
+			}
 
 		} catch (IOException e) {
 			System.err.println("Couldn't create input/output stream(s)!");
