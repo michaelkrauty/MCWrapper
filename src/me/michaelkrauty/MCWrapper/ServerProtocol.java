@@ -2,27 +2,35 @@ package me.michaelkrauty.MCWrapper;
 
 public class ServerProtocol {
 
-	private int state = 0;
+	private final int LOGIN = 0;
+	private final int POSTLOGIN = 1;
+
+	private boolean logged = false;
+
+	private int state = LOGIN;
 
 	public String processInput(String theInput) {
 
-		if (state == 0) {
-			state = 1;
-			return "test1";
+		if (state == LOGIN) {
+			String email, password;
+			String[] input = theInput.split(",");
+			if (checkLogin(input[0], input[1])) {
+				logged = true;
+				state = POSTLOGIN;
+				return "Logged in.";
+			} else {
+				return "Login failed!";
+			}
 		}
-		if (state == 1) {
-			state = 2;
-			return "test2";
-		}
-		if (state == 2) {
-			state = 0;
-			return "test3";
+		if (state == POSTLOGIN && logged) {
+			return "*postlogin*";
 		}
 		return "u wot m8";
 	}
 
 	@SuppressWarnings("unused")
 	private boolean checkLogin(String email, String password) {
-		return true;
+		return email.equalsIgnoreCase("testemail")
+				&& password.equalsIgnoreCase("testpass");
 	}
 }
