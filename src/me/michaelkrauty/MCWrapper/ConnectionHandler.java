@@ -8,6 +8,8 @@ public class ConnectionHandler {
 
 	public ConnectionHandler() {
 
+		System.out.println("Starting connection handler...");
+
 		int portNumber = 3307;
 
 		try {

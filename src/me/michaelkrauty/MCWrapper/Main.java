@@ -15,14 +15,13 @@ public class Main {
 
 	public final static Wrapper wrapper = new Wrapper();
 
-	public static ConnectionHandler connectionHandler = new ConnectionHandler();
-
 	public static ArrayList<Server> servers = new ArrayList<Server>();
 
 	public static void main(String[] args) {
 		System.out.println("Initiating wrapper...");
 		System.out.println("Wrapper PID: " + wrapper.getPID());
 		SQL.checkSqlTables();
+		new ConnectionHandler();
 		System.out.println("done.");
 		mainLoop();
 	}
