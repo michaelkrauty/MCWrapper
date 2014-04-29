@@ -21,7 +21,7 @@ public class Main {
 		System.out.println("Initiating wrapper...");
 		System.out.println("Wrapper PID: " + wrapper.getPID());
 		SQL.checkSqlTables();
-		new ConnectionHandler();
+		new ConnectionHandler().start();
 		System.out.println("done.");
 		mainLoop();
 	}

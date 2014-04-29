@@ -4,44 +4,40 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-class Connection implements Runnable {
-	@SuppressWarnings("unused")
-	private final Socket socket;
+public class ConnectionHandler implements Runnable {
+	private static ServerSocket serverSocket;
 	private Thread t;
 
-	Connection(Socket soc) {
-		socket = soc;
+	public ConnectionHandler() {
+		try {
+			serverSocket = new ServerSocket(3307);
+			System.out.println("Server socket created.");
+		} catch (IOException e) {
+			System.err.println("Couldn't bind to port 3307!");
+			System.err.println(e.getMessage());
+		}
 	}
 
 	@Override
 	public void run() {
-		System.out.println("run, lol");
+		while (Main.running) {
+			Socket clientSocket = null;
+			try {
+				clientSocket = serverSocket.accept();
+			} catch (IOException e) {
+				System.err.println("Couldn't accept client connection!");
+				System.err.println(e.getMessage());
+			}
+			ClientConnection connection = new ClientConnection(clientSocket);
+			connection.start();
+		}
 	}
 
 	public void start() {
-		System.out.println("Starting client session");
+		System.out.println("Starting Connection Handler");
 		if (t == null) {
 			t = new Thread(this);
 			t.start();
-		}
-	}
-}
-
-public class ConnectionHandler {
-	public static void ConnectionHandler() {
-		ServerSocket serverSocket = null;
-		try {
-			serverSocket = new ServerSocket(3307);
-			System.out.println("Server socket created.");
-			for (;;) {
-				Socket clientSocket = null;
-				clientSocket = serverSocket.accept();
-				Connection connection = new Connection(clientSocket);
-				connection.start();
-			}
-		} catch (IOException e) {
-			System.err.println("Couldn't bind to port 3307!");
-			System.err.println(e.getMessage());
 		}
 	}
 }
