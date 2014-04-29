@@ -29,8 +29,7 @@ public class ClientConnection implements Runnable {
 			out.println(outputLine);
 
 			while ((inputLine = in.readLine()) != null) {
-				System.out.println(socket.getInetAddress().getAddress()
-						.toString()
+				System.out.println(socket.getRemoteSocketAddress().toString()
 						+ ": " + inputLine);
 				outputLine = sp.processInput(inputLine);
 				out.println(outputLine);
@@ -40,7 +39,6 @@ public class ClientConnection implements Runnable {
 			}
 
 		} catch (IOException e) {
-			System.err.println("Couldn't create input/output stream(s)!");
 			System.err.println(e.getMessage());
 		}
 	}
