@@ -12,14 +12,15 @@ public class ServerProtocol {
 	public String processInput(String theInput) {
 
 		if (state == LOGIN) {
-			String email, password;
 			String[] input = theInput.split(",");
-			if (checkLogin(input[0], input[1])) {
-				logged = true;
-				state = POSTLOGIN;
-				return "Logged in.";
-			} else {
-				return "Login failed!";
+			if (input.length == 2) {
+				if (checkLogin(input[0], input[1])) {
+					logged = true;
+					state = POSTLOGIN;
+					return "Logged in.";
+				} else {
+					return "Login failed!";
+				}
 			}
 		}
 		if (state == POSTLOGIN && logged) {
@@ -28,7 +29,6 @@ public class ServerProtocol {
 		return "u wot m8";
 	}
 
-	@SuppressWarnings("unused")
 	private boolean checkLogin(String email, String password) {
 		return email.equalsIgnoreCase("testemail")
 				&& password.equalsIgnoreCase("testpass");
