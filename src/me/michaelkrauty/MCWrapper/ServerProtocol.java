@@ -28,7 +28,7 @@ public class ServerProtocol {
 		if (state == POSTLOGIN && logged) {
 			return "*postlogin*";
 		}
-		return "u wot m8";
+		return "Incorrect Input.";
 	}
 
 	private boolean checkLogin(String email, String password) {
