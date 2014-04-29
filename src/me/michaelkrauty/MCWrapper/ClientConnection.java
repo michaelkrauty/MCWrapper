@@ -38,7 +38,8 @@ public class ClientConnection implements Runnable {
 			}
 
 		} catch (IOException e) {
-			System.err.println(e.getMessage());
+			System.err.println(socket.getRemoteSocketAddress()
+					+ " disconnected: " + e.getMessage());
 		}
 	}
 
