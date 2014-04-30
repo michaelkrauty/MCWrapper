@@ -27,7 +27,7 @@ public class Command implements Runnable {
 			/** @commands */
 			commands.add("help");
 			commands.add("pid");
-			commands.add("restart");
+			// commands.add("restart");
 			commands.add("servercommand");
 			commands.add("start");
 			commands.add("stop");
