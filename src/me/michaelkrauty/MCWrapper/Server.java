@@ -69,10 +69,6 @@ public class Server {
 		}
 	}
 
-	public int getId() {
-		return id;
-	}
-
 	public void stop() {
 		executeCommand("stop");
 	}
@@ -81,45 +77,8 @@ public class Server {
 		process.destroy();
 	}
 
-	public InputStream getInputStream() {
-		return inputstream;
-	}
-
-	public OutputStream getOutputStream() {
-		return outputstream;
-	}
-
 	private void setProcess(Process p) {
 		process = p;
-	}
-
-	public Process getProcess() {
-		return process;
-	}
-
-	public int getPID() {
-		return PID;
-	}
-
-	public String getHost() {
-		if (exists) {
-			return host;
-		}
-		return null;
-	}
-
-	public int getPort() {
-		if (exists) {
-			return port;
-		}
-		return 0;
-	}
-
-	public String getServerDir() {
-		if (exists) {
-			return serverdir;
-		}
-		return null;
 	}
 
 	public boolean executeCommand(String command) {
@@ -159,22 +118,19 @@ public class Server {
 	}
 
 	public boolean isRunning() {
-		if (process != null) {
+		try {
+			process.exitValue();
+			return false;
+		} catch (Exception e) {
 			return true;
 		}
-		return false;
-	}
-
-	public String[] getOnlinePlayers() {
-		// TODO
-		return null;
 	}
 
 	public void restart() {
 		if (isOnline()) {
 			stop();
 		}
-		while (isOnline()) {
+		while (isRunning()) {
 			try {
 				Thread.sleep(0);
 			} catch (InterruptedException e) {
@@ -182,6 +138,44 @@ public class Server {
 			}
 		}
 		start();
+	}
+
+	// get
+	public int getId() {
+		return id;
+	}
+
+	public String[] getOnlinePlayers() {
+		// TODO
+		return null;
+	}
+
+	public InputStream getInputStream() {
+		return inputstream;
+	}
+
+	public OutputStream getOutputStream() {
+		return outputstream;
+	}
+
+	public Process getProcess() {
+		return process;
+	}
+
+	public int getPID() {
+		return PID;
+	}
+
+	public String getHost() {
+		return host;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public String getServerDir() {
+		return serverdir;
 	}
 
 	public int getUptime() {
