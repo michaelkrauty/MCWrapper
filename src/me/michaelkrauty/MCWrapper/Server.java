@@ -7,7 +7,6 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.SocketFactory;
@@ -161,16 +160,10 @@ public class Server {
 	}
 
 	public boolean isRunning() {
-		final File folder = new File("/home/mcwrapper/pid");
-		ArrayList<String> test = new ArrayList<String>();
-		for (final File fileEntry : folder.listFiles()) {
-			test.add(fileEntry.getName());
-		}
-		if (test.contains(id)) {
+		if (process != null) {
 			return true;
 		}
 		return false;
-
 	}
 
 	public String[] getOnlinePlayers() {
