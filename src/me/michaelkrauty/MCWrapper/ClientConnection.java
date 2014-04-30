@@ -46,8 +46,8 @@ public class ClientConnection implements Runnable {
 	}
 
 	public void start() {
-		System.out
-				.println("Connection from " + socket.getRemoteSocketAddress());
+		System.out.println("Connection from "
+				+ socket.getRemoteSocketAddress().toString());
 		if (t == null) {
 			t = new Thread(this);
 			t.start();

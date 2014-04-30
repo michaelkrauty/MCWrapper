@@ -1,5 +1,6 @@
 package me.michaelkrauty.MCWrapper;
 
+import me.michaelkrauty.MCWrapper.commands.Command;
 import me.michaelkrauty.MCWrapper.commands.ForceStop;
 import me.michaelkrauty.MCWrapper.commands.Start;
 import me.michaelkrauty.MCWrapper.commands.Stop;
@@ -57,6 +58,13 @@ public class ServerProtocol {
 							return "Force stopped server "
 									+ SQL.getServerName(serverid);
 						}
+					}
+				}
+				if (input[0].equalsIgnoreCase("command") && input.length < 2) {
+					int serverid = Integer.parseInt(input[1]);
+					if (SQL.getServerOwner(serverid) == userid) {
+						new Command(theInput);
+						return "Issued command to server " + serverid + ".";
 					}
 				}
 			} else {
