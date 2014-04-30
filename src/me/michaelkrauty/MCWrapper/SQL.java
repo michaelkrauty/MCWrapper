@@ -34,7 +34,7 @@ public class SQL {
 		openConnection();
 		try {
 			PreparedStatement sql = connection
-					.prepareStatement("SELECT * FROM `servers` WHERE serverid=?;");
+					.prepareStatement("SELECT * FROM `servers` WHERE id=?;");
 			sql.setInt(1, serverid);
 			ResultSet resultSet = sql.executeQuery();
 			boolean containsServer = resultSet.next();
