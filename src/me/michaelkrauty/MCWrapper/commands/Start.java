@@ -3,6 +3,7 @@ package me.michaelkrauty.MCWrapper.commands;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 
 import me.michaelkrauty.MCWrapper.Main;
 import me.michaelkrauty.MCWrapper.Server;
@@ -23,21 +24,15 @@ public class Start implements Runnable {
 
 	@Override
 	public void run() {
-		boolean contains = false;
-		for (int i = 0; i < Main.servers.size(); i++) {
-			if (Main.servers.get(i).getId() == serverid) {
-				contains = true;
-			}
-		}
 		Server server;
-		if (contains) {
-			server = Main.wrapper.getServer(serverid);
+		if ((server = Main.wrapper.getServer(serverid)) != null) {
+			;
 		} else {
 			server = new Server(serverid);
 			Main.servers.add(server);
 		}
 		server.start();
-		// PrintWriter out = new PrintWriter(server.getOutputStream(), true);
+		PrintWriter out = new PrintWriter(server.getOutputStream(), true);
 		BufferedReader in = new BufferedReader(new InputStreamReader(
 				server.getInputStream()));
 		String line;
@@ -46,7 +41,7 @@ public class Start implements Runnable {
 				System.out.println("Server " + serverid + ": " + line);
 			}
 			in.close();
-			// out.close();
+			out.close();
 		} catch (IOException ignored) {
 		}
 	}
