@@ -26,16 +26,16 @@ public class Online {
 			for (int i = 0; i < Main.servers.size(); i++) {
 				if (Main.servers.get(i).isOnline()) {
 					if (i == Main.servers.size()) {
-						online = online + Main.servers.get(i).getId() + ", ";
-					} else {
 						online = online + Main.servers.get(i).getId() + ".";
+					} else {
+						online = online + Main.servers.get(i).getId() + ", ";
 					}
 				}
 				if (Main.servers.get(i).isRunning()) {
 					if (i == Main.servers.size()) {
-						running = running + Main.servers.get(i).getId() + ", ";
-					} else {
 						running = running + Main.servers.get(i).getId() + ".";
+					} else {
+						running = running + Main.servers.get(i).getId() + ", ";
 					}
 				}
 			}
