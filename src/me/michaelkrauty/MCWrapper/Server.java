@@ -114,6 +114,9 @@ public class Server {
 	}
 
 	public boolean isRunning() {
+		if (process == null) {
+			return false;
+		}
 		try {
 			process.exitValue();
 			return false;
