@@ -10,10 +10,16 @@ import me.michaelkrauty.MCWrapper.Server;
 
 public class Start implements Runnable {
 
+	private Thread t;
+
 	private int serverid;
 
 	public Start(int id) {
 		serverid = id;
+		if (t == null) {
+			t = new Thread(this);
+			t.start();
+		}
 	}
 
 	@Override
