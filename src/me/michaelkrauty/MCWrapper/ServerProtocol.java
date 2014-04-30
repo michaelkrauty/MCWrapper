@@ -41,6 +41,15 @@ public class ServerProtocol {
 									+ SQL.getServerName(serverid);
 						}
 					}
+					if (input[0].equalsIgnoreCase("forcestop")
+							|| input[0].equalsIgnoreCase("kill")) {
+						int serverid = Integer.parseInt(input[1]);
+						if (SQL.getServerOwner(serverid) == userid) {
+							Main.wrapper.forceStopServer(serverid);
+							return "Force stopped server "
+									+ SQL.getServerName(serverid);
+						}
+					}
 				}
 			} else {
 				if (input.length == 3) {
