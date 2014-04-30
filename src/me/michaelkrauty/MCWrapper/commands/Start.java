@@ -47,8 +47,7 @@ public class Start implements Runnable {
 			while ((line = in.readLine()) != null) {
 				System.out.println("Server " + serverid + ": " + line);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException ignored) {
 		}
 	}
 }
