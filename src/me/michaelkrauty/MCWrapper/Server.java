@@ -40,7 +40,7 @@ public class Server {
 
 	public void start() {
 		System.out.println("Starting server " + id + "...");
-		if (!isOnline()) {
+		if (!isRunning()) {
 			try {
 				ProcessBuilder pb = new ProcessBuilder();
 				pb.directory(new File(serverdir));
