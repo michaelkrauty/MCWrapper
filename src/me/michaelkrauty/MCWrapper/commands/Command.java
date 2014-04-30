@@ -2,13 +2,48 @@ package me.michaelkrauty.MCWrapper.commands;
 
 import java.util.ArrayList;
 
-import me.michaelkrauty.MCWrapper.Main;
+public class Command implements Runnable {
 
-public class Command extends Main {
+	private Thread t;
+
+	private static String command;
 
 	public static ArrayList<String> commands = new ArrayList<String>();
 
-	public Command(String command) {
+	public Command(String cmd) {
+		command = cmd;
+		if (t == null) {
+			t = new Thread(this);
+			t.start();
+		}
+	}
+
+	public boolean checkValidCommand(String command) {
+		return commands.contains(command.toLowerCase());
+	}
+
+	private void commands() {
+		if (commands.isEmpty()) {
+			/** @commands */
+			commands.add("help");
+			commands.add("pid");
+			commands.add("restart");
+			commands.add("servercommand");
+			commands.add("start");
+			commands.add("stop");
+			commands.add("stopwrapper");
+			commands.add("test");
+			commands.add("uptime");
+			commands.add("forcestop");
+			commands.add("kill");
+			commands.add("online");
+			commands.add("serveruptime");
+			commands.add("serverpid");
+		}
+	}
+
+	@Override
+	public void run() {
 		commands();
 		String[] cmd = command.split(" ");
 		String cmdLabel = cmd[0];
@@ -69,30 +104,6 @@ public class Command extends Main {
 		} else {
 			System.out
 					.println("Unknown command! Use \"help\" for a list of valid commands.");
-		}
-	}
-
-	public boolean checkValidCommand(String command) {
-		return commands.contains(command.toLowerCase());
-	}
-
-	private void commands() {
-		if (commands.isEmpty()) {
-			/** @commands */
-			commands.add("help");
-			commands.add("pid");
-			commands.add("restart");
-			commands.add("servercommand");
-			commands.add("start");
-			commands.add("stop");
-			commands.add("stopwrapper");
-			commands.add("test");
-			commands.add("uptime");
-			commands.add("forcestop");
-			commands.add("kill");
-			commands.add("online");
-			commands.add("serveruptime");
-			commands.add("serverpid");
 		}
 	}
 }
