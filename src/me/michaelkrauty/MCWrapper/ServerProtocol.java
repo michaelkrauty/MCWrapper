@@ -24,6 +24,7 @@ public class ServerProtocol {
 					}
 				}
 			}
+			return null;
 		}
 		if (state == POSTLOGIN && logged) {
 			if (theInput != null) {
