@@ -19,6 +19,8 @@ public class Start implements Runnable {
 		if (t == null) {
 			t = new Thread(this);
 			t.start();
+		} else {
+			System.out.println("test");
 		}
 	}
 
