@@ -1,5 +1,9 @@
 package me.michaelkrauty.MCWrapper;
 
+import me.michaelkrauty.MCWrapper.commands.ForceStop;
+import me.michaelkrauty.MCWrapper.commands.Start;
+import me.michaelkrauty.MCWrapper.commands.Stop;
+
 @SuppressWarnings("unused")
 public class ServerProtocol {
 
@@ -28,7 +32,7 @@ public class ServerProtocol {
 					if (input[0].equalsIgnoreCase("start")) {
 						int serverid = Integer.parseInt(input[1]);
 						if (SQL.getServerOwner(serverid) == userid) {
-							Main.wrapper.startServer(serverid);
+							new Start(serverid);
 							return "Starting server "
 									+ SQL.getServerName(serverid);
 						}
@@ -36,7 +40,7 @@ public class ServerProtocol {
 					if (input[0].equalsIgnoreCase("stop")) {
 						int serverid = Integer.parseInt(input[1]);
 						if (SQL.getServerOwner(serverid) == userid) {
-							Main.wrapper.stopServer(serverid);
+							new Stop(serverid);
 							return "Stopping server "
 									+ SQL.getServerName(serverid);
 						}
@@ -45,7 +49,7 @@ public class ServerProtocol {
 							|| input[0].equalsIgnoreCase("kill")) {
 						int serverid = Integer.parseInt(input[1]);
 						if (SQL.getServerOwner(serverid) == userid) {
-							Main.wrapper.forceStopServer(serverid);
+							new ForceStop(serverid);
 							return "Force stopped server "
 									+ SQL.getServerName(serverid);
 						}
