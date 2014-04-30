@@ -19,8 +19,6 @@ public class Start implements Runnable {
 		if (t == null) {
 			t = new Thread(this);
 			t.start();
-		} else {
-			System.out.println("test");
 		}
 	}
 
@@ -32,24 +30,25 @@ public class Start implements Runnable {
 				contains = true;
 			}
 		}
+		Server server;
 		if (contains) {
-			Main.wrapper.getServer(serverid).start();
+			server = Main.wrapper.getServer(serverid);
 		} else {
-			Server server = new Server(serverid);
+			server = new Server(serverid);
 			Main.servers.add(server);
-			server.start();
-			@SuppressWarnings("unused")
-			PrintWriter out = new PrintWriter(server.getOutputStream(), true);
-			BufferedReader in = new BufferedReader(new InputStreamReader(
-					server.getInputStream()));
-			String line;
-			try {
-				while ((line = in.readLine()) != null) {
-					System.out.println("Server " + serverid + ": " + line);
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
+		}
+		server.start();
+		@SuppressWarnings("unused")
+		PrintWriter out = new PrintWriter(server.getOutputStream(), true);
+		BufferedReader in = new BufferedReader(new InputStreamReader(
+				server.getInputStream()));
+		String line;
+		try {
+			while ((line = in.readLine()) != null) {
+				System.out.println("Server " + serverid + ": " + line);
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
