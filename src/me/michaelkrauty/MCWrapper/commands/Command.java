@@ -91,9 +91,8 @@ public class Command implements Runnable {
 				if (cmdLabel.equalsIgnoreCase("online") && cmd.length == 2) {
 					new Online(serverid);
 				}
-				if (cmdLabel.equalsIgnoreCase("serveruptime")
-						&& cmd.length == 2) {
-					new ServerUptime(serverid);
+				if (cmdLabel.equalsIgnoreCase("uptime") && cmd.length == 2) {
+					new Uptime(serverid);
 				}
 				if (cmdLabel.equalsIgnoreCase("serverpid") && cmd.length == 2) {
 					new ServerPID(serverid);
