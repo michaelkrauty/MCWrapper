@@ -44,15 +44,11 @@ public class Server {
 		System.out.println("Starting server " + id + "...");
 		if (!isOnline()) {
 			try {
-				// ProcessBuilder pb = new ProcessBuilder("java", "-jar",
-				// "/home/mcwrapper/jar/test.jar", "--host", host,
-				// "--port", Integer.toString(port), "-Xmx"
-				// + Integer.toString(memory) + "M");
 				ProcessBuilder pb = new ProcessBuilder();
 				pb.directory(new File(serverdir));
-				pb.command("java", "-jar /home/mcwrapper/jar/test.jar --host "
-						+ host + " --port " + Integer.toString(port) + " -Xmx"
-						+ Integer.toString(memory) + "M nogui");
+				pb.command("java", "-jar", "/home/mcwrapper/jar/test.jar",
+						"--host", host, "--port", Integer.toString(port),
+						"-Xmx" + Integer.toString(memory) + "M", "nogui");
 				Process p = pb.start();
 				setProcess(p);
 				try {
