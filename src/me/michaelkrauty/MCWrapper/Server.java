@@ -48,7 +48,7 @@ public class Server {
 						"-jar", "/home/mcwrapper/jar/test.jar", "--host", host,
 						"--port", Integer.toString(port), "nogui");
 				Process p = pb.start();
-				setProcess(p);
+				process = p;
 				try {
 					java.lang.reflect.Field f = p.getClass().getDeclaredField(
 							"pid");
@@ -77,12 +77,8 @@ public class Server {
 		process.destroy();
 	}
 
-	private void setProcess(Process p) {
-		process = p;
-	}
-
 	public boolean executeCommand(String command) {
-		if (exists) {
+		if (isRunning()) {
 			PrintWriter out = new PrintWriter(process.getOutputStream(), true);
 			out.println(command);
 			return true;
