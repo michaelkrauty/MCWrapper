@@ -60,7 +60,7 @@ public class ServerProtocol {
 						}
 					}
 				}
-				if (input[0].equalsIgnoreCase("command") && input.length < 2) {
+				if (input[0].equalsIgnoreCase("command") && input.length > 2) {
 					int serverid = Integer.parseInt(input[1]);
 					if (SQL.getServerOwner(serverid) == userid) {
 						new Command(theInput);
