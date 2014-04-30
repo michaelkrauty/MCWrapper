@@ -38,7 +38,6 @@ public class Start implements Runnable {
 			Main.servers.add(server);
 		}
 		server.start();
-		@SuppressWarnings("unused")
 		PrintWriter out = new PrintWriter(server.getOutputStream(), true);
 		BufferedReader in = new BufferedReader(new InputStreamReader(
 				server.getInputStream()));
@@ -47,6 +46,8 @@ public class Start implements Runnable {
 			while ((line = in.readLine()) != null) {
 				System.out.println("Server " + serverid + ": " + line);
 			}
+			in.close();
+			out.close();
 		} catch (IOException ignored) {
 		}
 	}

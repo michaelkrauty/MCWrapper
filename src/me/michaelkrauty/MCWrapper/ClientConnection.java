@@ -36,6 +36,8 @@ public class ClientConnection implements Runnable {
 				if (outputLine.equals("disconnect"))
 					break;
 			}
+			in.close();
+			out.close();
 
 		} catch (IOException e) {
 			System.err.println(socket.getRemoteSocketAddress()

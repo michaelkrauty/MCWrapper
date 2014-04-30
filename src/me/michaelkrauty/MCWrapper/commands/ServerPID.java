@@ -1,13 +1,11 @@
 package me.michaelkrauty.MCWrapper.commands;
 
 import me.michaelkrauty.MCWrapper.Main;
-import me.michaelkrauty.MCWrapper.Server;
 
 public class ServerPID {
 
 	public ServerPID(int serverid) {
-		Server server = Main.wrapper.getServer(serverid);
-		System.out.println("Server " + server.getId() + "'s PID: "
-				+ server.getPID());
+		int pid = Main.wrapper.getServer(serverid).getPID();
+		System.out.println("Server " + serverid + "'s PID: " + pid);
 	}
 }

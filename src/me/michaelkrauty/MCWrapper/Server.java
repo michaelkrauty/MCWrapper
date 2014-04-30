@@ -7,7 +7,6 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.concurrent.TimeUnit;
 
 import javax.net.SocketFactory;
 
@@ -185,11 +184,8 @@ public class Server {
 		start();
 	}
 
-	public void getUptime() {
-		System.out.println("Wrapper Uptime: "
-				+ TimeUnit.HOURS.toHours(starttime) + " hours "
-				+ TimeUnit.MINUTES.toMinutes(starttime) + " minutes "
-				+ TimeUnit.SECONDS.toSeconds(starttime) + " seconds.");
+	public int getUptime() {
+		return (int) (System.currentTimeMillis() - starttime);
 	}
 
 	public boolean exists() {
