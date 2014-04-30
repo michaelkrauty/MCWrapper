@@ -21,16 +21,26 @@ public class Online {
 
 	public Online() {
 		if (Main.servers.size() > 0) {
-			String servers = "";
+			String online = "";
+			String running = "";
 			for (int i = 0; i < Main.servers.size(); i++) {
 				if (Main.servers.get(i).isOnline()) {
 					if (i == Main.servers.size()) {
-						servers = servers + Main.servers.get(i).getId() + ", ";
+						online = online + Main.servers.get(i).getId() + ", ";
+					} else {
+						online = online + Main.servers.get(i).getId() + ".";
 					}
-					servers = servers + Main.servers.get(i).getId() + ".";
+				}
+				if (Main.servers.get(i).isRunning()) {
+					if (i == Main.servers.size()) {
+						running = running + Main.servers.get(i).getId() + ", ";
+					} else {
+						running = running + Main.servers.get(i).getId() + ".";
+					}
 				}
 			}
-			System.out.println("Online servers: " + servers);
+			System.out.println("Running servers: " + running);
+			System.out.println("Online servers: " + online);
 		} else {
 			System.out.println("No online servers!");
 		}
