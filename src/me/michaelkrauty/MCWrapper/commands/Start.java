@@ -3,7 +3,6 @@ package me.michaelkrauty.MCWrapper.commands;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 
 import me.michaelkrauty.MCWrapper.Main;
 import me.michaelkrauty.MCWrapper.Server;
@@ -19,8 +18,6 @@ public class Start implements Runnable {
 		if (t == null) {
 			t = new Thread(this);
 			t.start();
-		} else {
-			System.err.println("thread not null");
 		}
 	}
 
@@ -40,7 +37,7 @@ public class Start implements Runnable {
 			Main.servers.add(server);
 		}
 		server.start();
-		PrintWriter out = new PrintWriter(server.getOutputStream(), true);
+		// PrintWriter out = new PrintWriter(server.getOutputStream(), true);
 		BufferedReader in = new BufferedReader(new InputStreamReader(
 				server.getInputStream()));
 		String line;
@@ -49,7 +46,7 @@ public class Start implements Runnable {
 				System.out.println("Server " + serverid + ": " + line);
 			}
 			in.close();
-			out.close();
+			// out.close();
 		} catch (IOException ignored) {
 		}
 	}
