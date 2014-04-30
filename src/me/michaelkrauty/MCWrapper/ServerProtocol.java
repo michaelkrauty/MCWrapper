@@ -26,12 +26,13 @@ public class ServerProtocol {
 				}
 			} else {
 				if (input.length == 3) {
-					if (input[0].equalsIgnoreCase("login")
-							&& checkLogin(input[1], input[2])) {
-						logged = true;
-						return "Logged in.";
-					} else {
-						return "Login failed!";
+					if (input[0].equalsIgnoreCase("login")) {
+						if (checkLogin(input[1], input[2])) {
+							logged = true;
+							return "Logged in.";
+						} else {
+							return "Login failed!";
+						}
 					}
 				}
 			}
