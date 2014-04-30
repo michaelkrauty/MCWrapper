@@ -31,25 +31,24 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		// tick tock goes the clock
-		while (running) {
-			double loopStartTime = System.currentTimeMillis();
-			try {
-				if (br.ready()) {
-					String in = br.readLine();
-					new Command(in);
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
+		// double loopStartTime = System.currentTimeMillis();
+		try {
+			while (br.readLine() != null) {
+				String in;
+				in = br.readLine();
+				new Command(in);
 			}
-
-			while ((System.currentTimeMillis() - loopStartTime) <= 200) {
-				try {
-					Thread.sleep(0);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+
+		// while ((System.currentTimeMillis() - loopStartTime) <= 200) {
+		// try {
+		// Thread.sleep(0);
+		// } catch (InterruptedException e) {
+		// e.printStackTrace();
+		// }
+		// }
 		System.out.println("Loop stopped.");
 		System.exit(0);
 	}
