@@ -33,10 +33,11 @@ public class Main {
 		// tick tock goes the clock
 		// double loopStartTime = System.currentTimeMillis();
 		try {
-			while (br.readLine() != null) {
-				String in;
-				in = br.readLine();
-				new Command(in);
+			while (running) {
+				if (br.readLine() != null) {
+					String in = br.readLine();
+					new Command(in);
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
