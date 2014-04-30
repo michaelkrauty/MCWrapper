@@ -31,6 +31,12 @@ public class ServerProtocol {
 							Main.wrapper.startServer(serverid);
 						}
 					}
+					if (input[0].equalsIgnoreCase("stop")) {
+						int serverid = Integer.parseInt(input[1]);
+						if (SQL.getServerOwner(serverid) == userid) {
+							Main.wrapper.stopServer(serverid);
+						}
+					}
 				}
 			} else {
 				if (input.length == 3) {
