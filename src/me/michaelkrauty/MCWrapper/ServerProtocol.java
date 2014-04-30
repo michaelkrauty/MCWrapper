@@ -25,8 +25,8 @@ public class ServerProtocol {
 						return "disconnect";
 					}
 					if (input[0].equalsIgnoreCase("logout")) {
-						return "Logged out.";
 						logged = false;
+						return "Logged out.";
 					}
 					if (input[0].equalsIgnoreCase("help")) {
 						return "help is fun, I suppose";
