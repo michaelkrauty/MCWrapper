@@ -1,15 +1,15 @@
 package me.michaelkrauty.MCWrapper;
 
+@SuppressWarnings("unused")
 public class ServerProtocol {
-
-	private final int LOGIN = 0;
-	@SuppressWarnings("unused")
-	private final int POSTLOGIN = 1;
 
 	private boolean logged = false;
 
-	@SuppressWarnings("unused")
-	private int state = LOGIN;
+	private int userid;
+	private String email;
+	private String username;
+	private String pass;
+	private String date_registered;
 
 	public String processInput(String theInput) {
 
@@ -24,10 +24,23 @@ public class ServerProtocol {
 						return "help is fun, I suppose";
 					}
 				}
+				if (input.length == 2) {
+					if (input[0].equalsIgnoreCase("start")) {
+						int serverid = Integer.parseInt(input[1]);
+						if (SQL.getServerOwner(serverid) == userid) {
+							Main.wrapper.startServer(serverid);
+						}
+					}
+				}
 			} else {
 				if (input.length == 3) {
 					if (input[0].equalsIgnoreCase("login")) {
 						if (checkLogin(input[1], input[2])) {
+							userid = SQL.getUserIdByEmail(input[1]);
+							email = SQL.getUserEmail(userid);
+							pass = SQL.getUserPassword(userid);
+							date_registered = SQL
+									.getUserDate_Registered(userid);
 							logged = true;
 							return "Logged in.";
 						} else {
