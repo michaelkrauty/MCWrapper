@@ -16,7 +16,6 @@ public class Server {
 	@SuppressWarnings("unused")
 	private int ownerid;
 	private String serverdir;
-	private boolean exists;
 	private int PID;
 	private String host;
 	private int port;
@@ -40,7 +39,6 @@ public class Server {
 			outputstream = null;
 			starttime = -1;
 		} catch (NullPointerException e) {
-			exists = false;
 		}
 	}
 
@@ -101,7 +99,7 @@ public class Server {
 
 	public boolean isOnline() {
 		boolean open = true;
-		if (exists) {
+		if (exists()) {
 			Socket socket;
 			try {
 				socket = SocketFactory.getDefault().createSocket();
@@ -197,7 +195,7 @@ public class Server {
 	}
 
 	public boolean exists() {
-		return exists;
+		return SQL.serverDataContainsServer(id);
 	}
 
 	public String getDBHost() {
