@@ -24,7 +24,7 @@ public class User {
 		return exists;
 	}
 
-	public int getUserId() {
+	public int getId() {
 		return userid;
 	}
 
