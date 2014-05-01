@@ -44,6 +44,8 @@ public class Server {
 	public void start() {
 		System.out.println("Starting server " + id + "...");
 		if (!isRunning()) {
+			// temp
+			System.out.println("not running");
 			try {
 				ProcessBuilder pb = new ProcessBuilder();
 				pb.directory(new File(serverdir));
@@ -52,7 +54,11 @@ public class Server {
 						"/home/mcwrapper/jar/test.jar", "--host", host,
 						"--port", Integer.toString(port), "nogui'", "-",
 						"mcwrapper_" + ownerid);
+				// temp
+				System.out.println("processbuilder defined");
 				Process p = pb.start();
+				// temp
+				System.out.println("process started");
 				process = p;
 				try {
 					java.lang.reflect.Field f = p.getClass().getDeclaredField(
