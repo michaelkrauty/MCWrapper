@@ -37,7 +37,7 @@ public class Server {
 			inputstream = null;
 			outputstream = null;
 			starttime = -1;
-		} catch (NullPointerException e) {
+		} catch (NullPointerException ignored) {
 		}
 	}
 
