@@ -69,6 +69,7 @@ public class Server {
 						.println("Attempting to create the server directory...");
 				File sdir = new File(serverdir);
 				sdir.mkdir();
+				start();
 			}
 		} else {
 			System.out.println("Server is already online!");
