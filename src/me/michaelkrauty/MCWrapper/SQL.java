@@ -364,4 +364,15 @@ public class SQL {
 			closeConnection();
 		}
 	}
+
+	public synchronized static ArrayList<Integer> getUserServers(int userid) {
+		ArrayList<Integer> servers = new ArrayList<Integer>();
+		ArrayList<String> allServers = getAllServers();
+		for (int i = 0; i < allServers.size(); i++) {
+			if (getServerOwner(Integer.parseInt(allServers.get(i))) == userid) {
+				servers.add(Integer.parseInt(allServers.get(i)));
+			}
+		}
+		return servers;
+	}
 }
