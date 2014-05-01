@@ -1,7 +1,6 @@
 package me.michaelkrauty.MCWrapper;
 
 import java.io.File;
-import java.io.IOException;
 
 public class CreateUser {
 
@@ -11,13 +10,12 @@ public class CreateUser {
 			userdir.mkdir();
 		}
 		try {
-			ProcessBuilder pb = new ProcessBuilder("echo", auth, "|", "sudo",
-					"-S", "useradd", "-d", "/home/mcwrapper/servers/" + userid,
-					"-s", "/usr/bin/rssh", "-G", "rsshusers", "mcwrapper_"
-							+ userid);
+			ProcessBuilder pb = new ProcessBuilder("sudo", "-S", "useradd",
+					"-d", "/home/mcwrapper/servers/" + userid, "-s",
+					"/usr/bin/rssh", "-G", "rsshusers", "mcwrapper_" + userid);
 			pb.start();
 			System.out.println("Created user \"mcwrapper_" + userid + "\".");
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

@@ -44,21 +44,14 @@ public class Server {
 	public void start() {
 		System.out.println("Starting server " + id + "...");
 		if (!isRunning()) {
-			// temp
-			System.out.println("not running");
 			try {
 				ProcessBuilder pb = new ProcessBuilder();
 				pb.directory(new File(serverdir));
-				pb.command("su", "-c", "'java",
-						"-Xmx" + Integer.toString(memory) + "M", "-jar",
-						"/home/mcwrapper/jar/test.jar", "--host", host,
-						"--port", Integer.toString(port), "nogui'", "-",
+				pb.command("su", "-c", "java -Xmx" + Integer.toString(memory)
+						+ "M -jar /home/mcwrapper/jar/test.jar --host " + host
+						+ " --port " + Integer.toString(port) + " nogui",
 						"mcwrapper_" + ownerid);
-				// temp
-				System.out.println("processbuilder defined");
 				Process p = pb.start();
-				// temp
-				System.out.println("process started");
 				process = p;
 				try {
 					java.lang.reflect.Field f = p.getClass().getDeclaredField(
@@ -78,9 +71,11 @@ public class Server {
 				File sdir = new File(serverdir);
 				sdir.mkdir();
 				start();
-			} catch (NullPointerException e1) {
+			} catch (NullPointerException e) {
 				System.out.println("Server " + id
 						+ " doesn't exist in SQL database.");
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		} else {
 			System.out.println("Server is already online!");
