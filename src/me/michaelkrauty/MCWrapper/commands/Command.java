@@ -2,6 +2,8 @@ package me.michaelkrauty.MCWrapper.commands;
 
 import java.util.ArrayList;
 
+import me.michaelkrauty.MCWrapper.CreateUser;
+
 public class Command implements Runnable {
 
 	private Thread t;
@@ -106,6 +108,9 @@ public class Command implements Runnable {
 				}
 				if (cmdLabel.equalsIgnoreCase("serverpid") && cmd.length == 2) {
 					new ServerPID(serverid);
+				}
+				if (cmdLabel.equalsIgnoreCase("createuser") && cmd.length == 3) {
+					new CreateUser(Integer.parseInt(cmd[1]), cmd[2]);
 				}
 
 			} catch (Exception ignored) {
