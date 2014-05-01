@@ -13,7 +13,6 @@ import javax.net.SocketFactory;
 public class Server {
 
 	private final int id;
-	@SuppressWarnings("unused")
 	private int ownerid;
 	private String serverdir;
 	private int PID;
@@ -48,9 +47,11 @@ public class Server {
 			try {
 				ProcessBuilder pb = new ProcessBuilder();
 				pb.directory(new File(serverdir));
-				pb.command("java", "-Xmx" + Integer.toString(memory) + "M",
-						"-jar", "/home/mcwrapper/jar/test.jar", "--host", host,
-						"--port", Integer.toString(port), "nogui");
+				pb.command("su", "-c", "'java",
+						"-Xmx" + Integer.toString(memory) + "M", "-jar",
+						"/home/mcwrapper/jar/test.jar", "--host", host,
+						"--port", Integer.toString(port), "nogui'", "-",
+						"mcwrapper_" + ownerid);
 				Process p = pb.start();
 				process = p;
 				try {
