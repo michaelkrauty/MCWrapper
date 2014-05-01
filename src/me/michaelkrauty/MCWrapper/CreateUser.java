@@ -11,7 +11,7 @@ public class CreateUser {
 			userdir.mkdir();
 		}
 		try {
-			ProcessBuilder pb = new ProcessBuilder("sudo", "useradd", "-d",
+			ProcessBuilder pb = new ProcessBuilder("useradd", "-d",
 					"/home/mcwrapper/servers/" + userid, "-s", "/usr/bin/rssh",
 					"-G", "rsshusers", "mcwrapper_" + userid);
 			pb.start();
