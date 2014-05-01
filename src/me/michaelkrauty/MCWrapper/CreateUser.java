@@ -9,10 +9,9 @@ public class CreateUser {
 		try {
 			File userdir = new File("/home/mcwrapper/servers/" + userid);
 			userdir.mkdir();
-			ProcessBuilder pb = new ProcessBuilder(
-					"useradd -d /home/mcwrapper/servers/" + userid
-							+ " -s /usr/bin/rssh -G rsshusers mcwrapper_"
-							+ userid);
+			ProcessBuilder pb = new ProcessBuilder("useradd", "-d",
+					"/home/mcwrapper/servers/" + userid, "-s", "/usr/bin/rssh",
+					"-G", "rsshusers", "mcwrapper_" + userid);
 			pb.start();
 			System.out.println("Created user \"mcwrapper_" + userid + "\".");
 		} catch (IOException e) {
