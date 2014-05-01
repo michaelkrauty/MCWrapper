@@ -13,6 +13,7 @@ import javax.net.SocketFactory;
 public class Server {
 
 	private final int id;
+	@SuppressWarnings("unused")
 	private final int ownerid;
 	private String serverdir;
 	private boolean exists;
@@ -46,9 +47,8 @@ public class Server {
 			try {
 				ProcessBuilder pb = new ProcessBuilder();
 				pb.directory(new File(serverdir));
-				pb.command("su", "mcwrapper" + ownerid, "java", "-Xmx"
-						+ Integer.toString(memory) + "M", "-jar",
-						"/home/mcwrapper/jar/test.jar", "--host", host,
+				pb.command("java", "-Xmx" + Integer.toString(memory) + "M",
+						"-jar", "/home/mcwrapper/jar/test.jar", "--host", host,
 						"--port", Integer.toString(port), "nogui");
 				Process p = pb.start();
 				process = p;
