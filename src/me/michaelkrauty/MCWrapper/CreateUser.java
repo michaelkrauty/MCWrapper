@@ -6,10 +6,12 @@ import java.io.IOException;
 public class CreateUser {
 
 	public CreateUser(int userid) {
-		try {
-			File userdir = new File("/home/mcwrapper/servers/" + userid);
+		File userdir = new File("/home/mcwrapper/servers/" + userid);
+		if (!userdir.exists()) {
 			userdir.mkdir();
-			ProcessBuilder pb = new ProcessBuilder("useradd", "-d",
+		}
+		try {
+			ProcessBuilder pb = new ProcessBuilder("sudo", "useradd", "-d",
 					"/home/mcwrapper/servers/" + userid, "-s", "/usr/bin/rssh",
 					"-G", "rsshusers", "mcwrapper_" + userid);
 			pb.start();
