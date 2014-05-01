@@ -39,6 +39,9 @@ public class Command implements Runnable {
 			commands.add("online");
 			commands.add("serveruptime");
 			commands.add("serverpid");
+			commands.add("stopall");
+			commands.add("forcestopall");
+			commands.add("killall");
 		}
 	}
 
@@ -68,6 +71,13 @@ public class Command implements Runnable {
 				}
 				if (cmdLabel.equalsIgnoreCase("online") && cmd.length == 1) {
 					new Online();
+				}
+				if (cmdLabel.equalsIgnoreCase("stopall") && cmd.length == 1) {
+					new StopAll();
+				}
+				if ((cmdLabel.equalsIgnoreCase("forcestopall") || cmdLabel
+						.equalsIgnoreCase("killall")) && cmd.length == 1) {
+					new KillAll();
 				}
 
 				// params
