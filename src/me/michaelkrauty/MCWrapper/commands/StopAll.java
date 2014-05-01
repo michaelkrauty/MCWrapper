@@ -5,8 +5,8 @@ import me.michaelkrauty.MCWrapper.Main;
 public class StopAll {
 
 	public StopAll() {
-		for (String serverid : Main.wrapper.getOnlineServers()) {
-			Main.wrapper.getServer(Integer.parseInt(serverid)).stop();
+		for (int i = 0; i < Main.wrapper.getOnlineServers().length; i++) {
+			Main.wrapper.getServer(i).stop();
 		}
 	}
 }
