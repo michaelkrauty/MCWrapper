@@ -44,6 +44,7 @@ public class Command implements Runnable {
 			commands.add("stopall");
 			commands.add("forcestopall");
 			commands.add("killall");
+			commands.add("createuser");
 		}
 	}
 
