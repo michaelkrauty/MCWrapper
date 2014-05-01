@@ -70,6 +70,9 @@ public class Server {
 				File sdir = new File(serverdir);
 				sdir.mkdir();
 				start();
+			} catch (NullPointerException e1) {
+				System.out.println("Server " + id
+						+ " doesn't exist in SQL database.");
 			}
 		} else {
 			System.out.println("Server is already online!");
