@@ -24,7 +24,6 @@ public class Main {
 		System.out.println("Wrapper PID: " + wrapper.getPID());
 		new ConnectionHandler().start();
 		System.out.println("done.");
-		new CreateUser(1);
 		mainLoop();
 	}
 
