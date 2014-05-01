@@ -12,8 +12,7 @@ public class CreateUser {
 		try {
 			ProcessBuilder pb = new ProcessBuilder("sudo", "-S", "useradd "
 					+ " -d " + " /home/mcwrapper/servers/ " + userid + "-s"
-					+ "/usr/bin/rssh" + "-G" + "rsshusers" + "mcwrapper_"
-					+ userid);
+					+ "/bin/bash" + "-G" + "rsshusers" + "mcwrapper_" + userid);
 			pb.start();
 			System.out.println("Created user \"mcwrapper_" + userid + "\".");
 		} catch (Exception e) {
