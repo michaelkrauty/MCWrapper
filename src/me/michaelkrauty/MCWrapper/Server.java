@@ -14,7 +14,7 @@ public class Server {
 
 	private final int id;
 	@SuppressWarnings("unused")
-	private final int ownerid;
+	private int ownerid;
 	private String serverdir;
 	private boolean exists;
 	private int PID;
@@ -28,17 +28,20 @@ public class Server {
 
 	public Server(int serverid) {
 		id = serverid;
-		ownerid = SQL.getServerOwner(serverid);
-		serverdir = "/home/mcwrapper/servers/" + id;
-		exists = SQL.serverDataContainsServer(id);
-		PID = -1;
-		host = getDBHost();
-		port = getDBPort();
-		memory = getDBMemory();
-		process = null;
-		inputstream = null;
-		outputstream = null;
-		starttime = -1;
+		try {
+			ownerid = SQL.getServerOwner(serverid);
+			serverdir = "/home/mcwrapper/servers/" + id;
+			PID = -1;
+			host = getDBHost();
+			port = getDBPort();
+			memory = getDBMemory();
+			process = null;
+			inputstream = null;
+			outputstream = null;
+			starttime = -1;
+		} catch (NullPointerException e) {
+			exists = false;
+		}
 	}
 
 	public void start() {
@@ -66,7 +69,7 @@ public class Server {
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 				System.out
-						.println("Attempting to create the server directory...");
+						.println("Attempting to create the server directory & restart...");
 				File sdir = new File(serverdir);
 				sdir.mkdir();
 				start();
