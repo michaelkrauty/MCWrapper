@@ -94,7 +94,6 @@ public class Server {
 	}
 
 	public boolean isOnline() {
-		System.out.println("Trying connection: " + host + ":" + port);
 		boolean open = true;
 		if (exists) {
 			Socket socket;
@@ -104,9 +103,7 @@ public class Server {
 					socket.setSoTimeout(5000);
 					socket.connect(new InetSocketAddress(host, port));
 					socket.close();
-					System.out.println("Server is online");
 				} catch (Exception e) {
-					System.out.println("Server is offline");
 					open = false;
 				}
 			} catch (Exception e) {
