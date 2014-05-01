@@ -1,6 +1,5 @@
 package me.michaelkrauty.MCWrapper;
 
-
 public class CreateUser {
 
 	public CreateUser(int userid, String auth) {
@@ -17,3 +16,6 @@ public class CreateUser {
 	}
 
 }
+
+// HURRR
+// DURRR
