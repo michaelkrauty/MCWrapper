@@ -64,8 +64,11 @@ public class Server {
 				outputstream = p.getOutputStream();
 				starttime = System.currentTimeMillis();
 			} catch (IOException e) {
-				System.out.println("Server directory or jar file not found!");
 				System.out.println(e.getMessage());
+				System.out
+						.println("Attempting to create the server directory...");
+				File sdir = new File(serverdir);
+				sdir.mkdir();
 			}
 		} else {
 			System.out.println("Server is already online!");
