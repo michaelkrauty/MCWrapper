@@ -7,10 +7,7 @@ public class CreateUser {
 
 	public CreateUser(int userid, String auth) {
 		try {
-			ProcessBuilder pb = new ProcessBuilder("sudo", "useradd", "-d",
-					"/home/mcwrapper/servers/" + userid, "-s", "/bin/bash",
-					"-G", "mcwrapper_users", "mcwrapper_" + userid);
-			Process p = pb.start();
+			Process p = Runtime.getRuntime().exec("pwd");
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					p.getInputStream()));
 			String line;
@@ -22,3 +19,12 @@ public class CreateUser {
 		}
 	}
 }
+
+/*
+ * ProcessBuilder pb = new ProcessBuilder("sudo", "useradd", "-d",
+ * "/home/mcwrapper/servers/" + userid, "-s", "/bin/bash", "-G",
+ * "mcwrapper_users", "mcwrapper_" + userid); Process p = pb.start();
+ * BufferedReader in = new BufferedReader(new InputStreamReader(
+ * p.getInputStream())); String line; while ((line = in.readLine()) != null) {
+ * System.out.println(line); }
+ */
