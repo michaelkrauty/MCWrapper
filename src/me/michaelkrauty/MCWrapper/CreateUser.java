@@ -4,7 +4,7 @@ public class CreateUser {
 
 	public CreateUser(int userid, String auth) {
 		try {
-			ProcessBuilder pb = new ProcessBuilder("sudo", "-S",
+			ProcessBuilder pb = new ProcessBuilder("sudo", "-s",
 					"useradd -d /home/mcwrapper/servers/" + userid
 							+ " -s /bin/bash -G mcwrapper_users mcwrapper_"
 							+ userid);
