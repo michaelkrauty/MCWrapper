@@ -47,7 +47,7 @@ public class Server {
 			try {
 				ProcessBuilder pb = new ProcessBuilder();
 				pb.directory(new File(serverdir));
-				pb.command("su", "-m", "-c",
+				pb.command("sudo", "su", "-m", "-c",
 						"java -Xmx" + Integer.toString(memory)
 								+ "M -jar /home/mcwrapper/jar/test.jar --host "
 								+ host + " --port " + Integer.toString(port)
