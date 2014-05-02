@@ -111,7 +111,6 @@ public class Command implements Runnable {
 					new ServerPID(serverid);
 				}
 				if (cmdLabel.equalsIgnoreCase("createuser") && cmd.length == 3) {
-					System.out.println("test0");
 					new CreateUser(serverid, cmd[2]);
 				}
 
