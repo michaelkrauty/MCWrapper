@@ -53,7 +53,6 @@ public class Server {
 								+ host + " --port " + Integer.toString(port)
 								+ " nogui", "mcwrapper_" + ownerid);
 				Process p = pb.start();
-				process = p;
 				try {
 					java.lang.reflect.Field f = p.getClass().getDeclaredField(
 							"pid");
