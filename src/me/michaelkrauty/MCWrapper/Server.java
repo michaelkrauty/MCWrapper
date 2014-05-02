@@ -46,12 +46,18 @@ public class Server {
 		if (!isRunning()) {
 			try {
 				ProcessBuilder pb = new ProcessBuilder();
-				pb.command("sudo", "su", "-m", "-c", "cd " + serverdir
-						+ " && java -Xmx" + Integer.toString(memory)
-						+ "M -jar /home/mcwrapper/jar/test.jar --host " + host
-						+ " --port " + Integer.toString(port) + " nogui",
-						"mcwrapper_" + ownerid);
+				pb.command(
+						"sudo",
+						"-u",
+						"mcwrapper_" + ownerid,
+						"-c",
+						"cd " + serverdir + " && java -Xmx"
+								+ Integer.toString(memory)
+								+ "M -jar /home/mcwrapper/jar/test.jar --host "
+								+ host + " --port " + Integer.toString(port)
+								+ " nogui");
 				Process p = pb.start();
+				process = p;
 				try {
 					java.lang.reflect.Field f = p.getClass().getDeclaredField(
 							"pid");
