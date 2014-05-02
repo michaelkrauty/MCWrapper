@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Class-Path: .
+Main-Class: me.michaelkrauty.MCWrapper.Main
+
+Name: common
+Implementation-Title: MySQL Connector Java
+Implementation-Version: 5.1.30
+Specification-Vendor: Oracle Corporation
+Specification-Title: JDBC
+Implementation-Vendor-Id: com.mysql
+Specification-Version: 4.0
+Implementation-Vendor: Oracle
+
