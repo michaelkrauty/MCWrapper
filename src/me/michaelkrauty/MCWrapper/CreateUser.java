@@ -14,5 +14,10 @@ public class CreateUser {
 			e.printStackTrace();
 		}
 	}
-
 }
+
+<<<<<<< HEAD
+}
+=======
+// lol
+>>>>>>> 494fd401965dc94503e0fba29e522a68c4408090
