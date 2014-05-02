@@ -102,7 +102,6 @@ public class Command implements Runnable {
 					new Restart(serverid);
 				}
 				if (cmdLabel.equalsIgnoreCase("online") && cmd.length == 2) {
-					System.out.println("test-1");
 					new Online(serverid);
 				}
 				if (cmdLabel.equalsIgnoreCase("uptime") && cmd.length == 2) {
