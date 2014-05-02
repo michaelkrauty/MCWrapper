@@ -115,7 +115,8 @@ public class Command implements Runnable {
 					new CreateUser(serverid, cmd[2]);
 				}
 
-			} catch (Exception ignored) {
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
 		} else {
 			System.out
