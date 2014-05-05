@@ -24,8 +24,7 @@ public class Start implements Runnable {
 
 	@Override
 	public void run() {
-		Server server;
-		server = Main.wrapper.getServer(serverid);
+		Server server = Main.wrapper.getServer(serverid);
 		if (server != null) {
 			;
 		} else {

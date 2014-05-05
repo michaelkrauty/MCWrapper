@@ -1,25 +1,15 @@
 package me.michaelkrauty.MCWrapper;
 
-import java.io.File;
-import java.io.IOException;
-
 public class CreateUser {
 
 	public CreateUser(int userid, String auth) {
-		File userdir = new File("/home/mcwrapper/servers/" + userid);
-		if (!userdir.exists()) {
-			userdir.mkdir();
-		}
 		try {
-			ProcessBuilder pb = new ProcessBuilder("echo", auth, "|", "sudo",
-					"-S", "useradd", "-d", "/home/mcwrapper/servers/" + userid,
-					"-s", "/usr/bin/rssh", "-G", "rsshusers", "mcwrapper_"
-							+ userid);
-			pb.start();
-			System.out.println("Created user \"mcwrapper_" + userid + "\".");
-		} catch (IOException e) {
+			new ProcessBuilder("sudo", "useradd", "-d",
+					"/home/mcwrapper/servers/" + userid, "-s", "/bin/bash",
+					"-G", "mcwrapper_users", "mcwrapper_" + userid).start();
+			System.out.println("User \"mcwrapper_" + userid + "\" Created.");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 }
