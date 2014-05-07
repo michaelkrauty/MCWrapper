@@ -1,28 +1,33 @@
+// Package Name.
 package me.michaelkrauty.MCWrapper;
 
+// Project Imports.
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+// Client Connection Class.
 public class ClientConnection implements Runnable {
+
+	// Private Objects.
 	private final Socket socket;
 	private Thread t;
 
+	// ???.
 	ClientConnection(Socket soc) {
 		socket = soc;
 	}
 
 	@Override
+	// Method run
 	public void run() {
 		try {
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
-
 			String inputLine, outputLine;
-
 			ServerProtocol sp = new ServerProtocol();
 			outputLine = sp.processInput(null);
 			out.println(outputLine);
@@ -36,6 +41,7 @@ public class ClientConnection implements Runnable {
 				if (outputLine.equals("disconnect"))
 					break;
 			}
+
 			in.close();
 			out.close();
 
