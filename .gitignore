@@ -1,0 +1,7 @@
+.settings
+/bin
+.classpath
+.project
+.project.temp
+/commit.bat
+/commit.sh

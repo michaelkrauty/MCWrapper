@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package me.michaelkrauty.MCWrapper;
 
 public class CreateUser {
@@ -13,7 +12,6 @@ public class CreateUser {
 			e.printStackTrace();
 		}
 	}
-=======
 package me.michaelkrauty.MCWrapper;
 
 public class CreateUser {
@@ -28,5 +26,4 @@ public class CreateUser {
 			e.printStackTrace();
 		}
 	}
->>>>>>> 05ae332d3af196f4b5a7a4ffa2bcff0f3f3c739e
 }
