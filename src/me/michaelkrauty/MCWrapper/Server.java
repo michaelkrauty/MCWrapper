@@ -13,6 +13,7 @@ import javax.net.SocketFactory;
 public class Server {
 
 	private final int id;
+	@SuppressWarnings("unused")
 	private int ownerid;
 	private String serverdir;
 	private int PID;
@@ -46,14 +47,26 @@ public class Server {
 		if (!isRunning()) {
 			try {
 				ProcessBuilder pb = new ProcessBuilder();
+<<<<<<< HEAD
+				pb.command("java -Xmx" + memory
+						+ "M -jar /home/mcwrapper/jar/test.jar --host " + host
+						+ " --port " + port + " nogui");
 				pb.directory(new File(serverdir));
-				pb.command("su", "-m", "-c",
-						"java -Xmx" + Integer.toString(memory)
+=======
+				pb.command(
+						"sudo",
+						"-u",
+						"mcwrapper_" + ownerid,
+						"-c",
+						"cd " + serverdir + " && java -Xmx"
+								+ Integer.toString(memory)
 								+ "M -jar /home/mcwrapper/jar/test.jar --host "
 								+ host + " --port " + Integer.toString(port)
-								+ " nogui", "mcwrapper_" + ownerid);
+								+ " nogui");
+>>>>>>> 05ae332d3af196f4b5a7a4ffa2bcff0f3f3c739e
 				Process p = pb.start();
 				process = p;
+
 				try {
 					java.lang.reflect.Field f = p.getClass().getDeclaredField(
 							"pid");

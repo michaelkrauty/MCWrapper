@@ -111,10 +111,11 @@ public class Command implements Runnable {
 					new ServerPID(serverid);
 				}
 				if (cmdLabel.equalsIgnoreCase("createuser") && cmd.length == 3) {
-					new CreateUser(Integer.parseInt(cmd[1]), cmd[2]);
+					new CreateUser(serverid, cmd[2]);
 				}
 
-			} catch (Exception ignored) {
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
 		} else {
 			System.out

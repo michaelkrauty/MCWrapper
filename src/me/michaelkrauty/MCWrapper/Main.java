@@ -34,10 +34,8 @@ public class Main {
 		// double loopStartTime = System.currentTimeMillis();
 		try {
 			while (running) {
-				if (br.ready()) {
-					String in = br.readLine();
-					new Command(in);
-				}
+				if (br.ready())
+					new Command(br.readLine());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
