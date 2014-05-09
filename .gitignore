@@ -1,7 +1,25 @@
-.settings
-/bin
-.classpath
+## Eclipse.gitignore ##
+
+### Java ###
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+### Eclipse ###
+*.pydevproject
 .project
-.project.temp
-/commit.bat
-/commit.sh
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
