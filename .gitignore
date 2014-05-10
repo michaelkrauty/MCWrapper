@@ -1,7 +1,7 @@
 ## Eclipse.gitignore ##
 
 ### Java ###
-# *.class
+*.class
 
 # Package Files #
 # *.jar
@@ -12,7 +12,7 @@
 *.pydevproject
 # .project
 .metadata
-# bin/**
+bin/**
 tmp/**
 tmp/**/*
 *.tmp
