@@ -1,5 +1,7 @@
 package me.michaelkrauty.MCWrapper;
 
+import java.util.ArrayList;
+
 import me.michaelkrauty.MCWrapper.commands.Command;
 import me.michaelkrauty.MCWrapper.commands.ForceStop;
 import me.michaelkrauty.MCWrapper.commands.Start;
@@ -16,23 +18,26 @@ public class ServerProtocol {
 	private String pass;
 	private String date_registered;
 
-	public String[] processInput(String theInput) {
+	public ArrayList<String> processInput(String theInput) {
+
+		ArrayList<String> returnLines = new ArrayList<String>();
 
 		if (theInput != null) {
 			String[] input = theInput.split(" ");
 			if (logged) {
 				if (input.length == 1) {
 					if (input[0].equalsIgnoreCase("disconnect")) {
-						return new String[] { "disconnect" };
+						returnLines.add("disconnect");
 					}
 					if (input[0].equalsIgnoreCase("logout")) {
 						logged = false;
-						return new String[] { "Logged out." };
+						returnLines.add("Logged out.");
 					}
 					if (input[0].equalsIgnoreCase("help")) {
-						return new String[] {
-								"Commands: start, stop, forcestop, command",
-								"For more detail, use \"help <command>\"" };
+						returnLines
+								.add("Commands: start, stop, forcestop, command");
+						returnLines
+								.add("For more detail, use \"help <command>\"");
 					}
 				}
 				if (input.length == 2) {
@@ -40,16 +45,16 @@ public class ServerProtocol {
 						int serverid = Integer.parseInt(input[1]);
 						if (SQL.getServerOwner(serverid) == userid) {
 							new Start(serverid);
-							return new String[] { "Starting server "
-									+ SQL.getServerName(serverid) };
+							returnLines.add("Starting server "
+									+ SQL.getServerName(serverid));
 						}
 					}
 					if (input[0].equalsIgnoreCase("stop")) {
 						int serverid = Integer.parseInt(input[1]);
 						if (SQL.getServerOwner(serverid) == userid) {
 							new Stop(serverid);
-							return new String[] { "Stopping server "
-									+ SQL.getServerName(serverid) };
+							returnLines.add("Stopping server "
+									+ SQL.getServerName(serverid));
 						}
 					}
 					if (input[0].equalsIgnoreCase("forcestop")
@@ -57,8 +62,8 @@ public class ServerProtocol {
 						int serverid = Integer.parseInt(input[1]);
 						if (SQL.getServerOwner(serverid) == userid) {
 							new ForceStop(serverid);
-							return new String[] { "Force stopped server "
-									+ SQL.getServerName(serverid) };
+							returnLines.add("Force stopped server "
+									+ SQL.getServerName(serverid));
 						}
 					}
 				}
@@ -66,8 +71,8 @@ public class ServerProtocol {
 					int serverid = Integer.parseInt(input[1]);
 					if (SQL.getServerOwner(serverid) == userid) {
 						new Command(theInput);
-						return new String[] { "Issued command to server "
-								+ serverid + "." };
+						returnLines.add("Issued command to server " + serverid
+								+ ".");
 					}
 				}
 			} else {
@@ -80,17 +85,19 @@ public class ServerProtocol {
 							date_registered = SQL
 									.getUserDate_Registered(userid);
 							logged = true;
-							return new String[] { "Logged in." };
+							returnLines.add("Logged in.");
 						} else {
-							return new String[] { "Login failed!" };
+							returnLines.add("Login failed!");
 						}
 					}
 				} else {
-					return new String[] { "Usage: \"login <username> <password>\"" };
+					returnLines.add("Usage: \"login <username> <password>\"");
 				}
 			}
+			return returnLines;
 		}
-		return new String[] { "Incorrect Input." };
+		returnLines.add("Incorrect Input.");
+		return returnLines;
 	}
 
 	private boolean checkLogin(String email, String password) {

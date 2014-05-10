@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 
 /*
  * Client Connection class...
@@ -45,7 +46,7 @@ public class ClientConnection implements Runnable {
 					socket.getInputStream()));
 			// Create empty strings
 			String inputLine;
-			String[] outputLine;
+			ArrayList<String> outputLine;
 			// TODO
 			ServerProtocol sp = new ServerProtocol();
 
