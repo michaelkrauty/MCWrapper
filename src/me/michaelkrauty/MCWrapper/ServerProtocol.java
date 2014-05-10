@@ -30,7 +30,7 @@ public class ServerProtocol {
 						return "Logged out.";
 					}
 					if (input[0].equalsIgnoreCase("help")) {
-						return "Commands: start, stop, forcestop, command";
+						return "Commands: start, stop, forcestop, command\nFor more detail, use \"help <command>\"";
 					}
 				}
 				if (input.length == 2) {
