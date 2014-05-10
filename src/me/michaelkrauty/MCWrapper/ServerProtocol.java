@@ -77,21 +77,19 @@ public class ServerProtocol {
 				}
 				return returnLines;
 			} else {
-				if (input.length == 3) {
-					if (input[0].equalsIgnoreCase("login")) {
-						if (checkLogin(input[1], input[2])) {
-							userid = SQL.getUserIdByEmail(input[1]);
-							email = SQL.getUserEmail(userid);
-							pass = SQL.getUserPassword(userid);
-							date_registered = SQL
-									.getUserDate_Registered(userid);
-							logged = true;
-							returnLines.add("Logged in.");
-						} else {
-							returnLines.add("Login failed!");
-						}
+				if (input.length == 3 && input[0].equalsIgnoreCase("login")) {
+					if (checkLogin(input[1], input[2])) {
+						userid = SQL.getUserIdByEmail(input[1]);
+						email = SQL.getUserEmail(userid);
+						pass = SQL.getUserPassword(userid);
+						date_registered = SQL.getUserDate_Registered(userid);
+						logged = true;
+						returnLines.add("Logged in.");
+						return returnLines;
+					} else {
+						returnLines.add("Login failed!");
+						return returnLines;
 					}
-					return returnLines;
 				} else {
 					returnLines.add("Usage: \"login <username> <password>\"");
 					return returnLines;
