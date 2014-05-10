@@ -23,6 +23,7 @@ public class Command implements Runnable {
 
 	// is the command valid?
 	public boolean checkValidCommand(String command) {
+		commands();
 		return commands.contains(command.toLowerCase());
 	}
 
@@ -54,7 +55,6 @@ public class Command implements Runnable {
 	// run the thread
 	@Override
 	public void run() {
-		commands();
 		String[] cmd = command.split(" ");
 		String cmdLabel = cmd[0];
 		if (this.checkValidCommand(cmdLabel)) {

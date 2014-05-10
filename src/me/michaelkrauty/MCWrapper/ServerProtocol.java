@@ -30,7 +30,7 @@ public class ServerProtocol {
 						return "Logged out.";
 					}
 					if (input[0].equalsIgnoreCase("help")) {
-						return "help is fun, I suppose";
+						return "Commands: ";
 					}
 				}
 				if (input.length == 2) {
