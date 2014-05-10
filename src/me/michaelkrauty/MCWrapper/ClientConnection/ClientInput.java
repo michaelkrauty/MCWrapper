@@ -7,6 +7,7 @@ import java.net.Socket;
 
 public class ClientInput implements Runnable {
 
+	private Thread t;
 	private final Socket socket;
 
 	public ClientInput(Socket soc) {
@@ -14,7 +15,10 @@ public class ClientInput implements Runnable {
 	}
 
 	public void start() {
-
+		if (t == null) {
+			t = new Thread(this);
+			t.start();
+		}
 	}
 
 	@Override
