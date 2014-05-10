@@ -48,7 +48,6 @@ public class Command implements Runnable {
 		}
 	}
 
-	@Override
 	public void run() {
 		commands();
 		String[] cmd = command.split(" ");

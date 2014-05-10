@@ -18,7 +18,6 @@ public class ConnectionHandler implements Runnable {
 		}
 	}
 
-	@Override
 	public void run() {
 		while (Main.running) {
 			Socket clientSocket = null;
