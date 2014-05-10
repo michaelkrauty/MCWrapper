@@ -20,6 +20,6 @@ public class Restart {
 				e.printStackTrace();
 			}
 		}
-		server.start();
+		new Start(serverid);
 	}
 }
