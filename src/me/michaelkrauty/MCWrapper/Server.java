@@ -47,9 +47,6 @@ public class Server {
 		if (!isRunning()) {
 			try {
 				ProcessBuilder pb = new ProcessBuilder();
-				pb.command("java -Xmx" + memory
-						+ "M -jar /home/mcwrapper/jar/test.jar --host " + host
-						+ " --port " + port + " nogui");
 				pb.directory(new File(serverdir));
 				pb.command("java", "-Xmx" + Integer.toString(memory) + "M",
 						"-jar", "/home/mcwrapper/jar/test.jar", "--host", host,
