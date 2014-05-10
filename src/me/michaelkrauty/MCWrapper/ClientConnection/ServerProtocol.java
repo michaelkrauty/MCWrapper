@@ -1,9 +1,9 @@
-package me.michaelkrauty.MCWrapper;
+package me.michaelkrauty.MCWrapper.ClientConnection;
 
+import java.net.Socket;
 import java.util.ArrayList;
 
-import me.michaelkrauty.MCWrapper.commands.Command;
-import me.michaelkrauty.MCWrapper.commands.ForceStop;
+import me.michaelkrauty.MCWrapper.SQL;
 import me.michaelkrauty.MCWrapper.commands.Start;
 import me.michaelkrauty.MCWrapper.commands.Stop;
 
@@ -18,7 +18,13 @@ public class ServerProtocol {
 	private String pass;
 	private String date_registered;
 
-	public ArrayList<String> processInput(String theInput) {
+	private final ClientOutput clientOutput;
+
+	public ServerProtocol(Socket soc) {
+		clientOutput = new ClientOutput(soc);
+	}
+
+	public void processInput(String theInput) {
 
 		ArrayList<String> returnLines = new ArrayList<String>();
 
@@ -57,23 +63,6 @@ public class ServerProtocol {
 									+ SQL.getServerName(serverid));
 						}
 					}
-					if (input[0].equalsIgnoreCase("forcestop")
-							|| input[0].equalsIgnoreCase("kill")) {
-						int serverid = Integer.parseInt(input[1]);
-						if (SQL.getServerOwner(serverid) == userid) {
-							new ForceStop(serverid);
-							returnLines.add("Force stopped server "
-									+ SQL.getServerName(serverid));
-						}
-					}
-				}
-				if (input[0].equalsIgnoreCase("command") && input.length > 2) {
-					int serverid = Integer.parseInt(input[1]);
-					if (SQL.getServerOwner(serverid) == userid) {
-						new Command(theInput);
-						returnLines.add("Issued command to server " + serverid
-								+ ".");
-					}
 				}
 			} else {
 				if (input.length == 3 && input[0].equalsIgnoreCase("login")) {
@@ -94,7 +83,7 @@ public class ServerProtocol {
 		} else {
 			returnLines.add("Incorrect Input.");
 		}
-		return returnLines;
+		clientOutput.send(returnLines);
 	}
 
 	private boolean checkLogin(String email, String password) {
@@ -104,5 +93,9 @@ public class ServerProtocol {
 		} catch (NullPointerException e) {
 			return false;
 		}
+	}
+
+	public void closeConnections() {
+		clientOutput.closeConnection();
 	}
 }

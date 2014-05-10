@@ -1,8 +1,10 @@
-package me.michaelkrauty.MCWrapper;
+package me.michaelkrauty.MCWrapper.ClientConnection;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import me.michaelkrauty.MCWrapper.Main;
 
 public class ConnectionHandler implements Runnable {
 	private static ServerSocket serverSocket;
@@ -28,7 +30,7 @@ public class ConnectionHandler implements Runnable {
 				System.err.println("Couldn't accept client connection!");
 				System.err.println(e.getMessage());
 			}
-			new ClientConnection(clientSocket).start();
+			new ClientConnection(clientSocket);
 		}
 	}
 

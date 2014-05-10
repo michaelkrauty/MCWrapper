@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import me.michaelkrauty.MCWrapper.ClientConnection.ConnectionHandler;
 import me.michaelkrauty.MCWrapper.commands.Command;
 
 public class Main {
