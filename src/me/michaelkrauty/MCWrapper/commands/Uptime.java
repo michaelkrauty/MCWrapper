@@ -18,5 +18,4 @@ public class Uptime {
 			System.out.println("Server " + serverid + " isn't running!");
 		}
 	}
-
 }
