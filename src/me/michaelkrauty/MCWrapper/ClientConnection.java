@@ -50,6 +50,8 @@ public class ClientConnection implements Runnable {
 			// TODO
 			ServerProtocol sp = new ServerProtocol();
 
+			out.println("Hello! :)");
+
 			// While client is still connected print their commands
 			while ((inputLine = in.readLine()) != null) {
 				System.out.println(socket.getRemoteSocketAddress().toString()
