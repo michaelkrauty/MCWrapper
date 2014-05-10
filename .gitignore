@@ -27,3 +27,4 @@ local.properties
 ### Scripts ###
 *.bat
 *.sh
+/bin
