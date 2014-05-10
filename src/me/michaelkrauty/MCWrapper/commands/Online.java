@@ -1,21 +1,25 @@
 package me.michaelkrauty.MCWrapper.commands;
 
+import org.apache.log4j.Logger;
+
 import me.michaelkrauty.MCWrapper.Main;
 
 public class Online {
 
+	private final static Logger log = Logger.getLogger(Main.class);
+
 	public Online(int serverid) {
 		if (Main.wrapper.getServer(serverid).isRunning()
 				&& Main.wrapper.getServer(serverid).isOnline()) {
-			System.out.println("Server is online and running.");
+			log.info("Server is online and running.");
 		}
 		if (Main.wrapper.getServer(serverid).isRunning()) {
-			System.out.println("Server is running.");
+			log.info("Server is running.");
 		}
 		if (Main.wrapper.getServer(serverid).isOnline()) {
-			System.out.println("Server is online.");
+			log.info("Server is online.");
 		} else {
-			System.out.println("Server is offline.");
+			log.info("Server is offline.");
 		}
 	}
 
@@ -39,10 +43,10 @@ public class Online {
 					}
 				}
 			}
-			System.out.println("Running servers: " + running);
-			System.out.println("Online servers: " + online);
+			log.info("Running servers: " + running);
+			log.info("Online servers: " + online);
 		} else {
-			System.out.println("No online servers!");
+			log.info("No online servers!");
 		}
 	}
 

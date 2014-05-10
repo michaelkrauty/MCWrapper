@@ -12,10 +12,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
 /*
  * Config class...
  */
 public class Config {
+
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	// Create Variables
 	private String host;
@@ -72,8 +76,8 @@ public class Config {
 			properties
 					.store(new FileOutputStream("mcwrapper.properties"), null);
 		} catch (IOException e) {
-			System.out.println("Couldn't create mcwrapper.properties!");
-			System.out.println(e.getMessage());
+			log.error("Couldn't create mcwrapper.properties!");
+			log.error(e.getMessage());
 		}
 	}
 

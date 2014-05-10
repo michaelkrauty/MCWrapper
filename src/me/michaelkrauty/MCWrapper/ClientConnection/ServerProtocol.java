@@ -3,6 +3,9 @@ package me.michaelkrauty.MCWrapper.ClientConnection;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
+import me.michaelkrauty.MCWrapper.Main;
 import me.michaelkrauty.MCWrapper.SQL;
 import me.michaelkrauty.MCWrapper.commands.ForceStop;
 import me.michaelkrauty.MCWrapper.commands.ServerCommand;
@@ -11,6 +14,8 @@ import me.michaelkrauty.MCWrapper.commands.Stop;
 
 @SuppressWarnings("unused")
 public class ServerProtocol {
+
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	private boolean logged = false;
 

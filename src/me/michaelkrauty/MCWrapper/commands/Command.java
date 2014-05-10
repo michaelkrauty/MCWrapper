@@ -2,9 +2,14 @@ package me.michaelkrauty.MCWrapper.commands;
 
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import me.michaelkrauty.MCWrapper.CreateUser;
+import me.michaelkrauty.MCWrapper.Main;
 
 public class Command implements Runnable {
+
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	private Thread t;
 
@@ -122,8 +127,7 @@ public class Command implements Runnable {
 				System.out.println(e.getMessage());
 			}
 		} else {
-			System.out
-					.println("Unknown command! Use \"help\" for a list of valid commands.");
+			log.info("Unknown command! Use \"help\" for a list of valid commands.");
 		}
 	}
 }

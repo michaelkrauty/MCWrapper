@@ -1,9 +1,13 @@
 package me.michaelkrauty.MCWrapper.commands;
 
+import org.apache.log4j.Logger;
+
 import me.michaelkrauty.MCWrapper.Main;
 import me.michaelkrauty.MCWrapper.Server;
 
 public class ServerCommand {
+
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	public ServerCommand(String[] cmd) {
 		try {
@@ -18,10 +22,9 @@ public class ServerCommand {
 			}
 			Server server = Main.wrapper.getServer(serverid);
 			server.executeCommand(out);
-			System.out.println("Command sent to server " + server.getId()
-					+ ": " + out);
+			log.info("Command sent to server " + server.getId() + ": " + out);
 		} catch (Exception e) {
-			System.out.println("Server ID must be an int > 0!");
+			log.info("Server ID must be an int > 0!");
 		}
 	}
 

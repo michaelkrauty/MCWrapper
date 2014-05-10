@@ -5,7 +5,13 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import me.michaelkrauty.MCWrapper.Main;
+
+import org.apache.log4j.Logger;
+
 class ClientOutput {
+
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	private PrintWriter out;
 
@@ -15,14 +21,14 @@ class ClientOutput {
 
 		} catch (IOException e) {
 			// Catches any errors
-			System.err.println(socket.getRemoteSocketAddress().toString()
+			log.error(socket.getRemoteSocketAddress().toString()
 					+ " disconnected: " + e.getMessage());
 		}
 	}
 
 	public void send(ArrayList<String> outputLines) {
 		for (String line : outputLines) {
-			System.out.println("Server: " + line);
+			log.info("Server: " + line);
 			out.println(line);
 		}
 	}

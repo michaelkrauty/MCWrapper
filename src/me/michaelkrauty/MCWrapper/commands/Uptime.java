@@ -1,21 +1,25 @@
 package me.michaelkrauty.MCWrapper.commands;
 
+import org.apache.log4j.Logger;
+
 import me.michaelkrauty.MCWrapper.Main;
 
 public class Uptime {
 
+	private final static Logger log = Logger.getLogger(Main.class);
+
 	public Uptime() {
-		System.out.println("Wrapper Uptime: "
+		log.info("Wrapper Uptime: "
 				+ Math.round(Main.wrapper.getUptime() / 1000) + " seconds.");
 	}
 
 	public Uptime(int serverid) {
 		if (Main.wrapper.getServer(serverid).isRunning()) {
-			System.out.println("Server " + serverid + "'s uptime: "
+			log.info("Server " + serverid + "'s uptime: "
 					+ (Main.wrapper.getServer(serverid).getUptime() / 1000)
 					+ " seconds.");
 		} else {
-			System.out.println("Server " + serverid + " isn't running!");
+			log.info("Server " + serverid + " isn't running!");
 		}
 	}
 }

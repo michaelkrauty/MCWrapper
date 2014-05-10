@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import com.sun.istack.internal.logging.Logger;
+import org.apache.log4j.Logger;
 
 import me.michaelkrauty.MCWrapper.ClientConnection.ConnectionHandler;
 import me.michaelkrauty.MCWrapper.commands.Command;
@@ -20,18 +20,16 @@ public class Main {
 
 	public final static Config config = new Config();
 
-	private static final Logger log = Logger.getLogger(Main.class);
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	// store any server objects created in this list
 	public static ArrayList<Server> servers = new ArrayList<Server>();
 
 	public static void main(String[] args) {
-		System.out.println("Initiating wrapper...");
-		System.out.println("Wrapper PID: " + wrapper.getPID());
+		log.info("Initiating wrapper...");
+		log.info("Wrapper PID: " + wrapper.getPID());
 		new ConnectionHandler().start();
-		log.info("test");
-		System.out.println("done.");
-
+		log.info("done.");
 		// start main loop
 		mainLoop();
 	}
@@ -58,7 +56,7 @@ public class Main {
 		// e.printStackTrace();
 		// }
 		// }
-		System.out.println("Loop stopped.");
+		log.info("Loop stopped.");
 		System.exit(0);
 	}
 }

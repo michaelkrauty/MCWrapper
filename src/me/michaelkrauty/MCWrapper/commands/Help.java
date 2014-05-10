@@ -1,6 +1,12 @@
 package me.michaelkrauty.MCWrapper.commands;
 
+import me.michaelkrauty.MCWrapper.Main;
+
+import org.apache.log4j.Logger;
+
 public class Help {
+
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	public Help() {
 		String commands = "";
@@ -11,6 +17,6 @@ public class Help {
 				commands = commands + Command.commands.get(i) + ", ";
 			}
 		}
-		System.out.println("Commands: " + commands);
+		log.info("Commands: " + commands);
 	}
 }

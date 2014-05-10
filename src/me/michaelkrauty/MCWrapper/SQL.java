@@ -6,7 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 public class SQL {
+
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	private static Connection connection;
 
@@ -17,8 +21,7 @@ public class SQL {
 					+ "/MPCP2", Main.config.getDBUser(),
 					Main.config.getDBPass());
 		} catch (Exception e) {
-			System.out.println("Couldn't connect to database! Reason: "
-					+ e.getMessage());
+			log.info("Couldn't connect to database! Reason: " + e.getMessage());
 		}
 	}
 

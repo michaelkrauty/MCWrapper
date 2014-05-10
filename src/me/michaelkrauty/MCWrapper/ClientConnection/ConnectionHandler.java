@@ -4,19 +4,23 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import org.apache.log4j.Logger;
+
 import me.michaelkrauty.MCWrapper.Main;
 
 public class ConnectionHandler implements Runnable {
+
+	private final static Logger log = Logger.getLogger(Main.class);
 	private static ServerSocket serverSocket;
 	private Thread t;
 
 	public ConnectionHandler() {
 		try {
 			serverSocket = new ServerSocket(3307);
-			System.out.println("Server socket created.");
+			log.info("Server socket created.");
 		} catch (IOException e) {
-			System.err.println("Couldn't bind to port 3307!");
-			System.err.println(e.getMessage());
+			log.error("Couldn't bind to port 3307!");
+			log.error(e.getMessage());
 		}
 	}
 
@@ -27,15 +31,15 @@ public class ConnectionHandler implements Runnable {
 			try {
 				clientSocket = serverSocket.accept();
 			} catch (IOException e) {
-				System.err.println("Couldn't accept client connection!");
-				System.err.println(e.getMessage());
+				log.error("Couldn't accept client connection!");
+				log.error(e.getMessage());
 			}
 			new ClientConnection(clientSocket);
 		}
 	}
 
 	public void start() {
-		System.out.println("Starting Connection Handler");
+		log.info("Starting Connection Handler");
 		if (t == null) {
 			t = new Thread(this);
 			t.start();

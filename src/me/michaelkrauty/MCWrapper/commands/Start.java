@@ -5,10 +5,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
+import org.apache.log4j.Logger;
+
 import me.michaelkrauty.MCWrapper.Main;
 import me.michaelkrauty.MCWrapper.Server;
 
 public class Start implements Runnable {
+
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	private Thread t;
 
@@ -22,6 +26,7 @@ public class Start implements Runnable {
 		}
 	}
 
+	@Override
 	public void run() {
 		Server server = Main.wrapper.getServer(serverid);
 		if (server != null) {
@@ -38,7 +43,7 @@ public class Start implements Runnable {
 		String line;
 		try {
 			while ((line = in.readLine()) != null) {
-				System.out.println("Server " + serverid + ": " + line);
+				log.info("Server " + serverid + ": " + line);
 			}
 			in.close();
 			out.close();

@@ -2,7 +2,11 @@ package me.michaelkrauty.MCWrapper;
 
 import java.lang.management.ManagementFactory;
 
+import org.apache.log4j.Logger;
+
 public class Wrapper {
+
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	private final int PID;
 
@@ -13,12 +17,12 @@ public class Wrapper {
 	}
 
 	public void stopWrapper() {
-		System.out.println("Stopping wrapper...");
+		log.info("Stopping wrapper...");
 		this.stopAllServers();
 	}
 
 	public void startServer() {
-		System.out.println("");
+		log.info("");
 	}
 
 	public void stopServer(int serverid) {
@@ -74,14 +78,14 @@ public class Wrapper {
 	}
 
 	public void startServer(int serverid) {
-		System.out.println("Starting server " + serverid);
+		log.info("Starting server " + serverid);
 		Server server = new Server(serverid);
 		Main.servers.add(server);
 		server.start();
 	}
 
 	public void stopAllServers() {
-		System.out.println("Stopping all servers...");
+		log.info("Stopping all servers...");
 		for (int i = 0; i < Main.servers.size(); i++) {
 			Main.servers.get(i).stop();
 		}

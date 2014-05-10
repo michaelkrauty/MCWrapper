@@ -10,7 +10,11 @@ import java.net.Socket;
 
 import javax.net.SocketFactory;
 
+import org.apache.log4j.Logger;
+
 public class Server {
+
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	private final int id;
 	@SuppressWarnings("unused")
@@ -43,7 +47,7 @@ public class Server {
 	}
 
 	public void start() {
-		System.out.println("Starting server " + id + "...");
+		log.info("Starting server " + id + "...");
 		if (!isRunning()) {
 			try {
 				ProcessBuilder pb = new ProcessBuilder();
@@ -66,20 +70,19 @@ public class Server {
 				outputstream = p.getOutputStream();
 				starttime = System.currentTimeMillis();
 			} catch (IOException e) {
-				System.out.println(e.getMessage());
+				log.info(e.getMessage());
 				System.out
 						.println("Attempting to create the server directory & restart...");
 				File sdir = new File(serverdir);
 				sdir.mkdir();
 				start();
 			} catch (NullPointerException e) {
-				System.out.println("Server " + id
-						+ " doesn't exist in SQL database.");
+				log.info("Server " + id + " doesn't exist in SQL database.");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("Server is already online!");
+			log.info("Server is already online!");
 		}
 	}
 
@@ -118,7 +121,7 @@ public class Server {
 				open = false;
 			}
 		} else {
-			System.out.println("Server doesn't exist!");
+			log.info("Server doesn't exist!");
 			open = false;
 		}
 		return open;

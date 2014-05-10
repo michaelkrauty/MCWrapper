@@ -5,7 +5,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+import me.michaelkrauty.MCWrapper.Main;
+
+import org.apache.log4j.Logger;
+
 public class ClientInput implements Runnable {
+
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	private Thread t;
 	private final Socket socket;
@@ -31,8 +37,8 @@ public class ClientInput implements Runnable {
 			ServerProtocol sp = new ServerProtocol(socket);
 
 			while ((inputLine = in.readLine()) != null) {
-				System.out.println(socket.getRemoteSocketAddress().toString()
-						+ ": " + inputLine);
+				log.info(socket.getRemoteSocketAddress().toString() + ": "
+						+ inputLine);
 				sp.processInput(inputLine);
 				if (inputLine.equalsIgnoreCase("disconnect")) {
 					break;
@@ -42,7 +48,7 @@ public class ClientInput implements Runnable {
 			sp.closeConnections();
 
 		} catch (IOException e) {
-			System.err.println(socket.getRemoteSocketAddress().toString()
+			log.error(socket.getRemoteSocketAddress().toString()
 					+ " disconnected: " + e.getMessage());
 		}
 	}
