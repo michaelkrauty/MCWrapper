@@ -18,6 +18,7 @@ public class ConnectionHandler implements Runnable {
 		}
 	}
 
+	@Override
 	public void run() {
 		while (Main.running) {
 			Socket clientSocket = null;
@@ -27,8 +28,7 @@ public class ConnectionHandler implements Runnable {
 				System.err.println("Couldn't accept client connection!");
 				System.err.println(e.getMessage());
 			}
-			ClientConnection connection = new ClientConnection(clientSocket);
-			connection.start();
+			new ClientConnection(clientSocket).start();
 		}
 	}
 
