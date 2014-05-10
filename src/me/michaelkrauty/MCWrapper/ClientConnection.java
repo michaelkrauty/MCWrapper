@@ -1,9 +1,5 @@
 package me.michaelkrauty.MCWrapper;
 
-/*
- * Client Connection class...
- */
-
 // Imports
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,7 +7,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-// Client Connection 
+/*
+ * Client Connection class...
+ */
 public class ClientConnection implements Runnable {
 
 	// Create Socket Object
@@ -53,21 +51,29 @@ public class ClientConnection implements Runnable {
 			// Print "outputline"
 			out.println(outputLine);
 
+			// While client is still connected print their commands
 			while ((inputLine = in.readLine()) != null) {
 				System.out.println(socket.getRemoteSocketAddress().toString()
 						+ ": " + inputLine);
+				// TODO
 				outputLine = sp.processInput(inputLine);
+				// TODO
 				out.println(outputLine);
+				// Prints "outputline"
 				System.out.println("Server: " + outputLine);
+				// Breaks out of the while when disconnect line is sent to
+				// client
 				if (outputLine.equals("disconnect")) {
 					break;
 				}
 			}
+			// Tears down the connection.
 			in.close();
 			out.close();
 
 		} catch (IOException e) {
-			System.err.println(socket.getRemoteSocketAddress()
+			// Catches any errors
+			System.err.println(socket.getRemoteSocketAddress().toString()
 					+ " disconnected: " + e.getMessage());
 		}
 	}
