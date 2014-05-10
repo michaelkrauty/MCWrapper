@@ -75,7 +75,6 @@ public class ServerProtocol {
 								+ ".");
 					}
 				}
-				return returnLines;
 			} else {
 				if (input.length == 3 && input[0].equalsIgnoreCase("login")) {
 					if (checkLogin(input[1], input[2])) {
@@ -85,18 +84,16 @@ public class ServerProtocol {
 						date_registered = SQL.getUserDate_Registered(userid);
 						logged = true;
 						returnLines.add("Logged in.");
-						return returnLines;
 					} else {
 						returnLines.add("Login failed!");
-						return returnLines;
 					}
 				} else {
 					returnLines.add("Usage: \"login <username> <password>\"");
-					return returnLines;
 				}
 			}
+		} else {
+			returnLines.add("Incorrect Input.");
 		}
-		returnLines.add("Incorrect Input.");
 		return returnLines;
 	}
 
