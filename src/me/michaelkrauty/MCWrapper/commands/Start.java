@@ -12,7 +12,7 @@ public class Start implements Runnable {
 
 	private Thread t;
 
-	private int serverid;
+	private final int serverid;
 
 	public Start(int id) {
 		serverid = id;
@@ -22,7 +22,6 @@ public class Start implements Runnable {
 		}
 	}
 
-	@Override
 	public void run() {
 		Server server = Main.wrapper.getServer(serverid);
 		if (server != null) {

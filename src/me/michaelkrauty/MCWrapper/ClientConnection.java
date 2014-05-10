@@ -14,7 +14,6 @@ public class ClientConnection implements Runnable {
 		socket = soc;
 	}
 
-	@Override
 	public void run() {
 		try {
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
