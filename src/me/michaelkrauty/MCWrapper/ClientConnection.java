@@ -1,9 +1,5 @@
 package me.michaelkrauty.MCWrapper;
 
-/*
- * Client Connection class...
- */
-
 // Imports
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,7 +7,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-// Client Connection 
+/*
+ * Client Connection class...
+ */
 public class ClientConnection implements Runnable {
 
 	// Create Socket Object
