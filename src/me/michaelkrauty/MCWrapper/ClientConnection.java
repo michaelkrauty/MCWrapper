@@ -46,7 +46,6 @@ public class ClientConnection implements Runnable {
 					socket.getInputStream()));
 			// Create empty strings
 			String inputLine;
-			ArrayList<String> outputLines;
 			// TODO
 			ServerProtocol sp = new ServerProtocol();
 
@@ -54,6 +53,7 @@ public class ClientConnection implements Runnable {
 
 			// While client is still connected print their commands
 			while ((inputLine = in.readLine()) != null) {
+				ArrayList<String> outputLines = null;
 				System.out.println(socket.getRemoteSocketAddress().toString()
 						+ ": " + inputLine);
 				// Process the input, return a string array of output lines
@@ -61,8 +61,8 @@ public class ClientConnection implements Runnable {
 
 				// Print output lines
 				for (String line : outputLines) {
-					out.println(line);
 					System.out.println("Server: " + line);
+					out.println(line);
 				}
 
 				// Breaks out of the while when disconnect line is sent to
