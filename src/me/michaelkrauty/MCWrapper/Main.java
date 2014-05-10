@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import com.sun.istack.internal.logging.Logger;
+
 import me.michaelkrauty.MCWrapper.ClientConnection.ConnectionHandler;
 import me.michaelkrauty.MCWrapper.commands.Command;
 
@@ -18,6 +20,8 @@ public class Main {
 
 	public final static Config config = new Config();
 
+	private static final Logger log = Logger.getLogger(Main.class);
+
 	// store any server objects created in this list
 	public static ArrayList<Server> servers = new ArrayList<Server>();
 
@@ -25,6 +29,7 @@ public class Main {
 		System.out.println("Initiating wrapper...");
 		System.out.println("Wrapper PID: " + wrapper.getPID());
 		new ConnectionHandler().start();
+		log.info("test");
 		System.out.println("done.");
 
 		// start main loop
