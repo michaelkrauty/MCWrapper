@@ -48,7 +48,7 @@ public class ServerProtocol {
 					}
 					if (input[0].equalsIgnoreCase("help")) {
 						returnLines
-								.add("Commands: start, stop, forcestop|kill, command");
+								.add("Commands: start, stop, forcestop|kill, command, disconnect");
 						returnLines
 								.add("For more detail, use \"help <command>\"");
 					}
@@ -98,7 +98,7 @@ public class ServerProtocol {
 						returnLines.add("Login failed!");
 					}
 				} else {
-					returnLines.add("Usage: \"login <username> <password>\"");
+					returnLines.add("Usage: \"login <email> <password>\"");
 				}
 			}
 		} else {
