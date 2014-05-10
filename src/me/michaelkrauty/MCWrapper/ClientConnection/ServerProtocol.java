@@ -4,6 +4,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import me.michaelkrauty.MCWrapper.SQL;
+import me.michaelkrauty.MCWrapper.commands.ForceStop;
+import me.michaelkrauty.MCWrapper.commands.ServerCommand;
 import me.michaelkrauty.MCWrapper.commands.Start;
 import me.michaelkrauty.MCWrapper.commands.Stop;
 
@@ -41,7 +43,7 @@ public class ServerProtocol {
 					}
 					if (input[0].equalsIgnoreCase("help")) {
 						returnLines
-								.add("Commands: start, stop, forcestop, command");
+								.add("Commands: start, stop, forcestop|kill, command");
 						returnLines
 								.add("For more detail, use \"help <command>\"");
 					}
@@ -51,16 +53,30 @@ public class ServerProtocol {
 						int serverid = Integer.parseInt(input[1]);
 						if (SQL.getServerOwner(serverid) == userid) {
 							new Start(serverid);
-							returnLines.add("Starting server "
-									+ SQL.getServerName(serverid));
+							returnLines.add("Starting server " + serverid);
 						}
 					}
 					if (input[0].equalsIgnoreCase("stop")) {
 						int serverid = Integer.parseInt(input[1]);
 						if (SQL.getServerOwner(serverid) == userid) {
 							new Stop(serverid);
-							returnLines.add("Stopping server "
-									+ SQL.getServerName(serverid));
+							returnLines.add("Stopping server " + serverid);
+						}
+					}
+					if (input[0].equalsIgnoreCase("forcestop")
+							|| input[0].equalsIgnoreCase("kill")) {
+						int serverid = Integer.parseInt(input[1]);
+						if (SQL.getServerOwner(serverid) == userid) {
+							new ForceStop(serverid);
+							returnLines.add("Foce stopped server " + serverid);
+						}
+					}
+					if (input[0].equalsIgnoreCase("command")) {
+						int serverid = Integer.parseInt(input[1]);
+						if (SQL.getServerOwner(serverid) == userid) {
+							new ServerCommand(input);
+							returnLines.add("Command sent to server "
+									+ serverid);
 						}
 					}
 				}
