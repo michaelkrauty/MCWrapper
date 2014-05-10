@@ -75,6 +75,7 @@ public class ServerProtocol {
 								+ ".");
 					}
 				}
+				return returnLines;
 			} else {
 				if (input.length == 3) {
 					if (input[0].equalsIgnoreCase("login")) {
@@ -90,11 +91,12 @@ public class ServerProtocol {
 							returnLines.add("Login failed!");
 						}
 					}
+					return returnLines;
 				} else {
 					returnLines.add("Usage: \"login <username> <password>\"");
+					return returnLines;
 				}
 			}
-			return returnLines;
 		}
 		returnLines.add("Incorrect Input.");
 		return returnLines;
