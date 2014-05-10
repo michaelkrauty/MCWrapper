@@ -1,5 +1,9 @@
 package me.michaelkrauty.MCWrapper;
 
+/*
+ * Client Connection class...
+ */
+
 // Imports
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,17 +24,33 @@ public class ClientConnection implements Runnable {
 		socket = soc;
 	}
 
+	// Start Method
+	public void start() {
+		// Print Connection Info
+		System.out.println("Connection from "
+				+ socket.getRemoteSocketAddress().toString());
+		// If thread is not running then run in thread (Should always be null)
+		if (t == null) {
+			t = new Thread(this);
+			t.start();
+		}
+	}
+
 	// Run Method
 	public void run() {
 		try {
+			// TODO
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+			// TODO
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
-
-			String inputLine, outputLine;
-
+			// Create empty strings
+			String inputLine;
+			// TODO
 			ServerProtocol sp = new ServerProtocol();
-			outputLine = sp.processInput(null);
+			// TODO
+			String outputLine = sp.processInput(null);
+			// Print "outputline"
 			out.println(outputLine);
 
 			while ((inputLine = in.readLine()) != null) {
@@ -52,12 +72,4 @@ public class ClientConnection implements Runnable {
 		}
 	}
 
-	public void start() {
-		System.out.println("Connection from "
-				+ socket.getRemoteSocketAddress().toString());
-		if (t == null) {
-			t = new Thread(this);
-			t.start();
-		}
-	}
 }
