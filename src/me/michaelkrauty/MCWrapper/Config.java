@@ -1,6 +1,8 @@
 package me.michaelkrauty.MCWrapper;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -15,6 +17,8 @@ public class Config {
 	public Config() {
 		Properties properties = new Properties();
 		InputStream input = null;
+
+		checkStuff();
 
 		try {
 			input = new FileInputStream("mcwrapper.properties");
@@ -38,6 +42,25 @@ public class Config {
 			}
 		}
 
+	}
+
+	private void checkStuff() {
+		Properties properties = new Properties();
+		File propertiesFile = new File("mcwrapper.properties");
+		if (!propertiesFile.exists()) {
+			try {
+				propertiesFile.createNewFile();
+				properties.setProperty("db_host", "localhost");
+				properties.setProperty("db_port", "3306");
+				properties.setProperty("db_user", "root");
+				properties.setProperty("db_password", "1234");
+				properties.store(new FileOutputStream("mcwrapper.properties"),
+						null);
+			} catch (IOException e) {
+				System.out.println("Couldn't create mcwrapper.properties!");
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 
 	public String getDBHost() {
