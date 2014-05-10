@@ -67,7 +67,7 @@ public class ClientConnection implements Runnable {
 
 				// Breaks out of the while when disconnect line is sent to
 				// client
-				if (outputLines.get(0).equals("disconnect")) {
+				if (inputLine.equalsIgnoreCase("disconnect")) {
 					break;
 				}
 			}
