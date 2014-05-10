@@ -41,13 +41,13 @@ public class Config {
 				}
 			}
 		}
-
 	}
 
 	private void checkStuff() {
 		Properties properties = new Properties();
 		File propertiesFile = new File("mcwrapper.properties");
 		if (!propertiesFile.exists()) {
+			// mcwrapper.properties doesn't exist, create a new one
 			try {
 				propertiesFile.createNewFile();
 				properties.setProperty("db_host", "localhost");

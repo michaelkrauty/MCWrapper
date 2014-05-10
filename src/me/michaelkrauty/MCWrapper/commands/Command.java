@@ -12,6 +12,7 @@ public class Command implements Runnable {
 
 	public static ArrayList<String> commands = new ArrayList<String>();
 
+	// create a new thread to run the command
 	public Command(String cmd) {
 		command = cmd;
 		if (t == null) {
@@ -20,10 +21,12 @@ public class Command implements Runnable {
 		}
 	}
 
+	// is the command valid?
 	public boolean checkValidCommand(String command) {
 		return commands.contains(command.toLowerCase());
 	}
 
+	// valid commands
 	private void commands() {
 		if (commands.isEmpty()) {
 			/** @commands */
@@ -48,6 +51,8 @@ public class Command implements Runnable {
 		}
 	}
 
+	// run the thread
+	@Override
 	public void run() {
 		commands();
 		String[] cmd = command.split(" ");

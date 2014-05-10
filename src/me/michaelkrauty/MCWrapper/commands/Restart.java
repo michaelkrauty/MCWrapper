@@ -7,6 +7,7 @@ public class Restart {
 
 	public Restart(int serverid) {
 		Server server;
+		// if the server is in the server list, get it. else, make a new one.
 		if (Main.wrapper.getServer(serverid) != null) {
 			server = Main.wrapper.getServer(serverid);
 		} else {

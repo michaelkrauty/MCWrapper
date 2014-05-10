@@ -17,6 +17,7 @@ public class Main {
 
 	public final static Config config = new Config();
 
+	// store any server objects created in this list
 	public static ArrayList<Server> servers = new ArrayList<Server>();
 
 	public static void main(String[] args) {
@@ -24,6 +25,8 @@ public class Main {
 		System.out.println("Wrapper PID: " + wrapper.getPID());
 		new ConnectionHandler().start();
 		System.out.println("done.");
+
+		// start main loop
 		mainLoop();
 	}
 
@@ -34,8 +37,9 @@ public class Main {
 		// double loopStartTime = System.currentTimeMillis();
 		try {
 			while (running) {
-				if (br.ready())
+				if (br.ready()) {
 					new Command(br.readLine());
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
