@@ -82,6 +82,8 @@ public class ServerProtocol {
 							return "Login failed!";
 						}
 					}
+				} else {
+					return "Usage: \"login <username> <password>\"";
 				}
 			}
 		}
