@@ -35,6 +35,7 @@ public class ClientConnection implements Runnable {
 	}
 
 	// Run Method
+	@Override
 	public void run() {
 		try {
 			// TODO
@@ -44,23 +45,23 @@ public class ClientConnection implements Runnable {
 					socket.getInputStream()));
 			// Create empty strings
 			String inputLine;
+			String[] outputLine;
 			// TODO
 			ServerProtocol sp = new ServerProtocol();
-			// TODO
-			String outputLine = sp.processInput(null);
-			// Print "outputline"
-			out.println(outputLine);
 
 			// While client is still connected print their commands
 			while ((inputLine = in.readLine()) != null) {
 				System.out.println(socket.getRemoteSocketAddress().toString()
 						+ ": " + inputLine);
-				// TODO
+				// Process the input, return a string array of output lines
 				outputLine = sp.processInput(inputLine);
-				// TODO
-				out.println(outputLine);
-				// Prints "outputline"
-				System.out.println("Server: " + outputLine);
+
+				// Print output lines
+				for (String line : outputLine) {
+					out.println(line);
+					System.out.println("Server: " + line);
+				}
+
 				// Breaks out of the while when disconnect line is sent to
 				// client
 				if (outputLine.equals("disconnect")) {

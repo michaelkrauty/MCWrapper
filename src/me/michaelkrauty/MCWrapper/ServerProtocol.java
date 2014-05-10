@@ -16,21 +16,23 @@ public class ServerProtocol {
 	private String pass;
 	private String date_registered;
 
-	public String processInput(String theInput) {
+	public String[] processInput(String theInput) {
 
 		if (theInput != null) {
 			String[] input = theInput.split(" ");
 			if (logged) {
 				if (input.length == 1) {
 					if (input[0].equalsIgnoreCase("disconnect")) {
-						return "disconnect";
+						return new String[] { "disconnect" };
 					}
 					if (input[0].equalsIgnoreCase("logout")) {
 						logged = false;
-						return "Logged out.";
+						return new String[] { "Logged out." };
 					}
 					if (input[0].equalsIgnoreCase("help")) {
-						return "Commands: start, stop, forcestop, command\nFor more detail, use \"help <command>\"";
+						return new String[] {
+								"Commands: start, stop, forcestop, command",
+								"For more detail, use \"help <command>\"" };
 					}
 				}
 				if (input.length == 2) {
@@ -38,16 +40,16 @@ public class ServerProtocol {
 						int serverid = Integer.parseInt(input[1]);
 						if (SQL.getServerOwner(serverid) == userid) {
 							new Start(serverid);
-							return "Starting server "
-									+ SQL.getServerName(serverid);
+							return new String[] { "Starting server "
+									+ SQL.getServerName(serverid) };
 						}
 					}
 					if (input[0].equalsIgnoreCase("stop")) {
 						int serverid = Integer.parseInt(input[1]);
 						if (SQL.getServerOwner(serverid) == userid) {
 							new Stop(serverid);
-							return "Stopping server "
-									+ SQL.getServerName(serverid);
+							return new String[] { "Stopping server "
+									+ SQL.getServerName(serverid) };
 						}
 					}
 					if (input[0].equalsIgnoreCase("forcestop")
@@ -55,8 +57,8 @@ public class ServerProtocol {
 						int serverid = Integer.parseInt(input[1]);
 						if (SQL.getServerOwner(serverid) == userid) {
 							new ForceStop(serverid);
-							return "Force stopped server "
-									+ SQL.getServerName(serverid);
+							return new String[] { "Force stopped server "
+									+ SQL.getServerName(serverid) };
 						}
 					}
 				}
@@ -64,7 +66,8 @@ public class ServerProtocol {
 					int serverid = Integer.parseInt(input[1]);
 					if (SQL.getServerOwner(serverid) == userid) {
 						new Command(theInput);
-						return "Issued command to server " + serverid + ".";
+						return new String[] { "Issued command to server "
+								+ serverid + "." };
 					}
 				}
 			} else {
@@ -77,17 +80,17 @@ public class ServerProtocol {
 							date_registered = SQL
 									.getUserDate_Registered(userid);
 							logged = true;
-							return "Logged in.";
+							return new String[] { "Logged in." };
 						} else {
-							return "Login failed!";
+							return new String[] { "Login failed!" };
 						}
 					}
 				} else {
-					return "Usage: \"login <username> <password>\"";
+					return new String[] { "Usage: \"login <username> <password>\"" };
 				}
 			}
 		}
-		return "Incorrect Input.";
+		return new String[] { "Incorrect Input." };
 	}
 
 	private boolean checkLogin(String email, String password) {
