@@ -1,8 +1,8 @@
 package me.michaelkrauty.MCWrapper.commands;
 
-import org.apache.log4j.Logger;
+import me.michaelkrauty.MCWrapper.Main;
 
-import me.michaelkrauty.MCWrapper.*;
+import org.apache.log4j.Logger;
 
 public class StopWrapper {
 

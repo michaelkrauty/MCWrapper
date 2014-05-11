@@ -2,10 +2,10 @@ package me.michaelkrauty.MCWrapper.commands;
 
 import java.util.ArrayList;
 
-import org.apache.log4j.Logger;
-
 import me.michaelkrauty.MCWrapper.CreateUser;
 import me.michaelkrauty.MCWrapper.Main;
+
+import org.apache.log4j.Logger;
 
 public class Command implements Runnable {
 
