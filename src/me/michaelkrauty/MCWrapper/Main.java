@@ -75,25 +75,15 @@ public class Main {
 						System.currentTimeMillis()));
 				int logNumber = 0;
 				while (true) {
-					if (new File("logs/" + date + ".zip").exists()) {
-						logNumber = 1;
-						return;
-					}
 					if (new File("logs/" + date + "-" + logNumber + ".zip")
 							.exists()) {
 						logNumber++;
-						return;
+					} else {
+						break;
 					}
-					break;
-				}
-				String filename = "";
-				if (logNumber > 0) {
-					filename = "logs/" + date + "-" + logNumber + ".zip";
-				} else {
-					filename = "logs/" + date + ".zip";
 				}
 				ZipOutputStream out = new ZipOutputStream(new FileOutputStream(
-						filename));
+						"logs/" + date + "-" + logNumber + ".zip"));
 				out.putNextEntry(new ZipEntry("logs/latest.log"));
 				out.write(1);
 				out.closeEntry();
