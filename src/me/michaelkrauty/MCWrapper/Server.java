@@ -64,15 +64,14 @@ public class Server {
 					f.setAccessible(true);
 					PID = f.getInt(p);
 				} catch (Throwable e) {
-					System.err.println("Error getting PID");
+					log.error("Error getting PID");
 				}
 				inputstream = p.getInputStream();
 				outputstream = p.getOutputStream();
 				starttime = System.currentTimeMillis();
 			} catch (IOException e) {
 				log.info(e.getMessage());
-				System.out
-						.println("Attempting to create the server directory & restart...");
+				log.info("Attempting to create the server directory & restart...");
 				File sdir = new File(serverdir);
 				sdir.mkdir();
 				start();
@@ -117,7 +116,7 @@ public class Server {
 					open = false;
 				}
 			} catch (Exception e) {
-				System.err.println("Error creating socket");
+				log.error("Error creating socket");
 				open = false;
 			}
 		} else {
