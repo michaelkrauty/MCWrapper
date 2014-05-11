@@ -33,11 +33,9 @@ public class Main {
 	public static ArrayList<Server> servers = new ArrayList<Server>();
 
 	public static void main(String[] args) {
-		log.info("Initiating wrapper...");
+		cycleLogs();
 		log.info("Wrapper PID: " + wrapper.getPID());
 		new ConnectionHandler().start();
-		cycleLogs();
-		log.info("done.");
 		// start main loop
 		mainLoop();
 	}
@@ -48,6 +46,7 @@ public class Main {
 		// tick tock goes the clock
 		// double loopStartTime = System.currentTimeMillis();
 		try {
+			log.info("Ready...");
 			while (running) {
 				if (br.ready()) {
 					new Command(br.readLine());
