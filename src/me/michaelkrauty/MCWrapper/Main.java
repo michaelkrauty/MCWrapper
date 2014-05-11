@@ -1,7 +1,6 @@
 package me.michaelkrauty.MCWrapper;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -30,10 +29,6 @@ public class Main {
 		log.info("Initiating wrapper...");
 		log.info("Wrapper PID: " + wrapper.getPID());
 		new ConnectionHandler().start();
-		File logdir = new File("logs");
-		if (!logdir.exists()) {
-			logdir.mkdir();
-		}
 		log.info("done.");
 		// start main loop
 		mainLoop();
