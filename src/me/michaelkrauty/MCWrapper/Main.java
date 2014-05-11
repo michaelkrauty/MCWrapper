@@ -71,27 +71,26 @@ public class Main {
 		File latestLog = new File("logs/latest.log");
 		if (latestLog.exists()) {
 			try {
-				Date date = new Date(System.currentTimeMillis());
-				SimpleDateFormat ft = new SimpleDateFormat("MM-dd-yy");
-				String datestr = ft.format(date);
-				boolean test = true;
+				String date = new SimpleDateFormat("MM-dd-yy").format(new Date(
+						System.currentTimeMillis()));
 				int logNumber = 0;
-				while (test) {
-					if (new File("logs/" + datestr + ".zip").exists()) {
+				while (true) {
+					if (new File("logs/" + date + ".zip").exists()) {
 						logNumber = 1;
-						test = false;
+						return;
 					}
-					if (new File("logs/" + datestr + "-" + logNumber + ".zip")
+					if (new File("logs/" + date + "-" + logNumber + ".zip")
 							.exists()) {
 						logNumber++;
-						test = false;
+						return;
 					}
+					break;
 				}
 				String filename = "";
 				if (logNumber > 0) {
-					filename = "logs/" + datestr + "-" + logNumber + ".zip";
+					filename = "logs/" + date + "-" + logNumber + ".zip";
 				} else {
-					filename = "logs/" + datestr + ".zip";
+					filename = "logs/" + date + ".zip";
 				}
 				ZipOutputStream out = new ZipOutputStream(new FileOutputStream(
 						filename));
