@@ -2,6 +2,7 @@ package me.michaelkrauty.MCWrapper;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -82,12 +83,19 @@ public class Main {
 						break;
 					}
 				}
-				ZipOutputStream out = new ZipOutputStream(new FileOutputStream(
-						"logs/" + date + "-" + logNumber + ".zip"));
-				out.putNextEntry(new ZipEntry("logs/latest.log"));
-				out.write(1);
-				out.closeEntry();
-				out.close();
+				String filename = "logs/" + date + "-" + logNumber;
+				byte[] buffer = new byte[1024];
+				ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(
+						filename + ".zip"));
+				zos.putNextEntry(new ZipEntry(filename + ".log"));
+				FileInputStream in = new FileInputStream("logs/latest.log");
+				int len;
+				while ((len = in.read(buffer)) > 0) {
+					zos.write(buffer, 0, len);
+				}
+				in.close();
+				zos.closeEntry();
+				zos.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
