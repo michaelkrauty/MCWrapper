@@ -124,7 +124,7 @@ public class Command implements Runnable {
 				}
 
 			} catch (Exception e) {
-				log.error(e.getMessage());
+				e.printStackTrace();
 			}
 		} else {
 			log.info("Unknown command! Use \"help\" for a list of valid commands.");
