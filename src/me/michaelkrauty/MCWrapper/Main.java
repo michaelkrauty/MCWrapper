@@ -79,10 +79,12 @@ public class Main {
 				while (test) {
 					if (new File("logs/" + datestr + ".zip").exists()) {
 						logNumber = 1;
+						test = false;
 					}
 					if (new File("logs/" + datestr + "-" + logNumber + ".zip")
 							.exists()) {
 						logNumber++;
+						test = false;
 					}
 				}
 				String filename = "";
