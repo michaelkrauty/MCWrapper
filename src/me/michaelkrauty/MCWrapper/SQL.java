@@ -240,6 +240,27 @@ public class SQL {
 		}
 	}
 
+	public static boolean getServerCrashDetection(int serverid) {
+		try {
+			if (serverDataContainsServer(serverid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `servers` WHERE id=?;");
+				sql.setInt(1, serverid);
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getBoolean("crash_detection");
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			closeConnection();
+		}
+	}
+
 	public synchronized static ArrayList<String> getAllServers() {
 		try {
 			openConnection();

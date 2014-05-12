@@ -10,6 +10,8 @@ import java.net.Socket;
 
 import javax.net.SocketFactory;
 
+import me.michaelkrauty.MCWrapper.ServerManagement.CrashDetection;
+
 import org.apache.log4j.Logger;
 
 public class Server {
@@ -28,6 +30,7 @@ public class Server {
 	private InputStream inputstream;
 	private OutputStream outputstream;
 	private long starttime;
+	private boolean crashDetection;
 
 	public Server(int serverid) {
 		id = serverid;
@@ -42,6 +45,13 @@ public class Server {
 			inputstream = null;
 			outputstream = null;
 			starttime = -1;
+
+			// TODO: add crash_detection column to SQL database
+			// crashDetection = getDBCrashDetection();
+
+			// PLACEHOLDER
+			crashDetection = true;
+
 		} catch (NullPointerException ignored) {
 		}
 	}
@@ -58,6 +68,9 @@ public class Server {
 				Process p = pb.start();
 				process = p;
 
+				if (crashDetectionEnabled()) {
+					new CrashDetection(this);
+				}
 				try {
 					java.lang.reflect.Field f = p.getClass().getDeclaredField(
 							"pid");
@@ -138,6 +151,10 @@ public class Server {
 		}
 	}
 
+	public void setCrashDetectionEnabled(boolean bool) {
+		crashDetection = bool;
+	}
+
 	// get
 	public int getId() {
 		return id;
@@ -180,6 +197,10 @@ public class Server {
 		return (int) (System.currentTimeMillis() - starttime);
 	}
 
+	public boolean crashDetectionEnabled() {
+		return crashDetection;
+	}
+
 	public boolean exists() {
 		return SQL.serverDataContainsServer(id);
 	}
@@ -210,5 +231,9 @@ public class Server {
 
 	public int getDBOwner() {
 		return SQL.getServerOwner(id);
+	}
+
+	public boolean getDBCrashDetection() {
+		return SQL.getServerCrashDetection(id);
 	}
 }
