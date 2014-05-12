@@ -27,7 +27,7 @@ public class Main {
 
 	public final static Config config = new Config();
 
-	private final static Logger log = Logger.getLogger(Main.class);
+	private static Logger log = Logger.getLogger(Main.class);
 
 	// store any server objects created in this list
 	public static ArrayList<Server> servers = new ArrayList<Server>();
@@ -86,7 +86,7 @@ public class Main {
 				byte[] buffer = new byte[1024];
 				ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(
 						filename + ".zip"));
-				zos.putNextEntry(new ZipEntry(filename + ".log"));
+				zos.putNextEntry(new ZipEntry("logs/" + filename + ".log"));
 				FileInputStream in = new FileInputStream("logs/latest.log");
 				int len;
 				while ((len = in.read(buffer)) > 0) {
@@ -95,6 +95,7 @@ public class Main {
 				in.close();
 				zos.closeEntry();
 				zos.close();
+				latestLog.delete();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

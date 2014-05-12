@@ -10,7 +10,7 @@ import java.net.Socket;
 
 import javax.net.SocketFactory;
 
-import me.michaelkrauty.MCWrapper.ServerManagement.CrashDetection;
+import me.michaelkrauty.MCWrapper.ServerManagement.CrashDetector;
 
 import org.apache.log4j.Logger;
 
@@ -69,7 +69,7 @@ public class Server {
 				process = p;
 
 				if (crashDetectionEnabled()) {
-					new CrashDetection(this);
+					new CrashDetector(this);
 				}
 				try {
 					java.lang.reflect.Field f = p.getClass().getDeclaredField(
