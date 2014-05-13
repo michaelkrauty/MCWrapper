@@ -53,6 +53,7 @@ public class Server {
 			// PLACEHOLDER
 			crashDetection = true;
 			crashDetector = new CrashDetector(this, crashDetection);
+			crashDetector.start();
 
 		} catch (NullPointerException ignored) {
 		}
