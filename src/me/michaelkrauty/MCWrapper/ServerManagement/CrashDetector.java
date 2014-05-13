@@ -17,8 +17,8 @@ public class CrashDetector implements Runnable {
 	private static Thread t;
 	private static Server server;
 
-	public CrashDetector(Server server, boolean enabled) {
-		CrashDetector.server = server;
+	public CrashDetector(Server svr, boolean enabled) {
+		server = svr;
 	}
 
 	public void start() {
