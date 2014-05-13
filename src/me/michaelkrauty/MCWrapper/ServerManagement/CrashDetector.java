@@ -37,6 +37,7 @@ public class CrashDetector implements Runnable {
 				server.getInputStream()));
 		try {
 			while (server.crashDetectionEnabled()) {
+				log.info("test");
 				if (br.ready()) {
 					lastResponse = System.currentTimeMillis();
 					log.info("server 1 last response: "
