@@ -32,7 +32,7 @@ public class ServerLastResponse implements Runnable {
 		BufferedReader br = new BufferedReader(new InputStreamReader(
 				server.getInputStream()));
 		try {
-			while (br.ready()) {
+			while (br.readLine() != null) {
 				lastResponse = System.currentTimeMillis();
 				log.info("last response: " + lastResponse + " (Server "
 						+ server.getId() + ")");
