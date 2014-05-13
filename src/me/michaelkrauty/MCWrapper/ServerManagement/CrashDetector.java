@@ -41,14 +41,14 @@ public class CrashDetector implements Runnable {
 					lastResponse = System.currentTimeMillis();
 					log.info("server 1 last response: " + lastResponse);
 				}
-				if (lastResponse < (System.currentTimeMillis() - 60)) {
+				if (lastResponse < (System.currentTimeMillis() - 60000)) {
 					log.info("No response in 60 seconds from server "
 							+ server.getId() + ", running \"list\" command");
 					server.executeCommand("list");
-					while (lastResponse < System.currentTimeMillis() - 90) {
+					while (lastResponse < System.currentTimeMillis() - 90000) {
 						Thread.sleep(0);
 					}
-					if (lastResponse < System.currentTimeMillis() - 90) {
+					if (lastResponse < System.currentTimeMillis() - 90000) {
 						log.info("Force restarting server " + server.getId());
 						new ForceRestart(server.getId());
 					}
