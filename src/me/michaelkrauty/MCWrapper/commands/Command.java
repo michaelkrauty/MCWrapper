@@ -66,16 +66,16 @@ public class Command implements Runnable {
 
 			try {
 				// no params
-				if (cmdLabel.equals("help") && cmd.length == 1) {
+				if (cmdLabel.equalsIgnoreCase("help") && cmd.length == 1) {
 					new Help();
 				}
-				if (cmdLabel.equals("pid") && cmd.length == 1) {
+				if (cmdLabel.equalsIgnoreCase("pid") && cmd.length == 1) {
 					new PID();
 				}
-				if (cmdLabel.equals("stopwrapper") && cmd.length == 1) {
+				if (cmdLabel.equalsIgnoreCase("stopwrapper") && cmd.length == 1) {
 					new StopWrapper();
 				}
-				if (cmdLabel.equals("test") && cmd.length == 1) {
+				if (cmdLabel.equalsIgnoreCase("test") && cmd.length == 1) {
 					new Test();
 				}
 				if (cmdLabel.equalsIgnoreCase("uptime") && cmd.length == 1) {
@@ -93,22 +93,26 @@ public class Command implements Runnable {
 				}
 
 				// params
-				if (cmdLabel.equals("servercommand") && cmd.length > 1) {
+				if (cmdLabel.equalsIgnoreCase("servercommand")
+						&& cmd.length > 1) {
 					new ServerCommand(cmd);
 				}
 				int serverid = Integer.parseInt(cmd[1]);
-				if (cmdLabel.equals("start") && cmd.length == 2) {
+				if (cmdLabel.equalsIgnoreCase("start") && cmd.length == 2) {
 					new Start(serverid);
 				}
-				if (cmdLabel.equals("stop") && cmd.length == 2) {
+				if (cmdLabel.equalsIgnoreCase("stop") && cmd.length == 2) {
 					new Stop(serverid);
 				}
 				if ((cmdLabel.equalsIgnoreCase("forcestop") || cmdLabel
 						.equalsIgnoreCase("kill")) && cmd.length == 2) {
 					new ForceStop(serverid);
 				}
-				if (cmdLabel.equals("restart") && cmd.length == 2) {
+				if (cmdLabel.equalsIgnoreCase("restart") && cmd.length == 2) {
 					new Restart(serverid);
+				}
+				if (cmdLabel.equalsIgnoreCase("forcerestart")) {
+					new ForceRestart(serverid);
 				}
 				if (cmdLabel.equalsIgnoreCase("online") && cmd.length == 2) {
 					new Online(serverid);
