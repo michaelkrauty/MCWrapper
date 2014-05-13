@@ -11,6 +11,7 @@ import java.net.Socket;
 import javax.net.SocketFactory;
 
 import me.michaelkrauty.MCWrapper.ServerManagement.CrashDetector;
+import me.michaelkrauty.MCWrapper.ServerManagement.ServerLastResponse;
 
 import org.apache.log4j.Logger;
 
@@ -32,6 +33,7 @@ public class Server {
 	private long starttime;
 	private boolean crashDetection;
 	CrashDetector crashDetector;
+	ServerLastResponse serverLastResponse;
 
 	public Server(int serverid) {
 		id = serverid;
@@ -81,6 +83,8 @@ public class Server {
 				starttime = System.currentTimeMillis();
 				crashDetector = new CrashDetector(this, crashDetection);
 				crashDetector.start();
+				serverLastResponse = new ServerLastResponse(this);
+				serverLastResponse.start();
 			} catch (IOException e) {
 				log.info(e.getMessage());
 				log.info("Attempting to create the server directory & restart...");
@@ -157,6 +161,14 @@ public class Server {
 	// get
 	public CrashDetector getCrashDetector() {
 		return crashDetector;
+	}
+
+	public ServerLastResponse getServerLastResponse() {
+		return serverLastResponse;
+	}
+
+	public float getLastResponse() {
+		return serverLastResponse.getLastResponse();
 	}
 
 	public int getId() {

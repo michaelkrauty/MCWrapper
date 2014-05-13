@@ -1,9 +1,5 @@
 package me.michaelkrauty.MCWrapper.ServerManagement;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-
 import org.apache.log4j.Logger;
 
 import me.michaelkrauty.MCWrapper.Main;
@@ -28,19 +24,11 @@ public class CrashDetector implements Runnable {
 		}
 	}
 
-	@SuppressWarnings("unused")
 	@Override
 	public void run() {
-		float lastResponse = 0;
-		OutputStream serverOutputStream = server.getOutputStream();
-		BufferedReader br = new BufferedReader(new InputStreamReader(
-				server.getInputStream()));
 		try {
 			while (server.crashDetectionEnabled()) {
-				if (br.ready()) {
-					lastResponse = System.currentTimeMillis();
-					log.info("server 1 last response: " + lastResponse);
-				}
+				float lastResponse = server.getLastResponse();
 				if (lastResponse < (System.currentTimeMillis() - 60000)) {
 					log.info("No response in 60 seconds from server "
 							+ server.getId() + ", running \"list\" command");
