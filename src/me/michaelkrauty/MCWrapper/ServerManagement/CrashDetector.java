@@ -39,6 +39,8 @@ public class CrashDetector implements Runnable {
 			while (server.crashDetectionEnabled()) {
 				if (br.ready()) {
 					lastResponse = System.currentTimeMillis();
+					log.info("server 1 last response: "
+							+ System.currentTimeMillis());
 				}
 				if (lastResponse > (System.currentTimeMillis() + 60000)) {
 					log.info("No response in 60 seconds from server "
