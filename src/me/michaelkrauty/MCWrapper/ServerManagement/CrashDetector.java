@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 import me.michaelkrauty.MCWrapper.Server;
-import me.michaelkrauty.MCWrapper.commands.Start;
+import me.michaelkrauty.MCWrapper.commands.ForceRestart;
 
 public class CrashDetector implements Runnable {
 
@@ -41,11 +41,7 @@ public class CrashDetector implements Runnable {
 						Thread.sleep(0);
 					}
 					if (lastResponse > System.currentTimeMillis() + 90000) {
-						server.forceStop();
-						while (server.isRunning()) {
-							Thread.sleep(0);
-						}
-						new Start(server.getId());
+						new ForceRestart(server.getId());
 					}
 				}
 			}
