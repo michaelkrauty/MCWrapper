@@ -31,6 +31,7 @@ public class Server {
 	private OutputStream outputstream;
 	private long starttime;
 	private boolean crashDetection;
+	CrashDetector crashDetector;
 
 	public Server(int serverid) {
 		id = serverid;
@@ -51,6 +52,7 @@ public class Server {
 
 			// PLACEHOLDER
 			crashDetection = true;
+			crashDetector = new CrashDetector(this, crashDetection);
 
 		} catch (NullPointerException ignored) {
 		}
@@ -67,10 +69,6 @@ public class Server {
 						"--port", Integer.toString(port), "nogui");
 				Process p = pb.start();
 				process = p;
-
-				if (crashDetectionEnabled()) {
-					new CrashDetector(this);
-				}
 				try {
 					java.lang.reflect.Field f = p.getClass().getDeclaredField(
 							"pid");
@@ -156,6 +154,10 @@ public class Server {
 	}
 
 	// get
+	public CrashDetector getCrashDetector() {
+		return crashDetector;
+	}
+
 	public int getId() {
 		return id;
 	}
