@@ -52,8 +52,6 @@ public class Server {
 
 			// PLACEHOLDER
 			crashDetection = true;
-			crashDetector = new CrashDetector(this, crashDetection);
-			crashDetector.start();
 
 		} catch (NullPointerException ignored) {
 		}
@@ -81,6 +79,8 @@ public class Server {
 				inputstream = p.getInputStream();
 				outputstream = p.getOutputStream();
 				starttime = System.currentTimeMillis();
+				crashDetector = new CrashDetector(this, crashDetection);
+				crashDetector.start();
 			} catch (IOException e) {
 				log.info(e.getMessage());
 				log.info("Attempting to create the server directory & restart...");
