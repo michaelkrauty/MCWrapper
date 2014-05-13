@@ -2,7 +2,6 @@ package me.michaelkrauty.MCWrapper.commands;
 
 import java.util.ArrayList;
 
-import me.michaelkrauty.MCWrapper.CreateUser;
 import me.michaelkrauty.MCWrapper.Main;
 
 import org.apache.log4j.Logger;
@@ -39,6 +38,7 @@ public class Command implements Runnable {
 			commands.add("help");
 			commands.add("pid");
 			commands.add("restart");
+			commands.add("forcerestart");
 			commands.add("servercommand");
 			commands.add("start");
 			commands.add("stop");
@@ -53,7 +53,7 @@ public class Command implements Runnable {
 			commands.add("stopall");
 			commands.add("forcestopall");
 			commands.add("killall");
-			commands.add("createuser");
+			// commands.add("createuser");
 		}
 	}
 
@@ -111,7 +111,8 @@ public class Command implements Runnable {
 				if (cmdLabel.equalsIgnoreCase("restart") && cmd.length == 2) {
 					new Restart(serverid);
 				}
-				if (cmdLabel.equalsIgnoreCase("forcerestart")) {
+				if (cmdLabel.equalsIgnoreCase("forcerestart")
+						&& cmd.length == 2) {
 					new ForceRestart(serverid);
 				}
 				if (cmdLabel.equalsIgnoreCase("online") && cmd.length == 2) {
@@ -123,12 +124,12 @@ public class Command implements Runnable {
 				if (cmdLabel.equalsIgnoreCase("serverpid") && cmd.length == 2) {
 					new ServerPID(serverid);
 				}
-				if (cmdLabel.equalsIgnoreCase("createuser") && cmd.length == 3) {
-					new CreateUser(serverid, cmd[2]);
-				}
+				// if (cmdLabel.equalsIgnoreCase("createuser") && cmd.length ==
+				// 3) {
+				// new CreateUser(serverid, cmd[2]);
+				// }
 
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception ignored) {
 			}
 		} else {
 			log.info("Unknown command! Use \"help\" for a list of valid commands.");
