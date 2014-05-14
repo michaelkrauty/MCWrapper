@@ -27,19 +27,20 @@ public class CrashDetector implements Runnable {
 	@Override
 	public void run() {
 		try {
-			while (server.crashDetectionEnabled()) {
-				float lastResponse = server.getLastResponse();
-				if (lastResponse < (System.currentTimeMillis() - 60000)) {
-					log.info("No response in 60 seconds from server "
-							+ server.getId() + ", running \"list\" command");
-					server.executeCommand("list");
-					while (lastResponse < System.currentTimeMillis() - 90000) {
-						Thread.sleep(0);
-					}
-					if (lastResponse < System.currentTimeMillis() - 90000) {
-						log.info("Force restarting server " + server.getId());
-						new ForceRestart(server.getId());
-					}
+			while ((server.getLastResponse() < System.currentTimeMillis() - 60000)
+					&& server.crashDetectionEnabled()) {
+				Thread.sleep(0);
+			}
+			log.info("No response in 60 seconds from server " + server.getId()
+					+ ", running \"list\" command");
+			server.executeCommand("list");
+			boolean derp = true;
+			while (derp) {
+				if (server.getLastResponse() < System.currentTimeMillis() - 90000) {
+					new ForceRestart(server.getId());
+				} else if (server.getLastResponse() > System
+						.currentTimeMillis() - 60000) {
+					derp = false;
 				}
 			}
 		} catch (Exception e) {
