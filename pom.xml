@@ -20,7 +20,6 @@
             <version>5.1.30</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -35,7 +34,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <finalName>uber-${project.artifactId}-${project.version}</finalName>
+                    <finalName>${project.artifactId}</finalName>
                 </configuration>
             </plugin>
             <plugin>
@@ -52,5 +51,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
