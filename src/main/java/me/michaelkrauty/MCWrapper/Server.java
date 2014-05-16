@@ -32,8 +32,8 @@ public class Server {
 	private OutputStream outputstream;
 	private long starttime;
 	private boolean crashDetection;
-	CrashDetector crashDetector;
-	ServerLastResponse serverLastResponse;
+	private CrashDetector crashDetector;
+	private ServerLastResponse serverLastResponse;
 
 	public Server(int serverid) {
 		id = serverid;
@@ -70,9 +70,9 @@ public class Server {
 						"--port", Integer.toString(port), "nogui");
 				Process p = pb.start();
 				process = p;
-				java.lang.reflect.Field f = p.getClass().getDeclaredField("pid");
-				f.setAccessible(true);
-				PID = f.getInt(p);
+//				java.lang.reflect.Field f = p.getClass().getDeclaredField("pid");
+//				f.setAccessible(true);
+//				PID = f.getInt(p);
 				inputstream = p.getInputStream();
 				outputstream = p.getOutputStream();
 				starttime = System.currentTimeMillis();
