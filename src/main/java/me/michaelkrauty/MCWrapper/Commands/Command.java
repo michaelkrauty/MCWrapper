@@ -48,7 +48,6 @@ public class Command implements Runnable {
 			commands.add("forcestop");
 			commands.add("kill");
 			commands.add("online");
-			commands.add("serveruptime");
 			commands.add("serverpid");
 			commands.add("stopall");
 			commands.add("forcestopall");
