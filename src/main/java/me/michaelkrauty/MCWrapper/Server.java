@@ -70,16 +70,16 @@ public class Server {
 						"--port", Integer.toString(port), "nogui");
 				Process p = pb.start();
 				process = p;
-//				java.lang.reflect.Field f = p.getClass().getDeclaredField("pid");
-//				f.setAccessible(true);
-//				PID = f.getInt(p);
+				java.lang.reflect.Field f = p.getClass().getDeclaredField("pid");
+				f.setAccessible(true);
+				PID = f.getInt(p);
 				inputstream = p.getInputStream();
 				outputstream = p.getOutputStream();
 				starttime = System.currentTimeMillis();
-				serverLastResponse = new ServerLastResponse(this);
-				serverLastResponse.start();
-				crashDetector = new CrashDetector(this, crashDetection);
-				crashDetector.start();
+//				serverLastResponse = new ServerLastResponse(this);
+//				serverLastResponse.start();
+//				crashDetector = new CrashDetector(this, crashDetection);
+//				crashDetector.start();
 			} catch (IOException e) {
 				log.info(e.getMessage());
 				log.info("Attempting to create the server directory & restart...");
