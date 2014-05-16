@@ -9,7 +9,7 @@ import me.michaelkrauty.MCWrapper.Main;
 
 import org.apache.log4j.Logger;
 
-class ClientOutput {
+public class ClientOutput {
 
 	private final static Logger log = Logger.getLogger(Main.class);
 
