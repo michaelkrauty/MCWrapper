@@ -33,7 +33,7 @@ public class Main {
 	public static ArrayList<Server> servers = new ArrayList<Server>();
 
 	public static void main(String[] args) {
-		cycleLogs();
+		checkFiles();
 		log.info("Wrapper PID: " + wrapper.getPID());
 		new ConnectionHandler().start();
 		// start main loop
@@ -65,6 +65,11 @@ public class Main {
 		// }
 		log.info("Loop stopped.");
 		System.exit(0);
+	}
+
+	private static void checkFiles() {
+		cycleLogs();
+		checkDirs();
 	}
 
 	private static void cycleLogs() {
@@ -99,6 +104,13 @@ public class Main {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	private static void checkDirs() {
+		File serverdir = new File("servers");
+		if(!serverdir.exists()) {
+			serverdir.mkdir();
 		}
 	}
 }

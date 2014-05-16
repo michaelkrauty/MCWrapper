@@ -39,7 +39,7 @@ public class Server {
 		id = serverid;
 		try {
 			ownerid = SQL.getServerOwner(serverid);
-			serverdir = "/home/mcwrapper/servers/" + id;
+			serverdir = "servers/" + id;
 			PID = -1;
 			host = getDBHost();
 			port = getDBPort();
@@ -70,14 +70,9 @@ public class Server {
 						"--port", Integer.toString(port), "nogui");
 				Process p = pb.start();
 				process = p;
-				try {
-					java.lang.reflect.Field f = p.getClass().getDeclaredField(
-							"pid");
-					f.setAccessible(true);
-					PID = f.getInt(p);
-				} catch (Throwable e) {
-					log.error("Error getting PID");
-				}
+				java.lang.reflect.Field f = p.getClass().getDeclaredField("pid");
+				f.setAccessible(true);
+				PID = f.getInt(p);
 				inputstream = p.getInputStream();
 				outputstream = p.getOutputStream();
 				starttime = System.currentTimeMillis();
