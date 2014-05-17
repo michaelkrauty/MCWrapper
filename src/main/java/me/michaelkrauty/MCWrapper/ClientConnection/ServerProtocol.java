@@ -3,12 +3,9 @@ package me.michaelkrauty.MCWrapper.ClientConnection;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import me.michaelkrauty.MCWrapper.Commands.*;
 import me.michaelkrauty.MCWrapper.Main;
 import me.michaelkrauty.MCWrapper.SQL;
-import me.michaelkrauty.MCWrapper.Commands.ForceStop;
-import me.michaelkrauty.MCWrapper.Commands.ServerCommand;
-import me.michaelkrauty.MCWrapper.Commands.Start;
-import me.michaelkrauty.MCWrapper.Commands.Stop;
 
 import org.apache.log4j.Logger;
 
@@ -68,12 +65,26 @@ public class ServerProtocol {
 							returnLines.add("Stopping server " + serverid);
 						}
 					}
+					if (input[0].equalsIgnoreCase("restart")) {
+						int serverid = Integer.parseInt(input[1]);
+						if (SQL.getServerOwner(serverid) == userid) {
+							new Restart(serverid);
+							returnLines.add("Restarting server " + serverid);
+						}
+					}
 					if (input[0].equalsIgnoreCase("forcestop")
 							|| input[0].equalsIgnoreCase("kill")) {
 						int serverid = Integer.parseInt(input[1]);
 						if (SQL.getServerOwner(serverid) == userid) {
 							new ForceStop(serverid);
 							returnLines.add("Foce stopped server " + serverid);
+						}
+					}
+					if (input[0].equalsIgnoreCase("reload")) {
+						int serverid = Integer.parseInt(input[1]);
+						if (SQL.getServerOwner(serverid) == userid) {
+							new Reload(serverid);
+							returnLines.add("Reloaded server " + serverid);
 						}
 					}
 					if (input[0].equalsIgnoreCase("command")) {

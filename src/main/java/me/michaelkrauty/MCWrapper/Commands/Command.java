@@ -39,6 +39,7 @@ public class Command implements Runnable {
 			commands.add("pid");
 			commands.add("restart");
 			commands.add("forcerestart");
+			commands.add("reload");
 			commands.add("servercommand");
 			commands.add("start");
 			commands.add("stop");
@@ -113,6 +114,9 @@ public class Command implements Runnable {
 				if (cmdLabel.equalsIgnoreCase("forcerestart")
 						&& cmd.length == 2) {
 					new ForceRestart(serverid);
+				}
+				if (cmdLabel.equalsIgnoreCase("reload") && cmd.length == 2) {
+					new Reload(serverid);
 				}
 				if (cmdLabel.equalsIgnoreCase("online") && cmd.length == 2) {
 					new Online(serverid);
