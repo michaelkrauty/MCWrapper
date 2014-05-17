@@ -8,7 +8,7 @@ public class Help {
 
 	private final static Logger log = Logger.getLogger(Main.class);
 
-	public Help() {
+/*	public Help() {
 		String commands = "";
 		for (int i = 0; i < Command.commands.size(); i++) {
 			if (i == Command.commands.size()) {
@@ -16,6 +16,14 @@ public class Help {
 			} else {
 				commands = commands + Command.commands.get(i) + ", ";
 			}
+		}
+		log.info("Commands: " + commands);
+	}*/
+
+	public Help() {
+		String commands = "";
+		for (String cmd : Command.commands) {
+			commands = commands + cmd + ", ";
 		}
 		log.info("Commands: " + commands);
 	}

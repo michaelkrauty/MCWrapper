@@ -14,7 +14,28 @@ public class Command implements Runnable {
 
 	private static String command;
 
-	public static ArrayList<String> commands = new ArrayList<String>();
+//	public static ArrayList<String> commands = new ArrayList<String>();
+
+	public static String[] commands = new String[]{
+			"help",
+			"pid",
+			"restart",
+			"forcerestart",
+			"reload",
+			"servercommand",
+			"start",
+			"stop",
+			"stopwrapper",
+			"test",
+			"uptime",
+			"forcestop",
+			"kill",
+			"online",
+			"serverpid",
+			"stopall",
+			"forcestopall",
+			"killall"
+	};
 
 	// create a new thread to run the command
 	public Command(String cmd) {
@@ -26,15 +47,21 @@ public class Command implements Runnable {
 	}
 
 	// is the command valid?
-	public boolean checkValidCommand(String command) {
-		commands();
-		return commands.contains(command.toLowerCase());
+	public boolean checkValidCommand(String cmdIn) {
+//		commands();
+//		return commands.contains(command.toLowerCase());
+		for (String cmd : commands) {
+			if(cmd.equalsIgnoreCase(cmdIn)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	// valid commands
-	private void commands() {
+/*	private void commands() {
 		if (commands.isEmpty()) {
-			/** @commands */
+			// @commands //
 			commands.add("help");
 			commands.add("pid");
 			commands.add("restart");
@@ -53,9 +80,8 @@ public class Command implements Runnable {
 			commands.add("stopall");
 			commands.add("forcestopall");
 			commands.add("killall");
-			// commands.add("createuser");
 		}
-	}
+	}*/
 
 	// run the thread
 	@Override
