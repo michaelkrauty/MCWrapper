@@ -1,7 +1,5 @@
 package me.michaelkrauty.MCWrapper.Commands;
 
-import java.util.ArrayList;
-
 import me.michaelkrauty.MCWrapper.Main;
 
 import org.apache.log4j.Logger;
@@ -13,8 +11,6 @@ public class Command implements Runnable {
 	private Thread t;
 
 	private static String command;
-
-//	public static ArrayList<String> commands = new ArrayList<String>();
 
 	public static String[] commands = new String[]{
 			"help",
@@ -48,8 +44,6 @@ public class Command implements Runnable {
 
 	// is the command valid?
 	public boolean checkValidCommand(String cmdIn) {
-//		commands();
-//		return commands.contains(command.toLowerCase());
 		for (String cmd : commands) {
 			if(cmd.equalsIgnoreCase(cmdIn)) {
 				return true;
@@ -57,31 +51,6 @@ public class Command implements Runnable {
 		}
 		return false;
 	}
-
-	// valid commands
-/*	private void commands() {
-		if (commands.isEmpty()) {
-			// @commands //
-			commands.add("help");
-			commands.add("pid");
-			commands.add("restart");
-			commands.add("forcerestart");
-			commands.add("reload");
-			commands.add("servercommand");
-			commands.add("start");
-			commands.add("stop");
-			commands.add("stopwrapper");
-			commands.add("test");
-			commands.add("uptime");
-			commands.add("forcestop");
-			commands.add("kill");
-			commands.add("online");
-			commands.add("serverpid");
-			commands.add("stopall");
-			commands.add("forcestopall");
-			commands.add("killall");
-		}
-	}*/
 
 	// run the thread
 	@Override
