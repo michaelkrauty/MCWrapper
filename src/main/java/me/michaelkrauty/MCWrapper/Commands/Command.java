@@ -122,10 +122,6 @@ public class Command implements Runnable {
 				if (cmdLabel.equalsIgnoreCase("serverpid") && cmd.length == 2) {
 					new ServerPID(serverid);
 				}
-				// if (cmdLabel.equalsIgnoreCase("createuser") && cmd.length ==
-				// 3) {
-				// new CreateUser(serverid, cmd[2]);
-				// }
 
 			} catch (Exception ignored) {
 			}
