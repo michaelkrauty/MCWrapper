@@ -60,9 +60,7 @@ public class Server {
 				pb.command(startupCommand.split(" "));
 				Process p = pb.start();
 				process = p;
-				java.lang.reflect.Field f = p.getClass().getDeclaredField("pid");
-				f.setAccessible(true);
-				PID = f.getInt(p);
+				PID = Integer.parseInt(System.getProperty("PID"));
 				inputstream = p.getInputStream();
 				outputstream = p.getOutputStream();
 				starttime = System.currentTimeMillis();

@@ -61,43 +61,8 @@ public class Main {
 	}
 
 	private static void checkFiles() {
-		cycleLogs();
+		// cycleLogs();
 		checkDirs();
-	}
-
-	private static void cycleLogs() {
-		File latestLog = new File("logs/latest.log");
-		if (latestLog.exists()) {
-			try {
-				String date = new SimpleDateFormat("MM-dd-yy").format(new Date(
-						System.currentTimeMillis()));
-				int logNumber = 0;
-				while (true) {
-					if (new File("logs/" + date + "-" + logNumber + ".zip")
-							.exists()) {
-						logNumber++;
-					} else {
-						break;
-					}
-				}
-				String filename = "logs/" + date + "-" + logNumber;
-				byte[] buffer = new byte[1024];
-				ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(
-						filename + ".zip"));
-				zos.putNextEntry(new ZipEntry("logs/" + filename + ".log"));
-				FileInputStream in = new FileInputStream("logs/latest.log");
-				int len;
-				while ((len = in.read(buffer)) > 0) {
-					zos.write(buffer, 0, len);
-				}
-				in.close();
-				zos.closeEntry();
-				zos.close();
-				latestLog.delete();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 
 	private static void checkDirs() {
