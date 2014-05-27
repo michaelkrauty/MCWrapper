@@ -55,14 +55,6 @@ public class Main {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		// while ((System.currentTimeMillis() - loopStartTime) <= 200) {
-		// try {
-		// Thread.sleep(0);
-		// } catch (InterruptedException e) {
-		// e.printStackTrace();
-		// }
-		// }
 		log.info("Loop stopped.");
 		System.exit(0);
 	}
