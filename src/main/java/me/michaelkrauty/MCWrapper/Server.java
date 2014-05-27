@@ -10,9 +10,6 @@ import java.net.Socket;
 
 import javax.net.SocketFactory;
 
-import me.michaelkrauty.MCWrapper.ServerManagement.CrashDetector;
-import me.michaelkrauty.MCWrapper.ServerManagement.ServerLastResponse;
-
 import org.apache.log4j.Logger;
 
 public class Server {
@@ -31,9 +28,6 @@ public class Server {
 	private InputStream inputstream;
 	private OutputStream outputstream;
 	private long starttime;
-	private boolean crashDetection;
-	private CrashDetector crashDetector;
-	private ServerLastResponse serverLastResponse;
 
 	public Server(int serverid) {
 		id = serverid;
@@ -48,12 +42,6 @@ public class Server {
 			inputstream = null;
 			outputstream = null;
 			starttime = -1;
-
-			// TODO: add crash_detection column to SQL database
-			// crashDetection = getDBCrashDetection();
-
-			// PLACEHOLDER
-			crashDetection = true;
 
 		} catch (NullPointerException ignored) {
 		}
@@ -149,23 +137,6 @@ public class Server {
 		}
 	}
 
-	public void setCrashDetectionEnabled(boolean bool) {
-		crashDetection = bool;
-	}
-
-	// get
-	public CrashDetector getCrashDetector() {
-		return crashDetector;
-	}
-
-	public ServerLastResponse getServerLastResponse() {
-		return serverLastResponse;
-	}
-
-	public float getLastResponse() {
-		return serverLastResponse.getLastResponse();
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -205,10 +176,6 @@ public class Server {
 
 	public int getUptime() {
 		return (int) (System.currentTimeMillis() - starttime);
-	}
-
-	public boolean crashDetectionEnabled() {
-		return crashDetection;
 	}
 
 	public boolean exists() {
