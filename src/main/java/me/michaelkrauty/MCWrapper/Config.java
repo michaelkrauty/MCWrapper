@@ -20,6 +20,7 @@ public class Config {
 
 	// Create Variables
 	private String host;
+    private String database;
 	private int port;
 	private String user;
 	private String pass;
@@ -45,6 +46,7 @@ public class Config {
 
 			// Constructor variables set.
 			host = properties.getProperty("db_host");
+            database = properties.getProperty("db_database");
 			port = Integer.parseInt(properties.getProperty("db_port"));
 			user = properties.getProperty("db_user");
 			pass = properties.getProperty("db_password");
@@ -67,6 +69,7 @@ public class Config {
 		try {
 			propertiesFile.createNewFile();
 			properties.setProperty("db_host", "localhost");
+            properties.setProperty("db_database", "MCWrapper");
 			properties.setProperty("db_port", "3306");
 			properties.setProperty("db_user", "root");
 			properties.setProperty("db_password", "1234");
@@ -81,6 +84,8 @@ public class Config {
 	public String getDBHost() {
 		return host;
 	}
+
+    public String getDBDatabase() { return database; }
 
 	public int getDBPort() {
 		return port;

@@ -28,6 +28,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		checkDirs();
+        boolean sqlres = SQL.checkTables();
+        if (!sqlres) {
+            System.exit(1);
+        }
 		log.info("Wrapper PID: " + wrapper.getPID());
 		new ConnectionHandler().start();
 		// start main loop

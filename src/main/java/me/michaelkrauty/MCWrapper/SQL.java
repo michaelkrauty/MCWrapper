@@ -1,11 +1,9 @@
 package me.michaelkrauty.MCWrapper;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class SQL {
@@ -18,7 +16,7 @@ public class SQL {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://"
 							+ Main.config.getDBHost() + ":" + Main.config.getDBPort()
-							+ "/MPCP2", Main.config.getDBUser(),
+							+ "/" + Main.config.getDBDatabase(), Main.config.getDBUser(),
 					Main.config.getDBPass()
 			);
 		} catch (Exception e) {
@@ -33,6 +31,34 @@ public class SQL {
 			e.printStackTrace();
 		}
 	}
+
+    public synchronized static boolean checkTables() {
+        openConnection();
+        boolean res = true;
+        try {
+            PreparedStatement stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `servers` (id int(11) PRIMARY KEY, owner int(11), host varchar(256), port int(11), memory int(11), jar int(11), suspended tinyint(4), name varchar(256));");
+            stmt.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            res = false;
+        }
+        try {
+            PreparedStatement stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `jars` (`id` int(11) PRIMARY KEY, `name` varchar(256), `mod` varchar(256), `version` varchar(256), `build` varchar(256), `location` varchar(256), `startup_args` varchar(256));");
+            stmt.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            res = false;
+        }
+        try {
+            PreparedStatement stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `users` (ID int(11) PRIMARY KEY, email varchar(256), username varchar(256), password varchar(256), date_registered varchar(256));");
+            stmt.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            res = false;
+        }
+        closeConnection();
+        return res;
+    }
 
 	public synchronized static boolean serverDataContainsServer(int serverid) {
 		openConnection();
