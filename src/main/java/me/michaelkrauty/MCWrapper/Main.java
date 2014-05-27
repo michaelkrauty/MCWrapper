@@ -45,6 +45,13 @@ public class Main {
 				if (br.ready()) {
 					new Command(br.readLine());
 				}
+
+				// attempting to reduce unnecessary CPU load
+				try {
+					Thread.sleep(1000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
