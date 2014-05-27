@@ -64,10 +64,6 @@ public class Server {
 				inputstream = p.getInputStream();
 				outputstream = p.getOutputStream();
 				starttime = System.currentTimeMillis();
-//				serverLastResponse = new ServerLastResponse(this);
-//				serverLastResponse.start();
-//				crashDetector = new CrashDetector(this, crashDetection);
-//				crashDetector.start();
 			} catch (IOException e) {
 				log.info(e.getMessage());
 				log.info("Attempting to create the server directory & restart...");
@@ -208,9 +204,5 @@ public class Server {
 
 	public int getDBOwner() {
 		return SQL.getServerOwner(id);
-	}
-
-	public boolean getDBCrashDetection() {
-		return SQL.getServerCrashDetection(id);
 	}
 }

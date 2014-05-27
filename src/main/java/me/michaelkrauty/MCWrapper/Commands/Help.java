@@ -8,18 +8,6 @@ public class Help {
 
 	private final static Logger log = Logger.getLogger(Main.class);
 
-/*	public Help() {
-		String commands = "";
-		for (int i = 0; i < Command.commands.size(); i++) {
-			if (i == Command.commands.size()) {
-				commands = commands + Command.commands.get(i) + ".";
-			} else {
-				commands = commands + Command.commands.get(i) + ", ";
-			}
-		}
-		log.info("Commands: " + commands);
-	}*/
-
 	public Help() {
 		String commands = "";
 		for (String cmd : Command.commands) {
