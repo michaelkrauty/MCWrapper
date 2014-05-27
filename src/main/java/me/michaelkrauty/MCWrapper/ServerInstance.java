@@ -1,9 +1,11 @@
 package me.michaelkrauty.MCWrapper;
 
+import me.michaelkrauty.MCWrapper.CrashDetection.CrashDetector;
 import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
@@ -17,6 +19,9 @@ public class ServerInstance implements Runnable {
 
 	private Thread t;
 	private final int serverid;
+    private static Server server;
+    private static InputStream serverIn;
+    private static long lastResponse;
 
 	public ServerInstance(int serverid) {
 		this.serverid = serverid;
@@ -38,13 +43,23 @@ public class ServerInstance implements Runnable {
 		server.start();
 		BufferedReader in = new BufferedReader(new InputStreamReader(
 				server.getInputStream()));
+        new CrashDetector(this);
 		String line;
 		try {
 			while ((line = in.readLine()) != null) {
 				log.info("Server " + serverid + ": " + line);
+                lastResponse = System.currentTimeMillis();
 			}
 			in.close();
 		} catch (IOException ignored) {
 		}
 	}
+
+    public Server getServer() {
+        return server;
+    }
+
+    public long getLastResponse() {
+        return lastResponse;
+    }
 }
