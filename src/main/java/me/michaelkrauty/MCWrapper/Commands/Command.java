@@ -26,7 +26,6 @@ public class Command implements Runnable {
 			"forcestop",
 			"kill",
 			"online",
-			"serverpid",
 			"stopall",
 			"forcestopall",
 			"killall"
@@ -117,9 +116,6 @@ public class Command implements Runnable {
 				}
 				if (cmdLabel.equalsIgnoreCase("uptime") && cmd.length == 2) {
 					new Uptime(serverid);
-				}
-				if (cmdLabel.equalsIgnoreCase("serverpid") && cmd.length == 2) {
-					new ServerPID(serverid);
 				}
 
 			} catch (Exception ignored) {

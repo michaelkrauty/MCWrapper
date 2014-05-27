@@ -14,7 +14,6 @@ public class Server {
 	private final int id;
 	private int ownerid;
 	private String serverdir;
-	private int PID;
 	private String host;
 	private int port;
 	private int memory;
@@ -31,7 +30,6 @@ public class Server {
 		try {
 			ownerid = SQL.getServerOwner(serverid);
 			serverdir = "servers/" + id;
-			PID = -1;
 			host = getDBHost();
 			port = getDBPort();
 			memory = getDBMemory();
@@ -60,7 +58,6 @@ public class Server {
 				pb.command(startupCommand.split(" "));
 				Process p = pb.start();
 				process = p;
-				PID = Integer.parseInt(System.getProperty("PID"));
 				inputstream = p.getInputStream();
 				outputstream = p.getOutputStream();
 				starttime = System.currentTimeMillis();
@@ -152,10 +149,6 @@ public class Server {
 
 	public Process getProcess() {
 		return process;
-	}
-
-	public int getPID() {
-		return PID;
 	}
 
 	public String getHost() {
