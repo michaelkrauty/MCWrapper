@@ -444,6 +444,7 @@ public class SQL {
 	}
 
 	public synchronized static String getServerStartupCommand(int serverid) {
+		log.info("server " + serverid + " jar ID: " + getServerJarId(serverid));
 		try {
 			if (serverDataContainsServer(serverid)) {
 				openConnection();
