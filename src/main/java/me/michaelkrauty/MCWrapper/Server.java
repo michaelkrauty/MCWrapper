@@ -40,7 +40,11 @@ public class Server {
 			outputstream = null;
 			starttime = -1;
 			type = getDBType();
-			startupCommand = getDBStartupCommand();
+			startupCommand = getDBStartupCommand()
+					.replace("%JARPATH", jarLocation)
+					.replace("%MEMORY", Integer.toString(memory))
+					.replace("%HOST", host)
+					.replace("%PORT", Integer.toString(port));
 			jarLocation = getDBJarLocation();
 
 		} catch (NullPointerException ignored) {
@@ -53,13 +57,7 @@ public class Server {
 			try {
 				ProcessBuilder pb = new ProcessBuilder();
 				pb.directory(new File(serverdir));
-				pb.command(
-						startupCommand
-								.replace("%JARPATH", jarLocation)
-								.replace("%MEMORY", Integer.toString(memory))
-								.replace("%HOST", host)
-								.replace("%PORT", Integer.toString(port))
-				);
+				pb.command(startupCommand.split(" "));
 				Process p = pb.start();
 				process = p;
 				java.lang.reflect.Field f = p.getClass().getDeclaredField("pid");
