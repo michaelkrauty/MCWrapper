@@ -52,7 +52,7 @@ public class Server {
 
 	public void start() {
 		log.info("Starting server " + id + "...");
-		log.info("command: " + startupCommand);
+		log.info("Server " + id + " startup command: " + startupCommand);
 		if (!isRunning()) {
 			try {
 				ProcessBuilder pb = new ProcessBuilder();
