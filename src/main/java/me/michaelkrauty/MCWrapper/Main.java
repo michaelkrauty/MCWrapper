@@ -27,7 +27,7 @@ public class Main {
 	public static ArrayList<Server> servers = new ArrayList<Server>();
 
 	public static void main(String[] args) {
-		checkFiles();
+		checkDirs();
 		log.info("Wrapper PID: " + wrapper.getPID());
 		new ConnectionHandler().start();
 		// start main loop
@@ -58,11 +58,6 @@ public class Main {
 		}
 		log.info("Loop stopped.");
 		System.exit(0);
-	}
-
-	private static void checkFiles() {
-		// cycleLogs();
-		checkDirs();
 	}
 
 	private static void checkDirs() {
