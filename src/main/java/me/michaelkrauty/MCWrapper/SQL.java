@@ -22,7 +22,7 @@ public class SQL {
 					Main.config.getDBPass()
 			);
 		} catch (Exception e) {
-			log.info("Couldn't connect to database! Reason: " + e.getMessage());
+			log.error("Couldn't connect to database! Reason: " + e.getMessage());
 		}
 	}
 
@@ -444,7 +444,6 @@ public class SQL {
 	}
 
 	public synchronized static String getServerStartupCommand(int serverid) {
-		log.info("server " + serverid + " jar ID: " + getServerJarId(serverid));
 		try {
 			if (serverDataContainsServer(serverid)) {
 				openConnection();
@@ -453,7 +452,6 @@ public class SQL {
 				sql.setInt(1, getServerJarId(serverid));
 				ResultSet result = sql.executeQuery();
 				result.next();
-				log.info("server " + serverid + " startup command: " + result.getString("startup_args"));
 				return result.getString("startup_args");
 			} else {
 				return null;
