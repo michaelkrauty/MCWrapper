@@ -29,6 +29,13 @@ public class CrashDetector implements Runnable {
 
     public void run() {
         String line;
+        while (!server.isRunning()) {
+            try {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         BufferedReader in = new BufferedReader(new InputStreamReader(
                 server.getInputStream()));
         try {
