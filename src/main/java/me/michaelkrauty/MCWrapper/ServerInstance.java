@@ -2,7 +2,9 @@ package me.michaelkrauty.MCWrapper;
 
 import org.apache.log4j.Logger;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Created on 5/26/2014.

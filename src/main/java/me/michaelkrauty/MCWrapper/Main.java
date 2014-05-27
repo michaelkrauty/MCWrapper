@@ -46,7 +46,7 @@ public class Main {
 					new Command(br.readLine());
 				}
 
-				// attempting to reduce unnecessary CPU load
+				// Pause 1 second at the end of the loop to prevent unnecessary CPU usage
 				try {
 					Thread.sleep(1000);
 				} catch (Exception e) {
