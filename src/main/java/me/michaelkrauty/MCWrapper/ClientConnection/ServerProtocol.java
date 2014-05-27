@@ -1,13 +1,12 @@
 package me.michaelkrauty.MCWrapper.ClientConnection;
 
-import java.net.Socket;
-import java.util.ArrayList;
-
 import me.michaelkrauty.MCWrapper.Commands.*;
 import me.michaelkrauty.MCWrapper.Main;
 import me.michaelkrauty.MCWrapper.SQL;
-
 import org.apache.log4j.Logger;
+
+import java.net.Socket;
+import java.util.ArrayList;
 
 @SuppressWarnings("unused")
 public class ServerProtocol {

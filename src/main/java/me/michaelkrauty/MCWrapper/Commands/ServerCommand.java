@@ -2,7 +2,6 @@ package me.michaelkrauty.MCWrapper.Commands;
 
 import me.michaelkrauty.MCWrapper.Main;
 import me.michaelkrauty.MCWrapper.Server;
-
 import org.apache.log4j.Logger;
 
 public class ServerCommand {

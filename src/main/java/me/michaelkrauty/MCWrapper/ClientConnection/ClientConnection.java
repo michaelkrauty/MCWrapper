@@ -1,10 +1,9 @@
 package me.michaelkrauty.MCWrapper.ClientConnection;
 
-import java.net.Socket;
-
 import me.michaelkrauty.MCWrapper.Main;
-
 import org.apache.log4j.Logger;
+
+import java.net.Socket;
 
 /*
  * Client Connection class...

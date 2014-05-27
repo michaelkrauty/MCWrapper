@@ -1,13 +1,12 @@
 package me.michaelkrauty.MCWrapper.ClientConnection;
 
+import me.michaelkrauty.MCWrapper.Main;
+import org.apache.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-
-import me.michaelkrauty.MCWrapper.Main;
-
-import org.apache.log4j.Logger;
 
 public class ClientInput implements Runnable {
 

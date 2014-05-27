@@ -1,13 +1,12 @@
 package me.michaelkrauty.MCWrapper.ClientConnection;
 
+import me.michaelkrauty.MCWrapper.Main;
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
-
-import me.michaelkrauty.MCWrapper.Main;
-
-import org.apache.log4j.Logger;
 
 public class ClientOutput {
 

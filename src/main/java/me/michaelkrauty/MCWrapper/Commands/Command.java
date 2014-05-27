@@ -1,7 +1,6 @@
 package me.michaelkrauty.MCWrapper.Commands;
 
 import me.michaelkrauty.MCWrapper.Main;
-
 import org.apache.log4j.Logger;
 
 public class Command implements Runnable {
@@ -45,7 +44,7 @@ public class Command implements Runnable {
 	// is the command valid?
 	public boolean checkValidCommand(String cmdIn) {
 		for (String cmd : commands) {
-			if(cmd.equalsIgnoreCase(cmdIn)) {
+			if (cmd.equalsIgnoreCase(cmdIn)) {
 				return true;
 			}
 		}

@@ -5,14 +5,11 @@ package me.michaelkrauty.MCWrapper;
  */
 
 //Imports
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 import org.apache.log4j.Logger;
+
+import java.io.*;
+import java.util.Properties;
 
 /*
  * Config class...

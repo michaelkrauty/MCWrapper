@@ -1,23 +1,17 @@
 package me.michaelkrauty.MCWrapper;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.net.InetSocketAddress;
-import java.net.Socket;
+import org.apache.log4j.Logger;
 
 import javax.net.SocketFactory;
-
-import org.apache.log4j.Logger;
+import java.io.*;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 
 public class Server {
 
 	private final static Logger log = Logger.getLogger(Main.class);
 
 	private final int id;
-	@SuppressWarnings("unused")
 	private int ownerid;
 	private String serverdir;
 	private int PID;
@@ -28,6 +22,9 @@ public class Server {
 	private InputStream inputstream;
 	private OutputStream outputstream;
 	private long starttime;
+	private String type;
+	private String startupCommand;
+	private String jarLocation;
 
 	public Server(int serverid) {
 		id = serverid;
@@ -42,6 +39,9 @@ public class Server {
 			inputstream = null;
 			outputstream = null;
 			starttime = -1;
+			type = getDBType();
+			startupCommand = getDBStartupCommand();
+			jarLocation = getDBJarLocation();
 
 		} catch (NullPointerException ignored) {
 		}
@@ -53,9 +53,13 @@ public class Server {
 			try {
 				ProcessBuilder pb = new ProcessBuilder();
 				pb.directory(new File(serverdir));
-				pb.command("java", "-Xmx" + Integer.toString(memory) + "M",
-						"-jar", "/home/mcwrapper/jar/test.jar", "--host", host,
-						"--port", Integer.toString(port), "nogui");
+				pb.command(
+						startupCommand
+								.replace("%JARPATH", jarLocation)
+								.replace("%MEMORY", Integer.toString(memory))
+								.replace("%HOST", host)
+								.replace("%PORT", Integer.toString(port))
+				);
 				Process p = pb.start();
 				process = p;
 				java.lang.reflect.Field f = p.getClass().getDeclaredField("pid");
@@ -191,7 +195,7 @@ public class Server {
 	}
 
 	public int getDBJar() {
-		return SQL.getServerJar(id);
+		return SQL.getServerJarId(id);
 	}
 
 	public boolean getDBSuspended() {
@@ -204,5 +208,17 @@ public class Server {
 
 	public int getDBOwner() {
 		return SQL.getServerOwner(id);
+	}
+
+	public String getDBType() {
+		return SQL.getServerMod(id);
+	}
+
+	public String getDBStartupCommand() {
+		return SQL.getServerStartupCommand(id);
+	}
+
+	public String getDBJarLocation() {
+		return SQL.getServerJarPath(id);
 	}
 }

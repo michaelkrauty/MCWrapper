@@ -1,12 +1,11 @@
 package me.michaelkrauty.MCWrapper.ClientConnection;
 
+import me.michaelkrauty.MCWrapper.Main;
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import me.michaelkrauty.MCWrapper.Main;
-
-import org.apache.log4j.Logger;
 
 public class ConnectionHandler implements Runnable {
 

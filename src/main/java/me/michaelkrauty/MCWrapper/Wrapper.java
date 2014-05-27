@@ -1,8 +1,8 @@
 package me.michaelkrauty.MCWrapper;
 
-import java.lang.management.ManagementFactory;
-
 import org.apache.log4j.Logger;
+
+import java.lang.management.ManagementFactory;
 
 public class Wrapper {
 

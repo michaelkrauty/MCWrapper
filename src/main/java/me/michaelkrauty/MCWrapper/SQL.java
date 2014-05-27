@@ -1,12 +1,12 @@
 package me.michaelkrauty.MCWrapper;
 
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
-import org.apache.log4j.Logger;
 
 public class SQL {
 
@@ -17,9 +17,10 @@ public class SQL {
 	private synchronized static void openConnection() {
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://"
-					+ Main.config.getDBHost() + ":" + Main.config.getDBPort()
-					+ "/MPCP2", Main.config.getDBUser(),
-					Main.config.getDBPass());
+							+ Main.config.getDBHost() + ":" + Main.config.getDBPort()
+							+ "/MPCP2", Main.config.getDBUser(),
+					Main.config.getDBPass()
+			);
 		} catch (Exception e) {
 			log.info("Couldn't connect to database! Reason: " + e.getMessage());
 		}
@@ -177,7 +178,7 @@ public class SQL {
 		}
 	}
 
-	public synchronized static int getServerJar(int serverid) {
+	public synchronized static int getServerJarId(int serverid) {
 		try {
 			if (serverDataContainsServer(serverid)) {
 				openConnection();
@@ -193,6 +194,27 @@ public class SQL {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
+		} finally {
+			closeConnection();
+		}
+	}
+
+	public synchronized static String getServerJarPath(int serverid) {
+		try {
+			if (serverDataContainsServer(serverid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `jars` WHERE id=?;");
+				sql.setInt(1, getServerJarId(serverid));
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getString("location");
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		} finally {
 			closeConnection();
 		}
@@ -398,5 +420,47 @@ public class SQL {
 			}
 		}
 		return servers;
+	}
+
+	public synchronized static String getServerMod(int serverid) {
+		try {
+			if (serverDataContainsServer(serverid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `jars` WHERE id=?;");
+				sql.setInt(1, getServerJarId(serverid));
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getString("mod");
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeConnection();
+		}
+	}
+
+	public synchronized static String getServerStartupCommand(int serverid) {
+		try {
+			if (serverDataContainsServer(serverid)) {
+				openConnection();
+				PreparedStatement sql = connection
+						.prepareStatement("SELECT * FROM `jars` WHERE id=?;");
+				sql.setInt(1, getServerJarId(serverid));
+				ResultSet result = sql.executeQuery();
+				result.next();
+				return result.getString("startup_args");
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeConnection();
+		}
 	}
 }

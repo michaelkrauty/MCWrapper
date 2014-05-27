@@ -1,21 +1,15 @@
 package me.michaelkrauty.MCWrapper;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import me.michaelkrauty.MCWrapper.ClientConnection.ConnectionHandler;
+import me.michaelkrauty.MCWrapper.Commands.Command;
+import org.apache.log4j.Logger;
+
+import java.io.*;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-
-import me.michaelkrauty.MCWrapper.ClientConnection.ConnectionHandler;
-import me.michaelkrauty.MCWrapper.Commands.Command;
-
-import org.apache.log4j.Logger;
 
 public class Main {
 
@@ -101,7 +95,7 @@ public class Main {
 
 	private static void checkDirs() {
 		File serverdir = new File("servers");
-		if(!serverdir.exists()) {
+		if (!serverdir.exists()) {
 			serverdir.mkdir();
 		}
 	}
