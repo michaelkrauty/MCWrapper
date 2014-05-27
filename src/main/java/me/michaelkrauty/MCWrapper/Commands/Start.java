@@ -11,9 +11,7 @@ import java.io.InputStreamReader;
 
 public class Start {
 
-	private final static Logger log = Logger.getLogger(Main.class);
-
 	public Start(int id) {
-		new ServerInstance(id).run();
+		new ServerInstance(id);
 	}
 }
