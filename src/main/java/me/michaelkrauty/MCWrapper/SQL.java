@@ -453,6 +453,7 @@ public class SQL {
 				sql.setInt(1, getServerJarId(serverid));
 				ResultSet result = sql.executeQuery();
 				result.next();
+				log.info("server " + serverid + " startup command: " + result.getString("startup_args"));
 				return result.getString("startup_args");
 			} else {
 				return null;
