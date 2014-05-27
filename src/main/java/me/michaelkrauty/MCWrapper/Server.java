@@ -40,11 +40,13 @@ public class Server {
 			outputstream = null;
 			starttime = -1;
 			type = getDBType();
+			log.info("getDBStartupCommand() = " + getDBStartupCommand());
 			startupCommand = getDBStartupCommand()
 					.replace("%JARPATH", jarLocation)
 					.replace("%MEMORY", Integer.toString(memory))
 					.replace("%HOST", host)
 					.replace("%PORT", Integer.toString(port));
+			log.info("startupCommand = " + startupCommand);
 			jarLocation = getDBJarLocation();
 
 		} catch (NullPointerException ignored) {
