@@ -1,6 +1,7 @@
 package me.michaelkrauty.MCWrapper.CrashDetection;
 
 import me.michaelkrauty.MCWrapper.Commands.ForceRestart;
+import me.michaelkrauty.MCWrapper.Commands.ServerCommand;
 import me.michaelkrauty.MCWrapper.Server;
 import me.michaelkrauty.MCWrapper.ServerInstance;
 
@@ -32,10 +33,14 @@ public class CrashDetector implements Runnable {
                 server.getInputStream()));
         try {
             // TODO: put in SQL database or something later
-            int threshold = 60;
+            int threshold1 = 10;
+            int threshold2 = 20;
             while ((line = in.readLine()) != null) {
                 long currentTime = System.currentTimeMillis();
-                if (serverInstance.getLastResponse() < (currentTime - (threshold * 1000))) {
+                if (serverInstance.getLastResponse() < (currentTime - (threshold1 * 1000))) {
+                    new ServerCommand(new String[] {"test", "test", "list"});
+                }
+                if (serverInstance.getLastResponse() < (currentTime - (threshold2 * 1000))) {
                     new ForceRestart(server.getId());
                 }
             }
