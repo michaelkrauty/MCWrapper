@@ -8,7 +8,7 @@ import java.net.Socket;
 /*
  * Client Connection class...
  */
-public class ClientConnection {
+class ClientConnection {
 
 	private final static Logger log = Logger.getLogger(Main.class);
 

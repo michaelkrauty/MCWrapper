@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class ClientOutput {
+class ClientOutput {
 
 	private final static Logger log = Logger.getLogger(Main.class);
 

@@ -11,7 +11,7 @@ public class Command implements Runnable {
 
 	private static String command;
 
-	public static String[] commands = new String[]{
+	public static final String[] commands = new String[]{
 			"help",
 			"pid",
 			"restart",
@@ -41,7 +41,7 @@ public class Command implements Runnable {
 	}
 
 	// is the command valid?
-	public boolean checkValidCommand(String cmdIn) {
+    boolean checkValidCommand(String cmdIn) {
 		for (String cmd : commands) {
 			if (cmd.equalsIgnoreCase(cmdIn)) {
 				return true;

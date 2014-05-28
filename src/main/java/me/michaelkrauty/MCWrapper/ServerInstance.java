@@ -33,10 +33,7 @@ public class ServerInstance implements Runnable {
 
 	public void run() {
 		Server server = Main.wrapper.getServer(serverid);
-		if (server != null) {
-			;
-		} else {
-			server = null;
+		if (server == null) {
 			server = new Server(serverid);
 			Main.servers.add(server);
 		}

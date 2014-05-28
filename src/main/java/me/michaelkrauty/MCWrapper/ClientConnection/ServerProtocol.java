@@ -9,7 +9,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 @SuppressWarnings("unused")
-public class ServerProtocol {
+class ServerProtocol {
 
 	private final static Logger log = Logger.getLogger(Main.class);
 

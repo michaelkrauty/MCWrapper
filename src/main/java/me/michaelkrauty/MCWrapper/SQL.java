@@ -1,6 +1,5 @@
 package me.michaelkrauty.MCWrapper;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -80,7 +79,7 @@ public class SQL {
 		}
 	}
 
-	public synchronized static boolean userDataContainsId(int userid) {
+	private synchronized static boolean userDataContainsId(int userid) {
 		openConnection();
 		try {
 			PreparedStatement sql = connection
@@ -100,7 +99,7 @@ public class SQL {
 		}
 	}
 
-	public synchronized static boolean userDataContainsEmail(String email) {
+	private synchronized static boolean userDataContainsEmail(String email) {
 		openConnection();
 		try {
 			PreparedStatement sql = connection
@@ -309,7 +308,7 @@ public class SQL {
 		}
 	}
 
-	public synchronized static ArrayList<String> getAllServers() {
+	private synchronized static ArrayList<String> getAllServers() {
 		try {
 			openConnection();
 			PreparedStatement sql = connection
@@ -440,11 +439,11 @@ public class SQL {
 	public synchronized static ArrayList<Integer> getUserServers(int userid) {
 		ArrayList<Integer> servers = new ArrayList<Integer>();
 		ArrayList<String> allServers = getAllServers();
-		for (int i = 0; i < allServers.size(); i++) {
-			if (getServerOwner(Integer.parseInt(allServers.get(i))) == userid) {
-				servers.add(Integer.parseInt(allServers.get(i)));
-			}
-		}
+        for (String svr : allServers) {
+            if (getServerOwner(Integer.parseInt(svr)) == userid) {
+                servers.add(Integer.parseInt(svr));
+            }
+        }
 		return servers;
 	}
 

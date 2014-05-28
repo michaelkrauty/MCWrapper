@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-public class ClientInput implements Runnable {
+class ClientInput implements Runnable {
 
 	private final static Logger log = Logger.getLogger(Main.class);
 

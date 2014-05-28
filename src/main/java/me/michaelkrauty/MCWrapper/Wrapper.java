@@ -55,16 +55,8 @@ public class Wrapper {
 
 	public boolean checkOnlineState(int serverid) {
 		Server server = new Server(serverid);
-		if (server.exists()) {
-			return server.isOnline();
-		}
-		return false;
-	}
-
-	public long getServerUptime(int serverid) {
-		return 0;
-		// TODO
-	}
+        return server.exists() && server.isOnline();
+    }
 
 	public String[] getOnlinePlayers(int serverid) {
 		Server server = new Server(serverid);
@@ -84,7 +76,7 @@ public class Wrapper {
 		server.start();
 	}
 
-	public void stopAllServers() {
+	void stopAllServers() {
 		log.info("Stopping all servers...");
 		for (int i = 0; i < Main.servers.size(); i++) {
 			Main.servers.get(i).stop();
