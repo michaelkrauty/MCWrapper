@@ -19,9 +19,9 @@ public class ServerInstance implements Runnable {
 
 	private Thread t;
 	private final int serverid;
-    private static Server server;
-    private static InputStream serverIn;
-    private static long lastResponse;
+	private static Server server;
+	private static InputStream serverIn;
+	private static long lastResponse;
 
 	public ServerInstance(int serverid) {
 		this.serverid = serverid;
@@ -40,26 +40,28 @@ public class ServerInstance implements Runnable {
 			server = new Server(serverid);
 			Main.servers.add(server);
 		}
+		this.server = server;
 		server.start();
 		BufferedReader in = new BufferedReader(new InputStreamReader(
 				server.getInputStream()));
-        new CrashDetector(this);
+		// TODO: get crash detector working
+		// new CrashDetector(this);
 		String line;
 		try {
 			while ((line = in.readLine()) != null) {
 				log.info("Server " + serverid + ": " + line);
-                lastResponse = System.currentTimeMillis();
+				lastResponse = System.currentTimeMillis();
 			}
 			in.close();
 		} catch (IOException ignored) {
 		}
 	}
 
-    public Server getServer() {
-        return server;
-    }
+	public Server getServer() {
+		return server;
+	}
 
-    public long getLastResponse() {
-        return lastResponse;
-    }
+	public long getLastResponse() {
+		return lastResponse;
+	}
 }
