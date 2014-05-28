@@ -44,8 +44,7 @@ public class ServerInstance implements Runnable {
 		server.start();
 		BufferedReader in = new BufferedReader(new InputStreamReader(
 				server.getInputStream()));
-		// TODO: get crash detector working
-		// new CrashDetector(this);
+		new CrashDetector(this);
 		String line;
 		try {
 			while ((line = in.readLine()) != null) {

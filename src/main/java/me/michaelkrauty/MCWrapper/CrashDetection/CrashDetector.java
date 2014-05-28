@@ -1,6 +1,7 @@
 package me.michaelkrauty.MCWrapper.CrashDetection;
 
 import me.michaelkrauty.MCWrapper.Commands.ForceRestart;
+import me.michaelkrauty.MCWrapper.Commands.ServerCommand;
 import me.michaelkrauty.MCWrapper.Main;
 import me.michaelkrauty.MCWrapper.Server;
 import me.michaelkrauty.MCWrapper.ServerInstance;
@@ -25,8 +26,7 @@ public class CrashDetector implements Runnable {
 	}
 
 	public void run() {
-		int threshold1 = 10;
-		int threshold2 = 20;
+		int check = 10;
 		int strike = 0;
 		while (serverInstance.getServer() == null) {
 			try {
@@ -37,22 +37,30 @@ public class CrashDetector implements Runnable {
 			}
 		}
 		Server server = serverInstance.getServer();
+		long lastCycle = 0;
 		while (server.isRunning()) {
-			long currentTime = System.currentTimeMillis();
-			if (!server.isOnline()) {
-				if (strike <= 3) {
-					strike++;
-					log.info("Server " + server.getId() + " is not responding (strike " + strike + ")");
-				} else {
-					log.info("Server " + server.getId() + " is not responding (strike " + strike + "), forcing restart...");
+			if (lastCycle == serverInstance.getLastResponse()) {
+				if (strike > 2) {
+					log.info("Server " + server.getId() + " is not responding (strike 3), forcing restart...");
 					new ForceRestart(server.getId());
+				}
+				if (strike == 2) {
+					strike++;
+					log.info("No new output from server " + server.getId() + " (strike 2), running \"list\" command...");
+					new ServerCommand(new String[] {"servercommand", Integer.toString(server.getId()), "list"});
+				}
+				if (strike == 1) {
+					strike++;
+				}
+				if (strike == 0) {
+					strike++;
 				}
 			} else {
 				strike = 0;
-				log.info("Server " + server.getId() + " is online (strike " + strike + ")");
+				lastCycle = serverInstance.getLastResponse();
 			}
 			try {
-				t.sleep(20000);
+				t.sleep(check * 1000);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
