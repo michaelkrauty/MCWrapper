@@ -3,7 +3,7 @@ package me.michaelkrauty.MCWrapper.Commands;
 import me.michaelkrauty.MCWrapper.Main;
 import org.apache.log4j.Logger;
 
-public class Help {
+class Help {
 
 	private final static Logger log = Logger.getLogger(Main.class);
 

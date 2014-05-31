@@ -171,15 +171,15 @@ public class Server {
 		return SQL.serverDataContainsServer(id);
 	}
 
-	public String getDBHost() {
+	String getDBHost() {
 		return SQL.getServerHost(id);
 	}
 
-	public int getDBPort() {
+	int getDBPort() {
 		return SQL.getServerPort(id);
 	}
 
-	public int getDBMemory() {
+	int getDBMemory() {
 		return SQL.getServerMemory(id);
 	}
 
@@ -199,15 +199,15 @@ public class Server {
 		return SQL.getServerOwner(id);
 	}
 
-	public String getDBType() {
+	String getDBType() {
 		return SQL.getServerMod(id);
 	}
 
-	public String getDBStartupCommand() {
+	String getDBStartupCommand() {
 		return SQL.getServerStartupCommand(id);
 	}
 
-	public String getDBJarLocation() {
+	String getDBJarLocation() {
 		return SQL.getServerJarPath(id);
 	}
 }

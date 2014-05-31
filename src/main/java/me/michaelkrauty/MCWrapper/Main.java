@@ -5,11 +5,7 @@ import me.michaelkrauty.MCWrapper.Commands.Command;
 import org.apache.log4j.Logger;
 
 import java.io.*;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 public class Main {
 
@@ -21,7 +17,7 @@ public class Main {
 
 	public final static Config config = new Config();
 
-	private static Logger log = Logger.getLogger(Main.class);
+	private static final Logger log = Logger.getLogger(Main.class);
 
 	// store any server objects created in this list
 	public static ArrayList<Server> servers = new ArrayList<Server>();

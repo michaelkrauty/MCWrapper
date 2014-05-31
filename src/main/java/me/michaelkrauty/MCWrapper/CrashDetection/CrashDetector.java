@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
  */
 public class CrashDetector implements Runnable {
 
-	private static Logger log = Logger.getLogger(Main.class);
+	private static final Logger log = Logger.getLogger(Main.class);
 
 	private static Thread t;
 	private final ServerInstance serverInstance;

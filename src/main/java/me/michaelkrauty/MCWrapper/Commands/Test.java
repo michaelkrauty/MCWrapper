@@ -1,6 +1,6 @@
 package me.michaelkrauty.MCWrapper.Commands;
 
-public class Test {
+class Test {
 
 	public Test() {
 	}
