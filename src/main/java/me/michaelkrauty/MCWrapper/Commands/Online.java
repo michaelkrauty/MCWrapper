@@ -48,5 +48,4 @@ class Online {
 			log.info("No online servers!");
 		}
 	}
-
 }
