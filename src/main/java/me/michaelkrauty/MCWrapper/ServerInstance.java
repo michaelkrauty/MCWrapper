@@ -1,6 +1,6 @@
 package me.michaelkrauty.MCWrapper;
 
-import me.michaelkrauty.MCWrapper.CrashDetection.CrashDetector;
+import me.michaelkrauty.MCWrapper.ServerUtil.CrashDetector;
 import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;

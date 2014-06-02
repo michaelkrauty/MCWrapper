@@ -28,7 +28,8 @@ public class Command implements Runnable {
 			"online",
 			"stopall",
 			"forcestopall",
-			"killall"
+			"killall",
+			"backup"
 	};
 
 	// create a new thread to run the command
@@ -117,7 +118,9 @@ public class Command implements Runnable {
 				if (cmdLabel.equalsIgnoreCase("uptime") && cmd.length == 2) {
 					new Uptime(serverid);
 				}
-
+				if (cmdLabel.equalsIgnoreCase("backup") && cmd.length == 2) {
+					new Backup(serverid, cmd);
+				}
 			} catch (Exception ignored) {
 			}
 		} else {

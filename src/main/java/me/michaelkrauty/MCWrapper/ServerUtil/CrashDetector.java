@@ -1,4 +1,4 @@
-package me.michaelkrauty.MCWrapper.CrashDetection;
+package me.michaelkrauty.MCWrapper.ServerUtil;
 
 import me.michaelkrauty.MCWrapper.Commands.ForceRestart;
 import me.michaelkrauty.MCWrapper.Commands.ServerCommand;

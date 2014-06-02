@@ -65,5 +65,9 @@ public class Main {
 		if (!serverdir.exists()) {
 			serverdir.mkdir();
 		}
+		File backupdir = new File("backups");
+		if (!backupdir.exists()) {
+			backupdir.mkdir();
+		}
 	}
 }
