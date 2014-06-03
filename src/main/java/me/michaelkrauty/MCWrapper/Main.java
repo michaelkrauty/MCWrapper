@@ -40,8 +40,7 @@ public class Main {
 					password = args[i + 1];
 				}
 			} catch (Exception e) {
-				log.error("Incorrect startup args!");
-				log.error("Example startup command: \"java -jar MCWrapper.jar --userid 1 --password 123\"");
+				log.error("Incorrect startup args!\nExample startup command: \"java -jar MCWrapper.jar --userid 1 --password 123\"");
 				System.exit(1);
 			}
 		}
