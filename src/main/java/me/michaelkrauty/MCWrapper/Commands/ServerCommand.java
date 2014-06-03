@@ -13,7 +13,7 @@ public class ServerCommand {
 			int serverid = Integer.parseInt(cmd[1]);
 			String out = "";
 			for (int i = 2; i < cmd.length; i++) {
-					out = out + cmd[i] + " ";
+				out = out + cmd[i] + " ";
 			}
 			Server server = Main.wrapper.getServer(serverid);
 			server.executeCommand(out);

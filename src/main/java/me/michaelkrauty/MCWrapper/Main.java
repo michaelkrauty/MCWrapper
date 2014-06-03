@@ -4,7 +4,10 @@ import me.michaelkrauty.MCWrapper.ClientConnection.ConnectionHandler;
 import me.michaelkrauty.MCWrapper.Commands.Command;
 import org.apache.log4j.Logger;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Main {
@@ -15,19 +18,38 @@ public class Main {
 
 	public final static Wrapper wrapper = new Wrapper();
 
-	public final static Config config = new Config();
-
 	private static final Logger log = Logger.getLogger(Main.class);
 
 	// store any server objects created in this list
 	public static ArrayList<Server> servers = new ArrayList<Server>();
 
+	public static int userid;
+	public static String password;
+
 	public static void main(String[] args) {
+		if (args.length == 0) {
+			log.info("Incorrect startup args.");
+			System.exit(1);
+		}
+		for (int i = 0; i < args.length; i++) {
+			try {
+				if (args[i].equalsIgnoreCase("--userid") || args[i].equalsIgnoreCase("-u")) {
+					userid = Integer.parseInt(args[i + 1]);
+				}
+				if (args[i].equalsIgnoreCase("--password") || args[i].equalsIgnoreCase("-p")) {
+					password = args[i + 1];
+				}
+			} catch (Exception e) {
+				log.error("Incorrect startup args!");
+				log.error("Example startup command: \"java -jar MCWrapper.jar --userid 1 --password 123\"");
+				System.exit(1);
+			}
+		}
 		checkDirs();
-        boolean sqlres = SQL.checkTables();
-        if (!sqlres) {
-            System.exit(1);
-        }
+		boolean sqlres = SQL.checkTables();
+		if (!sqlres) {
+			System.exit(1);
+		}
 		log.info("Wrapper PID: " + wrapper.getPID());
 		new ConnectionHandler().start();
 		// start main loop

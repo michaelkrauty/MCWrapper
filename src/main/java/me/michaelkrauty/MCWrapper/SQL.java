@@ -2,7 +2,10 @@ package me.michaelkrauty.MCWrapper;
 
 import org.apache.log4j.Logger;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class SQL {
@@ -13,11 +16,7 @@ public class SQL {
 
 	private synchronized static void openConnection() {
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://"
-							+ Main.config.getDBHost() + ":" + Main.config.getDBPort()
-							+ "/" + Main.config.getDBDatabase(), Main.config.getDBUser(),
-					Main.config.getDBPass()
-			);
+			connection = DriverManager.getConnection("jdbc:mysql://domvps.net:3306/MCWrapper_user" + Integer.toString(Main.userid), "MCWrapper_user" + Integer.toString(Main.userid), Main.password);
 		} catch (Exception e) {
 			log.error("Couldn't connect to database! Reason: " + e.getMessage());
 		}
@@ -31,33 +30,33 @@ public class SQL {
 		}
 	}
 
-    public synchronized static boolean checkTables() {
-        openConnection();
-        boolean res = true;
-        try {
-            PreparedStatement stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `servers` (id int(11) PRIMARY KEY, owner int(11), host varchar(256), port int(11), memory int(11), jar int(11), suspended tinyint(4), name varchar(256));");
-            stmt.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-            res = false;
-        }
-        try {
-            PreparedStatement stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `jars` (`id` int(11) PRIMARY KEY, `name` varchar(256), `mod` varchar(256), `version` varchar(256), `build` varchar(256), `location` varchar(256), `startup_args` varchar(256));");
-            stmt.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-            res = false;
-        }
-        try {
-            PreparedStatement stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `users` (ID int(11) PRIMARY KEY, email varchar(256), username varchar(256), password varchar(256), date_registered varchar(256));");
-            stmt.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-            res = false;
-        }
-        closeConnection();
-        return res;
-    }
+	public synchronized static boolean checkTables() {
+		openConnection();
+		boolean res = true;
+		try {
+			PreparedStatement stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `servers` (id int(11) PRIMARY KEY, owner int(11), host varchar(256), port int(11), memory int(11), jar int(11), suspended tinyint(4), name varchar(256));");
+			stmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			res = false;
+		}
+		try {
+			PreparedStatement stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `jars` (`id` int(11) PRIMARY KEY, `name` varchar(256), `mod` varchar(256), `version` varchar(256), `build` varchar(256), `location` varchar(256), `startup_args` varchar(256));");
+			stmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			res = false;
+		}
+		try {
+			PreparedStatement stmt = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `users` (ID int(11) PRIMARY KEY, email varchar(256), userid varchar(256), password varchar(256), date_registered varchar(256));");
+			stmt.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			res = false;
+		}
+		closeConnection();
+		return res;
+	}
 
 	public synchronized static boolean serverDataContainsServer(int serverid) {
 		openConnection();
@@ -382,7 +381,7 @@ public class SQL {
 				sql.setInt(1, userid);
 				ResultSet result = sql.executeQuery();
 				result.next();
-				return result.getString("username");
+				return result.getString("userid");
 			} else {
 				return null;
 			}
@@ -439,11 +438,11 @@ public class SQL {
 	public synchronized static ArrayList<Integer> getUserServers(int userid) {
 		ArrayList<Integer> servers = new ArrayList<Integer>();
 		ArrayList<String> allServers = getAllServers();
-        for (String svr : allServers) {
-            if (getServerOwner(Integer.parseInt(svr)) == userid) {
-                servers.add(Integer.parseInt(svr));
-            }
-        }
+		for (String svr : allServers) {
+			if (getServerOwner(Integer.parseInt(svr)) == userid) {
+				servers.add(Integer.parseInt(svr));
+			}
+		}
 		return servers;
 	}
 

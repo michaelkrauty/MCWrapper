@@ -47,7 +47,7 @@ public class CrashDetector implements Runnable {
 				if (strike == 2) {
 					strike++;
 					log.info("No new output from server " + server.getId() + " (strike 2), running \"list\" command...");
-					new ServerCommand(new String[] {"servercommand", Integer.toString(server.getId()), "list"});
+					new ServerCommand(new String[]{"servercommand", Integer.toString(server.getId()), "list"});
 				}
 				if (strike == 1) {
 					strike++;

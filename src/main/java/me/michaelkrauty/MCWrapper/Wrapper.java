@@ -55,8 +55,8 @@ public class Wrapper {
 
 	public boolean checkOnlineState(int serverid) {
 		Server server = new Server(serverid);
-        return server.exists() && server.isOnline();
-    }
+		return server.exists() && server.isOnline();
+	}
 
 	public String[] getOnlinePlayers(int serverid) {
 		Server server = new Server(serverid);

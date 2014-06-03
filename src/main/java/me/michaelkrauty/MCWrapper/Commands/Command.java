@@ -41,7 +41,7 @@ public class Command implements Runnable {
 	}
 
 	// is the command valid?
-    boolean checkValidCommand(String cmdIn) {
+	boolean checkValidCommand(String cmdIn) {
 		for (String cmd : commands) {
 			if (cmd.equalsIgnoreCase(cmdIn)) {
 				return true;
