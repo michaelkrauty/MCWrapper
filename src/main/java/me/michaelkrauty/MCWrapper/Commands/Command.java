@@ -18,6 +18,7 @@ public class Command implements Runnable {
 			"forcerestart",
 			"reload",
 			"servercommand",
+			"sc",
 			"start",
 			"stop",
 			"stopwrapper",
