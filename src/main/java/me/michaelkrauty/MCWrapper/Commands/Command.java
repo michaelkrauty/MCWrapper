@@ -42,7 +42,7 @@ public class Command implements Runnable {
 	}
 
 	// is the command valid?
-    boolean checkValidCommand(String cmdIn) {
+	boolean checkValidCommand(String cmdIn) {
 		for (String cmd : commands) {
 			if (cmd.equalsIgnoreCase(cmdIn)) {
 				return true;
@@ -87,8 +87,8 @@ public class Command implements Runnable {
 				}
 
 				// params
-				if (cmdLabel.equalsIgnoreCase("servercommand")
-						&& cmd.length > 1) {
+				if ((cmdLabel.equalsIgnoreCase("servercommand")
+						&& cmd.length > 1) || (cmdLabel.equalsIgnoreCase("sc") && cmd.length > 1)) {
 					new ServerCommand(cmd);
 				}
 				int serverid = Integer.parseInt(cmd[1]);
