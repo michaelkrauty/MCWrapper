@@ -50,6 +50,7 @@ public class Server {
 
 	public void start() {
 		log.info("Starting server " + id + "...");
+		refreshInfo();
 		log.info("Server " + id + " startup command: " + startupCommand);
 		if (!isRunning()) {
 			try {
@@ -64,8 +65,7 @@ public class Server {
 			} catch (IOException e) {
 				log.info(e.getMessage());
 				log.info("Attempting to create the server directory & restart...");
-				File sdir = new File(serverdir);
-				sdir.mkdir();
+				new File(serverdir).mkdir();
 				start();
 			} catch (NullPointerException e) {
 				log.info("Server " + id + " doesn't exist in SQL database.");
@@ -209,5 +209,27 @@ public class Server {
 
 	String getDBJarLocation() {
 		return SQL.getServerJarPath(id);
+	}
+
+	synchronized void refreshInfo() {
+		try {
+			ownerid = SQL.getServerOwner(id);
+			serverdir = "servers/" + id;
+			host = getDBHost();
+			port = getDBPort();
+			memory = getDBMemory();
+			process = null;
+			inputstream = null;
+			outputstream = null;
+			starttime = -1;
+			type = getDBType();
+			jarLocation = getDBJarLocation();
+			startupCommand = getDBStartupCommand()
+					.replace("%JARPATH", getDBJarLocation())
+					.replace("%MEMORY", Integer.toString(getDBMemory()))
+					.replace("%HOST", getDBHost())
+					.replace("%PORT", Integer.toString(getDBPort()));
+		} catch (NullPointerException ignored) {
+		}
 	}
 }
