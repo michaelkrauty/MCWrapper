@@ -20,7 +20,6 @@ public class ServerInstance implements Runnable {
 	private Thread t;
 	private final int serverid;
 	private static Server server;
-	private static InputStream serverIn;
 	private static long lastResponse;
 
 	public ServerInstance(int serverid) {
